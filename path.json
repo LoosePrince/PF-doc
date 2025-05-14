@@ -9,37 +9,177 @@
                 {
                     "title": "前置依赖",
                     "path": "PF-gugubot/前置依赖.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "安装(快速开始)",
                     "path": "PF-gugubot/快速开始.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "功能列表",
                     "path": "PF-gugubot/功能列表.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "配置",
                     "path": "PF-gugubot/配置.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "文件说明文档",
                     "path": "PF-gugubot/文件说明.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "疑难解答",
                     "path": "PF-gugubot/疑难解答.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 }
             ],
             "index": {
                 "title": "README",
-                "path": "PF-gugubot/README.md"
+                "path": "PF-gugubot/README.md",
+                "git": {
+                    "last_modified": {
+                        "timestamp": 1747236671,
+                        "author": "树梢",
+                        "email": "pfingan@foxmail.com",
+                        "message": "PFingan文档",
+                        "github_username": "LoosePrince",
+                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                    },
+                    "contributors": [
+                        {
+                            "name": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "commits": 1,
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                            "last_commit_timestamp": 1747236671
+                        }
+                    ]
+                }
             }
         },
         {
@@ -49,7 +189,27 @@
                 {
                     "title": "快速开始",
                     "path": "PF-cq-api/快速开始.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "机器人食用指南",
@@ -58,33 +218,153 @@
                         {
                             "title": "LiteLoaderQQNT + LLOneBot",
                             "path": "PF-cq-api/机器人食用指南/LLOneBot.md",
-                            "children": []
+                            "children": [],
+                            "git": {
+                                "last_modified": {
+                                    "timestamp": 1747236671,
+                                    "author": "树梢",
+                                    "email": "pfingan@foxmail.com",
+                                    "message": "PFingan文档",
+                                    "github_username": "LoosePrince",
+                                    "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                                },
+                                "contributors": [
+                                    {
+                                        "name": "树梢",
+                                        "email": "pfingan@foxmail.com",
+                                        "commits": 1,
+                                        "github_username": "LoosePrince",
+                                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                        "last_commit_timestamp": 1747236671
+                                    }
+                                ]
+                            }
                         },
                         {
                             "title": "Lagrange",
                             "path": "PF-cq-api/机器人食用指南/Lagrange.md",
-                            "children": []
+                            "children": [],
+                            "git": {
+                                "last_modified": {
+                                    "timestamp": 1747236671,
+                                    "author": "树梢",
+                                    "email": "pfingan@foxmail.com",
+                                    "message": "PFingan文档",
+                                    "github_username": "LoosePrince",
+                                    "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                                },
+                                "contributors": [
+                                    {
+                                        "name": "树梢",
+                                        "email": "pfingan@foxmail.com",
+                                        "commits": 1,
+                                        "github_username": "LoosePrince",
+                                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                        "last_commit_timestamp": 1747236671
+                                    }
+                                ]
+                            }
                         },
                         {
                             "title": "NapCat",
                             "path": "PF-cq-api/机器人食用指南/NapCat.md",
-                            "children": []
+                            "children": [],
+                            "git": {
+                                "last_modified": {
+                                    "timestamp": 1747236671,
+                                    "author": "树梢",
+                                    "email": "pfingan@foxmail.com",
+                                    "message": "PFingan文档",
+                                    "github_username": "LoosePrince",
+                                    "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                                },
+                                "contributors": [
+                                    {
+                                        "name": "树梢",
+                                        "email": "pfingan@foxmail.com",
+                                        "commits": 1,
+                                        "github_username": "LoosePrince",
+                                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                        "last_commit_timestamp": 1747236671
+                                    }
+                                ]
+                            }
                         }
                     ],
                     "index": {
                         "title": "README",
-                        "path": "PF-cq-api/机器人食用指南/README.md"
+                        "path": "PF-cq-api/机器人食用指南/README.md",
+                        "git": {
+                            "last_modified": {
+                                "timestamp": 1747236671,
+                                "author": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "message": "PFingan文档",
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                            },
+                            "contributors": [
+                                {
+                                    "name": "树梢",
+                                    "email": "pfingan@foxmail.com",
+                                    "commits": 1,
+                                    "github_username": "LoosePrince",
+                                    "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                    "last_commit_timestamp": 1747236671
+                                }
+                            ]
+                        }
                     }
                 },
                 {
                     "title": "开发指南",
                     "path": "PF-cq-api/开发指南.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 }
             ],
             "index": {
                 "title": "README",
-                "path": "PF-cq-api/README.md"
+                "path": "PF-cq-api/README.md",
+                "git": {
+                    "last_modified": {
+                        "timestamp": 1747236671,
+                        "author": "树梢",
+                        "email": "pfingan@foxmail.com",
+                        "message": "PFingan文档",
+                        "github_username": "LoosePrince",
+                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                    },
+                    "contributors": [
+                        {
+                            "name": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "commits": 1,
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                            "last_commit_timestamp": 1747236671
+                        }
+                    ]
+                }
             }
         },
         {
@@ -94,12 +374,52 @@
                 {
                     "title": "快速开始",
                     "path": "PF-webui/快速开始.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "参考图片",
                     "path": "PF-webui/参考图片.html",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "开发",
@@ -108,7 +428,27 @@
                         {
                             "title": "MCDR WebUI API 文档",
                             "path": "PF-webui/开发/API文档.md",
-                            "children": []
+                            "children": [],
+                            "git": {
+                                "last_modified": {
+                                    "timestamp": 1747236671,
+                                    "author": "树梢",
+                                    "email": "pfingan@foxmail.com",
+                                    "message": "PFingan文档",
+                                    "github_username": "LoosePrince",
+                                    "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                                },
+                                "contributors": [
+                                    {
+                                        "name": "树梢",
+                                        "email": "pfingan@foxmail.com",
+                                        "commits": 1,
+                                        "github_username": "LoosePrince",
+                                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                        "last_commit_timestamp": 1747236671
+                                    }
+                                ]
+                            }
                         }
                     ],
                     "index": null
@@ -116,7 +456,27 @@
             ],
             "index": {
                 "title": "README",
-                "path": "PF-webui/README.md"
+                "path": "PF-webui/README.md",
+                "git": {
+                    "last_modified": {
+                        "timestamp": 1747236671,
+                        "author": "树梢",
+                        "email": "pfingan@foxmail.com",
+                        "message": "PFingan文档",
+                        "github_username": "LoosePrince",
+                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                    },
+                    "contributors": [
+                        {
+                            "name": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "commits": 1,
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                            "last_commit_timestamp": 1747236671
+                        }
+                    ]
+                }
             }
         },
         {
@@ -126,12 +486,52 @@
                 {
                     "title": "更多插件",
                     "path": "更多插件/持续更新中.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747236671,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "PFingan文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747236671
+                            }
+                        ]
+                    }
                 }
             ],
             "index": {
                 "title": "更多插件",
-                "path": "更多插件/README.md"
+                "path": "更多插件/README.md",
+                "git": {
+                    "last_modified": {
+                        "timestamp": 1747236671,
+                        "author": "树梢",
+                        "email": "pfingan@foxmail.com",
+                        "message": "PFingan文档",
+                        "github_username": "LoosePrince",
+                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                    },
+                    "contributors": [
+                        {
+                            "name": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "commits": 1,
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                            "last_commit_timestamp": 1747236671
+                        }
+                    ]
+                }
             }
         },
         {
@@ -155,6 +555,26 @@
     ],
     "index": {
         "title": "前言",
-        "path": "README.md"
+        "path": "README.md",
+        "git": {
+            "last_modified": {
+                "timestamp": 1747236671,
+                "author": "树梢",
+                "email": "pfingan@foxmail.com",
+                "message": "PFingan文档",
+                "github_username": "LoosePrince",
+                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+            },
+            "contributors": [
+                {
+                    "name": "树梢",
+                    "email": "pfingan@foxmail.com",
+                    "commits": 1,
+                    "github_username": "LoosePrince",
+                    "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                    "last_commit_timestamp": 1747236671
+                }
+            ]
+        }
     }
 }

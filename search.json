@@ -314,18 +314,6 @@
         ]
     },
     {
-        "title": "常见问题",
-        "path": "常见问题",
-        "content": "",
-        "keywords": []
-    },
-    {
-        "title": "支持与反馈",
-        "path": "支持与反馈",
-        "content": "",
-        "keywords": []
-    },
-    {
         "title": "更多插件",
         "path": "更多插件/README.md",
         "content": "更多插件 持续更新中...",
@@ -342,5 +330,17 @@
             "更多插件",
             "持续更新中"
         ]
+    },
+    {
+        "title": "常见问题",
+        "path": "常见问题",
+        "content": "",
+        "keywords": []
+    },
+    {
+        "title": "支持与反馈",
+        "path": "支持与反馈",
+        "content": "",
+        "keywords": []
     }
 ]
