@@ -1,0 +1,160 @@
+{
+    "title": "首页",
+    "path": "",
+    "children": [
+        {
+            "title": "GUGUbot",
+            "path": "PF-gugubot",
+            "children": [
+                {
+                    "title": "前置依赖",
+                    "path": "PF-gugubot/前置依赖.md",
+                    "children": []
+                },
+                {
+                    "title": "安装(快速开始)",
+                    "path": "PF-gugubot/快速开始.md",
+                    "children": []
+                },
+                {
+                    "title": "功能列表",
+                    "path": "PF-gugubot/功能列表.md",
+                    "children": []
+                },
+                {
+                    "title": "配置",
+                    "path": "PF-gugubot/配置.md",
+                    "children": []
+                },
+                {
+                    "title": "文件说明文档",
+                    "path": "PF-gugubot/文件说明.md",
+                    "children": []
+                },
+                {
+                    "title": "疑难解答",
+                    "path": "PF-gugubot/疑难解答.md",
+                    "children": []
+                }
+            ],
+            "index": {
+                "title": "README",
+                "path": "PF-gugubot/README.md"
+            }
+        },
+        {
+            "title": "PF-cq-api",
+            "path": "PF-cq-api",
+            "children": [
+                {
+                    "title": "快速开始",
+                    "path": "PF-cq-api/快速开始.md",
+                    "children": []
+                },
+                {
+                    "title": "机器人食用指南",
+                    "path": "PF-cq-api/机器人食用指南",
+                    "children": [
+                        {
+                            "title": "LiteLoaderQQNT + LLOneBot",
+                            "path": "PF-cq-api/机器人食用指南/LLOneBot.md",
+                            "children": []
+                        },
+                        {
+                            "title": "Lagrange",
+                            "path": "PF-cq-api/机器人食用指南/Lagrange.md",
+                            "children": []
+                        },
+                        {
+                            "title": "NapCat",
+                            "path": "PF-cq-api/机器人食用指南/NapCat.md",
+                            "children": []
+                        }
+                    ],
+                    "index": {
+                        "title": "README",
+                        "path": "PF-cq-api/机器人食用指南/README.md"
+                    }
+                },
+                {
+                    "title": "开发指南",
+                    "path": "PF-cq-api/开发指南.md",
+                    "children": []
+                }
+            ],
+            "index": {
+                "title": "README",
+                "path": "PF-cq-api/README.md"
+            }
+        },
+        {
+            "title": "PF-webui",
+            "path": "PF-webui",
+            "children": [
+                {
+                    "title": "快速开始",
+                    "path": "PF-webui/快速开始.md",
+                    "children": []
+                },
+                {
+                    "title": "参考图片",
+                    "path": "PF-webui/参考图片.html",
+                    "children": []
+                },
+                {
+                    "title": "开发",
+                    "path": "PF-webui/开发",
+                    "children": [
+                        {
+                            "title": "MCDR WebUI API 文档",
+                            "path": "PF-webui/开发/API文档.md",
+                            "children": []
+                        }
+                    ],
+                    "index": null
+                }
+            ],
+            "index": {
+                "title": "README",
+                "path": "PF-webui/README.md"
+            }
+        },
+        {
+            "title": "更多插件",
+            "path": "更多插件",
+            "children": [
+                {
+                    "title": "更多插件",
+                    "path": "更多插件/持续更新中.md",
+                    "children": []
+                }
+            ],
+            "index": {
+                "title": "更多插件",
+                "path": "更多插件/README.md"
+            }
+        },
+        {
+            "title": "常见问题",
+            "path": "常见问题",
+            "children": [],
+            "index": {
+                "title": "README",
+                "path": "常见问题/README.md"
+            }
+        },
+        {
+            "title": "支持与反馈",
+            "path": "支持与反馈",
+            "children": [],
+            "index": {
+                "title": "README",
+                "path": "支持与反馈/README.md"
+            }
+        }
+    ],
+    "index": {
+        "title": "前言",
+        "path": "README.md"
+    }
+}

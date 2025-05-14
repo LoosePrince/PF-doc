@@ -1,0 +1,346 @@
+[
+    {
+        "title": "前言",
+        "path": "README.md",
+        "content": "前言 此为 FPingan 提供的插件的官方文档，在开始前，文档小助手提醒您，请阅读全文，或者搜索您遇到的问题。 善用搜索功能 给编写者的一些话 > 如果你不是编写者请忽略这些 在编写前请务必看完全部的完整文档, 确保你想写的内容没有人已经写过 不要随意删减内容 尽可能使用白话进行说明 如果有示例尽可能补上 大块的内容请考虑使用折叠或者文件夹",
+        "keywords": [
+            "前言",
+            "此为",
+            "fpingan",
+            "提供的插件的官方文档",
+            "在开始前",
+            "文档小助手提醒您",
+            "请阅读全文",
+            "或者搜索您遇到的问题",
+            "善用搜索功能",
+            "给编写者的一些话"
+        ]
+    },
+    {
+        "title": "README",
+        "path": "PF-gugubot/README.md",
+        "content": "GUGUbot GUGUbot是为MCDR开发的一个插件，主要功能为为服务器管理者提供管理功能。 请通过以下选项开始你的使用！ 善用搜索功能 快速开始 前置依赖 快速开始 功能列表 配置 疑难解答 ",
+        "keywords": [
+            "快速开始",
+            "gugubot",
+            "gugubot是为mcdr开发的一个插件",
+            "主要功能为为服务器管理者提供管理功能",
+            "请通过以下选项开始你的使用",
+            "善用搜索功能",
+            "前置依赖",
+            "功能列表",
+            "配置",
+            "疑难解答"
+        ]
+    },
+    {
+        "title": "前置依赖",
+        "path": "PF-gugubot/前置依赖.md",
+        "content": "前置依赖 Python 包: 请确保已安装 Python™ 和 pip (pip通常在安装完python后会默认安装)。 Python 模块: 参考插件目录内的 requirements.txt 文件，使用命令 pip install -r requirements.txt 进行安装。 支持范围 !图片 前置插件 - 用于连接到QQ机器人，不懂的可以去看CQ-QQ-API文档 - 区分真实玩家 -...",
+        "keywords": [
+            "python",
+            "pip",
+            "requirements",
+            "txt",
+            "前置依赖",
+            "请确保已安装",
+            "pip通常在安装完python后会默认安装",
+            "模块",
+            "参考插件目录内的",
+            "文件"
+        ]
+    },
+    {
+        "title": "安装(快速开始)",
+        "path": "PF-gugubot/快速开始.md",
+        "content": "安装(快速开始) MCDR快捷安装 1. MCDR服务端输入 2. 加载后，在 中配置机器人api接口 3. 加载后，在 中配置机器人配置 4. 重载 cq_qq_api: Github下载安装 下载前置插件和GUGUbot并放入MCDR目录下plugins文件内 1. 前往Release下载 放入 （plugins文件内） 2. 前往Release下载 放入 （plugins文件内） 3. 前往...",
+        "keywords": [
+            "加载后",
+            "放入",
+            "前往release下载",
+            "plugins文件内",
+            "中配置机器人api接口",
+            "中配置机器人配置",
+            "重载",
+            "cq_qq_api",
+            "默认",
+            "安装"
+        ]
+    },
+    {
+        "title": "功能列表",
+        "path": "PF-gugubot/功能列表.md",
+        "content": "功能列表 > > QQ部分帮助，向QQ机器人发送，可以私聊也可以群聊发送 #帮助 > 基本功能 - 聊天互相转发: 支持 MCDR 与 QQ 群组/私聊之间的消息互通。 - 白名单绑定: 支持在QQ群内进行白名单绑定，退群自动解绑；支持离线服务器或者正版与离线的混合服务器。 转发说明 - 转发消息到游戏中时会显示群聊名称，悬停可以显示群号，点击复制群号。 - 关闭了 bound_notice(配置...",
+        "keywords": [
+            "机器人回复风格",
+            "绑定",
+            "xxx",
+            "增删查改",
+            "功能列表",
+            "qq部分帮助",
+            "向qq机器人发送",
+            "可以私聊也可以群聊发送",
+            "帮助",
+            "基本功能"
+        ]
+    },
+    {
+        "title": "配置",
+        "path": "PF-gugubot/配置.md",
+        "content": "配置 机器人的必要配置 |配置项|默认值|说明| |-|-|-| |正向websocket服务端口|8080|接收数据上报的端口| |消息上报格式|CQ码|机器人基于CQ码进行解析| 前置cq_qq_api配置 配置 和 机器人食用指南 GUGUbot机器人配置 > > 非常建议看看默认的配置文件 QQ相关设置 - 必要项 admin_id 默认值（数字）：无 示例： - 管理员QQ号，默认拥有G...",
+        "keywords": [
+            "默认值",
+            "示例",
+            "数字",
+            "配置",
+            "qq相关设置",
+            "list",
+            "mc",
+            "机器人的必要配置",
+            "配置项",
+            "说明"
+        ]
+    },
+    {
+        "title": "文件说明文档",
+        "path": "PF-gugubot/文件说明.md",
+        "content": "文件说明文档 注:关于自定义风格可参照功能列表-风格。 文件说明 ban_word.json 功能: 存储违禁词列表，用于过滤或屏蔽不允许的词汇。 内容: 包含一个 JSON 格式的词汇数组，可能带有敏感级别或分类。 bound.jpg 功能: 用于绑定操作的提示图。 内容: 图片文件，通常是用于指导用户完成绑定的视觉提示。 config.yml 功能: 配置文件，管理程序的全局设置。 内容: 使...",
+        "keywords": [
+            "json",
+            "功能",
+            "内容",
+            "gugubot",
+            "config",
+            "使用",
+            "格式",
+            "uuid",
+            "qq",
+            "文件说明文档"
+        ]
+    },
+    {
+        "title": "疑难解答",
+        "path": "PF-gugubot/疑难解答.md",
+        "content": "疑难解答 后台遇到无法使!!指令的问题 卸载GUGUbot试试，若还是不行请到 GitHub 提交 issue 关于 MC → 群内 转发时，玩家ID包裹方式不一 [[BUG] MC→Q群信息，玩家名字格式偶尔不一致 · Issue #136 · LoosePrince/PF-GUGUBot](https://github.com/LoosePrince/PF-GUGUBot/issues/136...",
+        "keywords": [
+            "github",
+            "issue",
+            "mc",
+            "136",
+            "looseprince",
+            "pf",
+            "gugubot",
+            "server",
+            "疑难解答",
+            "后台遇到无法使"
+        ]
+    },
+    {
+        "title": "README",
+        "path": "PF-cq-api/README.md",
+        "content": "CQ-QQ-API PFingan服务器MCDRQQ机器人插件，基于CQ码的正向Websocket QQ连接机器人，提供MCDR机器人插件接口，方便聊天类机器人的构建。 善用搜索功能 快速开始 快速开始 配置 机器人食用指南 开发指南",
+        "keywords": [
+            "快速开始",
+            "cq",
+            "qq",
+            "api",
+            "pfingan服务器mcdrqq机器人插件",
+            "基于cq码的正向websocket",
+            "qq连接机器人",
+            "提供mcdr机器人插件接口",
+            "方便聊天类机器人的构建",
+            "善用搜索功能"
+        ]
+    },
+    {
+        "title": "快速开始",
+        "path": "PF-cq-api/快速开始.md",
+        "content": "快速开始 Python模块 - 已存储在插件对应的文件夹内的 中, 可以使用 安装 - 基本功能：聊天互相转发 安装 使用方式： 将Release里面的 放入 （MCDR目录下plugins文件夹内） 加载后，在 中配置机器人API接口 配置 服务端配置 - Server : | 配置项 | 默认值 | 说明 | | --- | --- | --- | | host | \"127.0.0.1\" |...",
+        "keywords": [
+            "安装",
+            "配置项",
+            "默认值",
+            "说明",
+            "8080",
+            "token",
+            "zh",
+            "快速开始",
+            "python模块",
+            "已存储在插件对应的文件夹内的"
+        ]
+    },
+    {
+        "title": "README",
+        "path": "PF-cq-api/机器人食用指南/README.md",
+        "content": "机器人食用指南 教你如何快速的绑定QQ机器人到CQ-QQ-API 食用指南 LiteLoaderQQNT + LLOneBot NapCat Lagrange",
+        "keywords": [
+            "机器人食用指南",
+            "教你如何快速的绑定qq机器人到cq",
+            "qq",
+            "api",
+            "食用指南",
+            "liteloaderqqnt",
+            "llonebot",
+            "napcat",
+            "lagrange"
+        ]
+    },
+    {
+        "title": "LiteLoaderQQNT + LLOneBot",
+        "path": "PF-cq-api/机器人食用指南/LLOneBot.md",
+        "content": "LiteLoaderQQNT + LLOneBot > 编写者：树梢上有只鸟 安装 | LiteLoaderQQNT https://github.com/huiyadanli/RevokeMsgPatcher LLOneBot/LLOneBot: 一种插件，支持 OneBot 11 和 Satori 协议 1. 安装QQNT 2. 安装LiteLoaderQQNT到QQNT 3. 下载LLOne...",
+        "keywords": [
+            "llonebot",
+            "liteloaderqqnt",
+            "编写者",
+            "树梢上有只鸟",
+            "安装",
+            "https",
+            "github",
+            "com",
+            "huiyadanli",
+            "revokemsgpatcher"
+        ]
+    },
+    {
+        "title": "Lagrange",
+        "path": "PF-cq-api/机器人食用指南/Lagrange.md",
+        "content": "Lagrange > 编写者：CC 1、去Lagrange项目Release下载Lagrange ( https://github.com/LagrangeDev/Lagrange.Core/releases )选择Win-x64版本 2、解压，运行exe程序 3、编辑 修改 下的 ，把 改成机器人QQ号 修改 下的 ，将 改成 然后在 下添加 示例 !图片 json语法两个 间要注意加逗号！英文...",
+        "keywords": [
+            "lagrange",
+            "修改",
+            "下的",
+            "编写者",
+            "cc",
+            "去lagrange项目release下载lagrange",
+            "https",
+            "github",
+            "com",
+            "lagrangedev"
+        ]
+    },
+    {
+        "title": "NapCat",
+        "path": "PF-cq-api/机器人食用指南/NapCat.md",
+        "content": "NapCat > 编写者：树梢上有只鸟 NapCat | NapCatQQ安装文档 自行选择一种安装方案，安装成功并登录成功后 访问后台Webui，如下配置： !图片 !图片 选择 （服务器、正向） 端口填写 的端口 消息格式选择 ",
+        "keywords": [
+            "napcat",
+            "图片",
+            "编写者",
+            "树梢上有只鸟",
+            "napcatqq安装文档",
+            "自行选择一种安装方案",
+            "安装成功并登录成功后",
+            "访问后台webui",
+            "如下配置",
+            "选择"
+        ]
+    },
+    {
+        "title": "开发指南",
+        "path": "PF-cq-api/开发指南.md",
+        "content": "开发指南 暂无",
+        "keywords": [
+            "开发指南",
+            "暂无"
+        ]
+    },
+    {
+        "title": "README",
+        "path": "PF-webui/README.md",
+        "content": "PF-MCDR-WebUI 为 MCDR 开发的在线 WebUI 插件 > [NOTE] > > 由于 **GUGUbot** 和 **WebUI** 项目庞大，但迄今为止仅有开发者一名，所以我们从现在开始招募有志者加入我们！ > 有意者请加 QQ1377820366 或 QQ群726741344 插件说明 > 为MCDR提供一个 和 和 （可选使用在线编辑器）。 - [x] **pip包管理**...",
+        "keywords": [
+            "webui",
+            "使用",
+            "mcdr",
+            "重载插件",
+            "important",
+            "文件夹中的内容",
+            "pf",
+            "开发的在线",
+            "插件",
+            "note"
+        ]
+    },
+    {
+        "title": "快速开始",
+        "path": "PF-webui/快速开始.md",
+        "content": "快速开始 依赖配置 **Python 包:** 请确保已安装 Python™ 和 pip (pip通常在安装完python后会默认安装)。 **Python 模块:** 参考插件目录内的 文件，使用命令 进行安装。 **前置插件:** PIM插件，已内置WebUI，如有需要可以在设置页面将其安装到外部以为其它可能需要的插件提供帮助。 使用方式 > 目前未对接GUGUbot账号系统；当账号为QQ号时...",
+        "keywords": [
+            "python",
+            "deepseek",
+            "ai",
+            "webui",
+            "快速开始",
+            "依赖配置",
+            "请确保已安装",
+            "pip",
+            "pip通常在安装完python后会默认安装",
+            "模块"
+        ]
+    },
+    {
+        "title": "参考图片",
+        "path": "PF-webui/参考图片.html",
+        "content": "参考图片 v1.0.0-beta.1 终端 首页 GUGUbot配置页 CQ-QQ-API配置页 MC服务器配置页 所以插件-1 所以插件-2 关于&贡献 v1.3.8 登录页 仪表盘 MCDR配置 MC服务器配置 本地插件 插件配置 插件仓库 插件安装 终端 AI分析 设置 浅色模式",
+        "keywords": [
+            "v1",
+            "终端",
+            "所以插件",
+            "参考图片",
+            "beta",
+            "首页",
+            "gugubot配置页",
+            "cq",
+            "qq",
+            "api配置页"
+        ]
+    },
+    {
+        "title": "MCDR WebUI API 文档",
+        "path": "PF-webui/开发/API文档.md",
+        "content": "MCDR WebUI API 文档 本文档记录了MCDR WebUI前端界面使用的API接口。 > [WARNING]及时性说明 > > 这是v1.3.x版本的API开发文档，为保证您的及时性，请访问 WebApi.md 查看最新文档 认证相关API 检查登录状态 - 端点: - 方法: GET - 功能: 检查当前用户是否已登录 - 响应: - 调用示例: - 使用位置: 所有需要认证的页面 登...",
+        "keywords": [
+            "端点",
+            "方法",
+            "功能",
+            "响应",
+            "调用示例",
+            "使用位置",
+            "mcdr",
+            "get",
+            "表单提交",
+            "参数"
+        ]
+    },
+    {
+        "title": "常见问题",
+        "path": "常见问题",
+        "content": "",
+        "keywords": []
+    },
+    {
+        "title": "支持与反馈",
+        "path": "支持与反馈",
+        "content": "",
+        "keywords": []
+    },
+    {
+        "title": "更多插件",
+        "path": "更多插件/README.md",
+        "content": "更多插件 持续更新中...",
+        "keywords": [
+            "更多插件",
+            "持续更新中"
+        ]
+    },
+    {
+        "title": "更多插件",
+        "path": "更多插件/持续更新中.md",
+        "content": "更多插件 持续更新中...",
+        "keywords": [
+            "更多插件",
+            "持续更新中"
+        ]
+    }
+]

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PF系列插件文档</title>
+    <meta name="description" content="提供丰富的MCDR插件，助力Minecraft服务器管理">
+    <meta name="keywords" content="MCDR,插件,Minecraft,服务器管理,QQ机器人,WebUI">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/logo.png">
+    
+    <!-- TailwindCSS CDN -->
+    <script src="assets/js/tailwindcss.js" data-cfasync="false"></script>
+    
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 主应用JS -->
+    <script type="module" src="assets/js/main.js"></script>
+
+    <!-- css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- 自定义配置 -->
+    <script>
+        // Tailwind 配置
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: 'var(--color-primary, #3b82f6)', // 使用CSS变量
+                    },
+                    fontFamily: {
+                        sans: ['system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- 装饰性几何图形 -->
+    <div class="blob-shape w-96 h-96 top-0 right-0"></div>
+    <div class="blob-shape w-64 h-64 bottom-0 left-0" style="background-color: rgba(var(--color-primary-rgb, 249, 115, 22), 0.05);"></div>
+    
+    <!-- 加载顶部导航 -->
+    <div id="header-container"></div>
+    
+    <!-- 主内容区 -->
+    <main class="container mx-auto px-4 py-16 relative min-h-screen">
+        <!-- 这中间的内容可以随意修改 -->
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <div class="flex justify-center mb-6">
+                <img class="site-logo h-16" src="assets/img/logo.png" alt="PF-plugins Logo" id="home-logo">
+            </div>
+            <h1 class="text-5xl font-bold text-gray-800 dark:text-white mb-6" id="home-title">
+                <span class="text-primary">PF</span>系列插件
+            </h1>
+            <p class="text-2xl text-gray-600 dark:text-gray-300 mb-8" id="home-subtitle">PF系列插件</p>
+            <p class="text-lg text-gray-500 dark:text-gray-400 mb-10 max-w-2xl mx-auto" id="home-description">
+                提供丰富的MCDR插件，助力Minecraft服务器管理
+            </p>
+            <a href="main.html" class="inline-block bg-primary hover:bg-primary text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+                开始使用
+                <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        
+        <!-- 特性卡片 -->
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- 特性1 -->
+            <div class="geometric-shape bg-white dark:bg-gray-800 p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-robot text-primary text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">PF-gugubot</h3>
+                <p class="text-gray-600 dark:text-gray-300">MCDR的QQ机器人插件，集QQ群管理和白名单管理一体，添加许多功能。</p>
+            </div>
+            
+            <!-- 特性2 -->
+            <div class="geometric-shape bg-white dark:bg-gray-800 p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-globe text-orange-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">PF-webui</h3>
+                <p class="text-gray-600 dark:text-gray-300">MCDR的WebUI管理插件，管理PF系列插件配置和其它配置，提供插件管理和配置修改功能。</p>
+            </div>
+            
+            <!-- 特性3 -->
+            <div class="geometric-shape bg-white dark:bg-gray-800 p-6 flex flex-col items-center text-center">
+                <div class="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-code text-green-500 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-3">PF-cq-api</h3>
+                <p class="text-gray-600 dark:text-gray-300">MCDR的QQ机器人API插件，支持OneBot协议的正向WebSocketQQ。</p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 加载底部信息 -->
+    <div id="footer-container"></div>
+</body>
+</html> 

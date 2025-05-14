@@ -1,0 +1,496 @@
+/* CSS变量定义 */
+:root {
+    /* 颜色 */
+    --text-color: #24292e;
+    --text-muted: #6a737d;
+    --heading-color: #24292e;
+    --link-color: var(--color-primary, #0366d6);
+    --bg-color: #fff;
+    --border-color: #e1e4e8;
+    
+    /* 代码相关 */
+    --code-bg: rgba(27,31,35,0.05);
+    --code-block-bg: #f6f8fa;
+    
+    /* 表格相关 */
+    --table-header-bg: #f6f8fa;
+    --table-stripe-bg: #f6f8fa;
+    
+    /* 引用相关 */
+    --blockquote-text: #6a737d;
+    --blockquote-border: #dfe2e5;
+    
+    /* 按钮相关 */
+    --button-text: #6e7681;
+    --button-bg: #f6f8fa;
+    --button-border: rgba(27,31,35,0.1);
+    
+    /* 错误状态 */
+    --error-bg: #f5f5f5;
+}
+
+/* 深色模式变量 */
+.dark {
+    --text-color: #c9d1d9;
+    --text-muted: #8b949e;
+    --heading-color: #c9d1d9;
+    --link-color: var(--color-primary, #58a6ff);
+    --bg-color: #0d1117;
+    --border-color: #4f545a;
+    
+    --code-bg: #1f2328;
+    --code-block-bg: rgb(108 117 126 / 10%);
+    
+    --table-header-bg: #161b22;
+    --table-stripe-bg: #161b22;
+    
+    --blockquote-text: #8b949e;
+    --blockquote-border: #30363d;
+    
+    --button-text: #8b949e;
+    --button-bg: #161b22;
+    --button-border: rgba(240,246,252,0.1);
+    
+    --error-bg: #333;
+}
+
+/* Markdown 基本样式 */
+.markdown-body {
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.6;
+    word-wrap: break-word;
+    padding: 45px;
+}
+
+/* 暗黑模式 */
+.dark .markdown-body {
+    color: var(--text-color);
+}
+
+/* 标题样式 */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--heading-color);
+}
+
+.dark .markdown-body h1,
+.dark .markdown-body h2,
+.dark .markdown-body h3,
+.dark .markdown-body h4,
+.dark .markdown-body h5,
+.dark .markdown-body h6 {
+    color: var(--heading-color);
+}
+
+.markdown-body h1 {
+    font-size: 2em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.markdown-body h2 {
+    font-size: 1.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.markdown-body h3 { font-size: 1.25em; }
+.markdown-body h4 { font-size: 1em; }
+.markdown-body h5 { font-size: 0.875em; }
+.markdown-body h6 { 
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
+/* 段落和列表 */
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    padding-left: 2em;
+}
+
+.markdown-body ul { list-style-type: disc; }
+.markdown-body ol { list-style-type: decimal; }
+
+/* 自定义有序列表样式 */
+ol[data-style] {
+    counter-reset: custom-counter;
+    list-style-type: none;
+    padding-left: 1.5em;
+}
+
+ol[data-style="1."] > li {
+    counter-increment: custom-counter;
+    position: relative;
+    padding-left: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+ol[data-style="1."] > li::before {
+    content: counter(custom-counter) ".";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+ul:has(> li input[type="checkbox"]) {
+    padding-left: 0.5rem;
+}
+
+li:has(> input[type="checkbox"]) {
+    list-style-type: none;
+}
+
+/* 链接 */
+.markdown-body a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.markdown-body a:hover {
+    text-decoration: underline;
+}
+
+/* 代码块 */
+.markdown-body pre {
+    margin: 1em 0;
+    padding: 4px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: var(--code-block-bg);
+    border-radius: 6px;
+    position: relative;
+}
+
+/* 代码块行号容器 */
+.markdown-body pre.has-line-numbers {
+    padding-left: 3em;
+}
+
+/* 代码块行号 */
+.markdown-body pre.has-line-numbers::before {
+    content: attr(data-line-numbers);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3em;
+    /* background-color: var(--code-block-bg); */
+    border-right: 1px solid var(--border-color);
+    padding: calc(1em + 4px) 0.5em;
+    text-align: right;
+    color: var(--text-muted);
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+    font-size: 85%;
+    line-height: 1.45;
+    user-select: none;
+    pointer-events: none;
+}
+
+.markdown-body code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: var(--code-bg);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+.markdown-body pre code {
+    display: block;
+    padding: 1em;
+}
+
+/* 代码块滚动条美化 */
+.markdown-body pre,
+.markdown-body code {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.markdown-body pre::-webkit-scrollbar,
+.markdown-body code::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+.markdown-body pre::-webkit-scrollbar-track,
+.markdown-body code::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+}
+
+.markdown-body pre::-webkit-scrollbar-thumb,
+.markdown-body code::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.markdown-body pre::-webkit-scrollbar-thumb:hover,
+.markdown-body code::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(107, 114, 128, 0.7);
+}
+
+/* 外部链接样式 */
+a.external-link {
+    position: relative;
+    padding-right: 1.2em;
+}
+
+a.external-link .external-link-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -0.15em;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+a.external-link:hover .external-link-icon {
+    opacity: 1;
+}
+
+/* 提示卡片样式 */
+.admonition {
+    position: relative;
+    margin: 1.5625em 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+    border-radius: 10px;
+}
+
+.admonition:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admonition-title {
+    font-weight: 600;
+}
+
+.dark .admonition-content {
+    color: #e5e7eb;
+}
+
+/* 提示卡片类型的特定颜色 */
+.admonition-note {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.admonition-tip {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+.admonition-important {
+    background-color: rgba(139, 92, 246, 0.1);
+}
+
+.admonition-warning, 
+.admonition-caution {
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+.admonition-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* 表格 */
+.markdown-body table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    margin: 1em 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.markdown-body table th {
+    font-weight: 600;
+    background-color: var(--table-header-bg);
+}
+
+.markdown-body table th,
+.markdown-body table td {
+    padding: 6px 13px;
+    border: 1px solid var(--border-color);
+}
+
+.markdown-body table tr {
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.markdown-body table tr:nth-child(2n) {
+    background-color: var(--table-stripe-bg);
+}
+
+/* 引用块 */
+.markdown-body blockquote {
+    margin: 1em 0;
+    padding: 0 1em;
+    color: var(--blockquote-text);
+    border-left: 0.25em solid var(--blockquote-border);
+}
+
+/* 图片 */
+.markdown-body img {
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: var(--bg-color);
+    border-radius: 4px;
+    margin: 1em 0;
+}
+
+/* 图片加载失败样式 */
+.markdown-body img.img-error {
+    padding: 2rem;
+    background: var(--error-bg) !important;
+}
+
+/* 水平线 */
+.markdown-body hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: var(--border-color);
+    border: 0;
+}
+
+/* KaTeX 数学公式 */
+.markdown-body .katex {
+    font-size: 1.1em;
+}
+
+.markdown-body .katex-display {
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-align: center;
+}
+
+/* 块级数学公式容器 */
+.markdown-body .math-block {
+    margin: 1em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-align: center;
+}
+
+/* 数学公式错误提示 */
+.markdown-body .katex-error {
+    color: #f44336;
+    padding: 8px;
+    margin: 8px 0;
+    border-left: 4px solid #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+/* Mermaid 图表 */
+.markdown-body .mermaid {
+    margin: 16px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Mermaid 暗黑模式样式覆盖 */
+.dark .mermaid .marker {
+    fill: #d3d3d3 !important;
+    stroke: #d3d3d3 !important;
+}
+
+.dark .mermaid .arrowheadPath {
+    fill: #d3d3d3 !important;
+    stroke: #d3d3d3 !important;
+}
+
+.dark .mermaid .edgePath .path {
+    stroke: #d3d3d3 !important;
+}
+
+.dark .mermaid .edgeLabel {
+    color: #e0e0e0;
+    background-color: #333;
+}
+
+.dark .mermaid .label {
+    color: #e0e0e0;
+}
+
+/* 代码块包装器和复制按钮 */
+.code-block-wrapper {
+    position: relative;
+    margin: 1.5rem 0;
+}
+
+/* 复制按钮容器 */
+.code-copy-button-container {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 10;
+}
+
+/* 复制按钮 */
+.code-copy-button {
+    padding: 4px 8px;
+    color: var(--button-text);
+    background-color: var(--button-bg);
+    border: 1px solid var(--button-border);
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+/* 当鼠标悬停在代码块上时显示复制按钮 */
+.code-block-wrapper:hover .code-copy-button,
+.code-block-wrapper:hover .code-copy-button-container .code-copy-button {
+    opacity: 1;
+}
+
+/* 上一篇/下一篇导航 */
+#prev-next-navigation {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+#prev-next-navigation a {
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+}
+
+#prev-next-navigation a:hover {
+    transform: translateY(-2px);
+}
+
+/* 目录编号样式 */
+#toc-nav a.active {
+    color: var(--color-primary, #3b82f6);
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .markdown-body{
+        padding: 0;
+    }
+}
