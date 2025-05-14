@@ -1,0 +1,91 @@
+name: Build Document and Deploy
+
+on:
+  push:
+    paths:
+      - 'data/**'  # 当data目录下的任何文件发生变化时触发
+    branches:
+      - main  # 仅在main分支上触发
+  workflow_dispatch:  # 支持手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # 需要写入权限来提交文件
+      pages: write    # 需要Pages写入权限
+      id-token: write # 需要部署Pages的权限
+
+    # 配置GitHub Pages环境
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史记录，以便Git功能正常工作
+
+      - name: 设置Python环境
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          # 不使用pip缓存，避免因缺少requirements.txt而报错
+          cache: 'pip'
+          cache-dependency-path: 'requirements.txt'
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # 如果需要其他依赖但不想添加到requirements.txt，可以在这里额外安装
+
+      - name: 运行build.py脚本
+        run: |
+          python build.py --merge
+          # 添加--merge参数保留现有结构
+          # 不添加--no-git参数以启用Git功能
+          # 不添加--no-github参数以启用GitHub功能
+
+      - name: 检查是否有更改
+        id: check_changes
+        run: |
+          if [[ -n $(git status -s | grep 'path.json\|search.json') ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 配置Git
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: 提交更改
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git add path.json search.json
+          git commit -m "自动更新文档索引 [skip ci]"
+          # [skip ci] 标记避免再次触发工作流
+
+      - name: 推送更改
+        if: steps.check_changes.outputs.changes == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          
+      # 部署到GitHub Pages的步骤
+      - name: 设置Pages
+        uses: actions/configure-pages@v5
+        
+      - name: 上传构建结果
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+          
+      - name: 部署到GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
