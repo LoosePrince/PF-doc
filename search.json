@@ -36,7 +36,7 @@
     {
         "title": "前置依赖",
         "path": "PF-gugubot/前置依赖.md",
-        "content": "前置依赖 Python 包: 请确保已安装 Python™ 和 pip (pip通常在安装完python后会默认安装)。 Python 模块: 参考插件目录内的 requirements.txt 文件，使用命令 pip install -r requirements.txt 进行安装。 支持范围 !图片 前置插件 - 用于连接到QQ机器人，不懂的可以去看CQ-QQ-API文档 - 区分真实玩家 -...",
+        "content": "前置依赖 Python 包: 请确保已安装 Python™ 和 pip (pip通常在安装完python后会默认安装)。 Python 模块: 参考插件目录内的 requirements.txt 文件，使用命令 pip install -r requirements.txt 进行安装。 支持范围 前置插件 - 用于连接到QQ机器人，不懂的可以去看CQ-QQ-API文档 - 区分真实玩家 - 在线玩...",
         "keywords": [
             "python",
             "pip",
