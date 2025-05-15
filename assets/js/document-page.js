@@ -60,10 +60,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             // 如果链接是导航路径查询参数
             if (url.pathname === window.location.pathname) {
                 e.preventDefault();
-                const path = url.searchParams.get('path') || '';
+                
+                // 检查是否已经加载过相同的内容
+                const currentUrl = new URL(window.location.href);
+                const currentPath = currentUrl.searchParams.get('path') || '';
+                const newPath = url.searchParams.get('path') || '';
+                
+                // 如果路径相同，则无需重新加载
+                if (currentPath === newPath) {
+                    console.log('已经在当前文档，无需重新加载');
+                    return;
+                }
                 
                 // 使用pushState更新URL，而不是直接改变location
-                window.history.pushState({path}, '', link.href);
+                window.history.pushState({path: newPath}, '', link.href);
                 
                 // 手动触发内容加载
                 loadContentFromUrl();
@@ -560,17 +570,44 @@ function handleFolderExpandMode(isSubRoot) {
     // 获取所有顶级文件夹
     const folderDivs = document.querySelectorAll('#sidebar-nav > ul.level-0 > li > div.folder-title');
     
-    switch(expandMode) {
-        case 1: // 展开全部第一级文件夹
+    // 对于模式1和2（展开全部），始终无条件应用，忽略auto_collapse设置
+    if (expandMode === 1 || expandMode === 2) {
+        if (expandMode === 1) {
+            // 展开全部第一级文件夹
             folderDivs.forEach(folderDiv => {
                 toggleFolder(folderDiv, true);
             });
-            break;
-            
-        case 2: // 展开全部文件夹（所有层级）
+        } else {
+            // 展开全部文件夹（所有层级）
             expandAllFolders();
-            break;
-            
+        }
+        return; // 处理完模式1和2后直接返回
+    }
+    
+    // 对于模式3和4，判断当前位置来决定是否应用
+    let shouldApplyExpandMode = true;
+    
+    // 检查是否启用了自动折叠功能且当前不是首次加载（有当前文档）
+    if (config.navigation.auto_collapse && !isSubRoot) {
+        // 获取当前URL的path参数
+        const url = new URL(window.location.href);
+        const currentPath = url.searchParams.get('path');
+        
+        // 如果存在当前路径，且不是根目录文档，则不应用默认展开模式
+        if (currentPath) {
+            // 如果路径不为空且不是首页文档，则认为不需要应用默认展开模式
+            const isHomePage = isIndexFile(currentPath) && !currentPath.includes('/');
+            shouldApplyExpandMode = isHomePage;
+        }
+    }
+    
+    // 如果不应用展开模式，直接退出
+    if (!shouldApplyExpandMode) {
+        return;
+    }
+    
+    // 处理模式3和4的逻辑
+    switch(expandMode) {
         case 3: // 展开第一个文件夹的第一级（在root_dir或根目录时）
             if (folderDivs.length > 0) {
                 toggleFolder(folderDivs[0], true);
@@ -811,8 +848,19 @@ function createNavLink(item, level, isIndex = false) {
         newUrl.hash = '';
         window.history.pushState({path: item.path}, '', newUrl.toString());
         
+        // 获取规范化路径，确保使用正确的协议
+        let documentPath = item.path;
+        
+        // 确保目录路径能正确处理，特别是当路径末尾包含'/'时
+        if (documentPath && !documentPath.includes('.')) {
+            // 可能是目录，检查是否以/结尾，添加README.md
+            const dirPath = documentPath.endsWith('/') ? documentPath : documentPath + '/';
+            documentPath = dirPath + 'README.md';
+            console.log(`转换目录路径为索引文件: ${documentPath}`);
+        }
+        
         // 加载文档
-        loadDocument(item.path);
+        loadDocument(documentPath);
         
         // 滚动到顶部
         window.scrollTo({
@@ -888,8 +936,19 @@ function navigateToFolderIndex(item) {
     url.hash = '';
     window.history.pushState({path: item.index.path}, '', url.toString());
     
+    // 获取规范化路径，确保使用正确的协议
+    let documentPath = item.index.path;
+    
+    // 检查是否需要处理目录路径
+    if (!documentPath.includes('.')) {
+        // 可能是目录，添加README.md
+        const dirPath = documentPath.endsWith('/') ? documentPath : documentPath + '/';
+        documentPath = dirPath + 'README.md';
+        console.log(`转换目录索引路径为文件: ${documentPath}`);
+    }
+    
     // 加载文档
-    loadDocument(item.index.path);
+    loadDocument(documentPath);
     
     // 滚动到顶部
     window.scrollTo({
@@ -916,6 +975,15 @@ function toggleFolder(div, forceExpand = false) {
 
 // 设置当前激活的链接或文件夹
 function setActiveLink(activeElement, isFolder = false) {
+    // 判断是否需要先折叠其他文件夹 - 仅当folder_expand_mode不是1或2时
+    const expandMode = config.navigation.folder_expand_mode || 5;
+    const shouldAutoCollapse = config.navigation.auto_collapse && expandMode > 2;
+    
+    // 如果启用了自动折叠功能且不是全局展开模式，先折叠所有文件夹
+    if (shouldAutoCollapse) {
+        collapseAllFolders();
+    }
+    
     // 清除所有链接的激活状态
     document.querySelectorAll('#sidebar-nav a').forEach(a => a.classList.remove('active'));
     document.querySelectorAll('#sidebar-nav div.folder-title').forEach(div => div.classList.remove('active-folder'));
@@ -1099,7 +1167,7 @@ async function loadContentFromUrl() {
             updateProgressBar(50);
         }, 200);
         
-        // 高亮侧边栏
+        // 高亮侧边栏并处理文件夹展开
         const isReadmeFile = decodedPath.toLowerCase().endsWith('readme.md');
         if (isReadmeFile && decodedPath.includes('/')) {
             const folderPath = decodedPath.substring(0, decodedPath.lastIndexOf('/'));
@@ -1115,8 +1183,94 @@ async function loadContentFromUrl() {
             updateProgressBar(70);
         }, 400);
         
-        // 加载文档
-        await loadDocument(decodedPath);
+        // 加载文档 - 添加重试逻辑，特别是针对Cloudflare环境
+        let loadSuccess = false;
+        let loadAttempt = 0;
+        const maxAttempts = 2; // 最大重试次数
+        
+        while (!loadSuccess && loadAttempt < maxAttempts) {
+            try {
+                loadAttempt++;
+                // 如果这是重试，添加一个小延迟
+                if (loadAttempt > 1) {
+                    console.log(`重试加载文档 (尝试 ${loadAttempt}/${maxAttempts}): ${decodedPath}`);
+                    await new Promise(resolve => setTimeout(resolve, 500)); // 延迟500ms
+                }
+                
+                await loadDocument(decodedPath);
+                loadSuccess = true;
+            } catch (err) {
+                console.error(`文档加载失败 (尝试 ${loadAttempt}/${maxAttempts}):`, err);
+                
+                // 如果是最后一次尝试，尝试其他可能的方案
+                if (loadAttempt >= maxAttempts) {
+                    // 情况1: 如果是README.md文件，尝试访问其所在目录
+                    if (decodedPath.toLowerCase().endsWith('readme.md') && decodedPath.includes('/')) {
+                        try {
+                            // 尝试使用大写的README.md
+                            const folderPath = decodedPath.substring(0, decodedPath.lastIndexOf('/'));
+                            const readmePath = `${folderPath}/README.md`;
+                            if (readmePath !== decodedPath) { // 避免重复尝试相同路径
+                                console.log(`尝试使用大写的README.md路径: ${readmePath}`);
+                                await loadDocument(readmePath);
+                                loadSuccess = true;
+                            } else {
+                                // 如果已经是大写，尝试使用其他索引文件名
+                                for (const indexName of config.document.index_pages) {
+                                    if (indexName.toLowerCase() !== 'readme.md') {
+                                        const altPath = `${folderPath}/${indexName}`;
+                                        console.log(`尝试使用备选索引文件: ${altPath}`);
+                                        try {
+                                            await loadDocument(altPath);
+                                            loadSuccess = true;
+                                            break;
+                                        } catch (altErr) {
+                                            console.warn(`备选索引文件加载失败: ${altPath}`);
+                                        }
+                                    }
+                                }
+                            }
+                        } catch (finalErr) {
+                            // 继续向上抛出错误前，尝试加载目录本身
+                            try {
+                                const folderPath = decodedPath.substring(0, decodedPath.lastIndexOf('/'));
+                                if (folderPath) {
+                                    console.log(`尝试加载目录: ${folderPath}`);
+                                    await loadDocument(folderPath);
+                                    loadSuccess = true;
+                                }
+                            } catch (dirErr) {
+                                throw err; // 使用原始错误
+                            }
+                        }
+                    } 
+                    // 情况2: 如果是目录路径（无扩展名），尝试添加README.md或查找索引页
+                    else if (!decodedPath.includes('.')) {
+                        let tried = false;
+                        
+                        // 尝试各种索引文件名
+                        for (const indexName of config.document.index_pages) {
+                            try {
+                                tried = true;
+                                const indexPath = `${decodedPath}/${indexName}`;
+                                console.log(`尝试目录索引文件: ${indexPath}`);
+                                await loadDocument(indexPath);
+                                loadSuccess = true;
+                                break;
+                            } catch (indexErr) {
+                                console.warn(`索引文件加载失败: ${decodedPath}/${indexName}`);
+                            }
+                        }
+                        
+                        if (!tried || !loadSuccess) {
+                            throw err; // 所有尝试都失败，使用原始错误
+                        }
+                    } else {
+                        throw err; // 其他情况，直接抛出错误
+                    }
+                }
+            }
+        }
         
         // 处理搜索高亮和跳转
         if (searchQuery) {
@@ -1148,18 +1302,66 @@ window.loadContentFromUrl = loadContentFromUrl;
 
 // 折叠所有文件夹
 function collapseAllFolders() {
+    // 如果folder_expand_mode是1或2，不执行折叠操作
+    const expandMode = config.navigation.folder_expand_mode || 5;
+    if (expandMode === 1 || expandMode === 2) {
+        return;
+    }
+    
+    // 获取当前URL的path参数以识别当前文档
+    const url = new URL(window.location.href);
+    const currentPath = url.searchParams.get('path');
+    
+    // 如果没有当前文档路径，则折叠所有文件夹
+    if (!currentPath) {
+        const allFolderDivs = document.querySelectorAll('#sidebar-nav div.folder-title');
+        
+        allFolderDivs.forEach(folderDiv => {
+            const icon = folderDiv.querySelector('i');
+            const subUl = folderDiv.nextElementSibling;
+            
+            if (subUl && subUl.tagName === 'UL' && subUl.style.display !== 'none') {
+                // 折叠文件夹
+                subUl.style.display = 'none';
+                // 更新图标
+                if (icon) {
+                    icon.classList.remove('rotate-90');
+                }
+            }
+        });
+        return;
+    }
+    
+    // 如果有当前文档路径，先找出需要保持展开状态的文件夹（当前文档的父级文件夹）
+    const pathParts = currentPath.split('/');
+    const foldersToKeepOpen = new Set();
+    
+    // 构建需要保持打开的文件夹路径集合
+    let parentPath = '';
+    for (let i = 0; i < pathParts.length - 1; i++) {
+        parentPath += (i > 0 ? '/' : '') + pathParts[i];
+        foldersToKeepOpen.add(parentPath);
+    }
+    
+    // 折叠所有非当前文档父级文件夹
     const allFolderDivs = document.querySelectorAll('#sidebar-nav div.folder-title');
     
     allFolderDivs.forEach(folderDiv => {
+        const folderPath = folderDiv.dataset.folderPath || '';
         const icon = folderDiv.querySelector('i');
         const subUl = folderDiv.nextElementSibling;
         
         if (subUl && subUl.tagName === 'UL' && subUl.style.display !== 'none') {
-            // 折叠文件夹
-            subUl.style.display = 'none';
-            // 更新图标
-            if (icon) {
-                icon.classList.remove('rotate-90');
+            // 检查是否是当前文档的父级文件夹
+            const shouldKeepOpen = foldersToKeepOpen.has(folderPath);
+            
+            if (!shouldKeepOpen) {
+                // 折叠非父级文件夹
+                subUl.style.display = 'none';
+                // 更新图标
+                if (icon) {
+                    icon.classList.remove('rotate-90');
+                }
             }
         }
     });
@@ -1202,8 +1404,12 @@ function findDirectoryIndexPath(dirPath) {
     
     // 检查pathData中是否存在对应的目录节点
     function findNode(node, currentPath) {
+        // 路径比较应该不区分大小写
+        const normalizedDirPath = dirPath.toLowerCase();
+        const normalizedNodePath = (node.path || '').toLowerCase();
+        
         // 如果有索引文件，直接返回
-        if (node.path === dirPath && node.index) {
+        if (normalizedNodePath === normalizedDirPath && node.index) {
             return node.index.path;
         }
         
@@ -1223,11 +1429,16 @@ function findDirectoryIndexPath(dirPath) {
     if (indexPath) return indexPath;
     
     // 如果在路径数据中没找到，尝试一些常见的索引文件名
+    // 创建可能的索引文件路径数组
+    const possiblePaths = [];
     for (const indexName of config.document.index_pages) {
-        const possiblePath = `${dirPath}/${indexName}`;
-        // 这里我们只返回可能的路径，不检查文件是否实际存在
-        // 文件存在性检查会在loadDocument中进行
-        return possiblePath; // 返回第一个可能的索引页
+        possiblePaths.push(`${dirPath}/${indexName}`);
+    }
+    
+    // 返回第一个可能的路径，后续在loadDocument中会检查文件是否存在
+    // 如果需要更精确，可以在此处使用fetch检查文件是否存在，但会增加额外网络请求
+    if (possiblePaths.length > 0) {
+        return possiblePaths[0];
     }
     
     return null;
@@ -1245,8 +1456,19 @@ async function loadDocument(relativePath) {
     loadingIndicator.innerHTML = '<p class="text-gray-600 dark:text-gray-300 flex items-center"><i class="fas fa-spinner fa-spin mr-2"></i>正在加载文档...</p>';
     document.body.appendChild(loadingIndicator);
     
-    // 确保路径是相对于根目录的，而不是 data/ 目录
-    const fetchPath = `${config.document.root_dir}/${relativePath}`;
+    // 构建完整的获取路径，正确处理相对路径和绝对路径
+    let fetchPath;
+    if (relativePath.startsWith('http://') || relativePath.startsWith('https://')) {
+        // 如果已经是完整URL，直接使用
+        fetchPath = relativePath;
+    } else {
+        // 如果是相对路径，拼接上根目录
+        // 确保路径中不会有双斜杠
+        const rootDir = config.document.root_dir.replace(/\/$/, '');
+        const cleanPath = relativePath.replace(/^\//, '');
+        fetchPath = `${rootDir}/${cleanPath}`;
+    }
+    
     let successfullyLoaded = false; // 标记是否成功加载了内容
     
     // 保存当前URL中的hash
@@ -1270,17 +1492,46 @@ async function loadDocument(relativePath) {
         // 不在缓存中，从网络获取
         try {
             updateProgressBar(60);
-            const response = await fetch(fetchPath);
+            // 添加防止缓存的随机参数，解决Cloudflare环境下的缓存问题
+            // 确保URL使用与当前页面相同的协议（http/https）
+            let fetchUrl = `${fetchPath}?_t=${Date.now()}`;
+            
+            // 检查是否是绝对URL，如果是则确保协议与当前页面一致
+            if (fetchUrl.startsWith('http://') && window.location.protocol === 'https:') {
+                fetchUrl = fetchUrl.replace('http://', 'https://');
+                console.log(`已将请求URL从HTTP转换为HTTPS: ${fetchUrl}`);
+            }
+            
+            const response = await fetch(fetchUrl, {
+                method: 'GET',
+                cache: 'no-store', // 显式禁用缓存
+                headers: {
+                    'Cache-Control': 'no-cache, no-store, must-revalidate',
+                    'Pragma': 'no-cache'
+                }
+            });
             
             updateProgressBar(70);
             if (!response.ok) {
-                // ... 省略 404 和其他错误处理 (与之前类似) ...
-                // 重要的: 在错误处理中也要设置 successfullyLoaded = false 或抛出错误
-                throw new Error(`无法加载文档: ${response.statusText} (路径: ${fetchPath})`);
+                // 详细记录错误信息
+                console.error(`文档加载失败: 状态码=${response.status}, 状态文本=${response.statusText}, URL=${fetchUrl}, 相对路径=${relativePath}`);
+                throw new Error(`无法加载文档: ${response.statusText} (路径: ${relativePath})`);
             }
             
             updateProgressBar(80);
             const content = await response.text();
+            
+            // 检查内容是否为空（可能是CDN返回了错误页面但状态码是200）
+            if (!content) {
+                console.error(`文档内容为空: URL=${fetchUrl}, 相对路径=${relativePath}`);
+                throw new Error(`文档内容为空 (路径: ${relativePath})`);
+            }
+            
+            // 内容非常短时只记录警告，但不阻止渲染
+            if (content.trim().length < 10) {
+                console.warn(`文档内容很短: URL=${fetchUrl}, 相对路径=${relativePath}, 内容长度=${content.length}`);
+            }
+            
             documentCache.set(relativePath, content); // 添加到持久缓存
             
             updateProgressBar(90);
@@ -2925,10 +3176,21 @@ function fixInternalLinks(container) {
         const href = link.getAttribute('href');
         if (!href) return;
         
-        // 如果已经是完整URL或仅锚点链接，不处理
+        // 如果已经是完整URL或仅锚点链接，检查是否需要处理
         if (href.startsWith('http://') || href.startsWith('https://') || href === '#' || (href.startsWith('#') && !href.includes('?'))) {
+            // 检查是否需要强制HTTPS
+            if (href.startsWith('http://') && window.location.protocol === 'https:') {
+                // 同域名链接，但协议不同，需要修正
+                if (href.includes(window.location.hostname)) {
+                    const secureUrl = href.replace('http://', 'https://');
+                    link.setAttribute('href', secureUrl);
+                    console.log(`已将链接从HTTP转换为HTTPS: ${secureUrl}`);
+                }
+            }
+            
             // 标记为外部链接
-            if (href.startsWith('http')) {
+            if ((href.startsWith('http://') || href.startsWith('https://')) && 
+                !href.includes(window.location.hostname)) {
                 if (!link.classList.contains('external-link') && !link.querySelector('.external-link-icon')) {
                     link.classList.add('external-link');
                     
@@ -2946,7 +3208,16 @@ function fixInternalLinks(container) {
                     }
                 }
             }
-            return;
+            
+            // 非站内链接，不需要进一步处理
+            if (!href.includes(window.location.hostname) && (href.startsWith('http://') || href.startsWith('https://'))) {
+                return;
+            }
+            
+            // 锚点链接，不需要进一步处理
+            if (href === '#' || (href.startsWith('#') && !href.includes('?'))) {
+                return;
+            }
         }
         
         // 处理相对路径链接 - 支持常规Markdown格式的链接
