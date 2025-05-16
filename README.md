@@ -10,39 +10,21 @@ PFingan服务器提供和开发的MCDR插件，包括但不限于QQ群管、聊�
 
 MCDR的QQ机器人插件，集QQ群管理和白名单管理一体，添加许多功能。
 
-主要功能:
-
-- QQ群和游戏内聊天双向互通
-- 白名单管理（绑定、解绑、查询）
-- QQ群管理（禁言、踢人、群公告）
-- 自定义命令和回复
-- 定时任务和提醒
-- 服务器状态查询
+仓库地址：https://github.com/LoosePrince/PF-GUGUBot
 
 ### PF-webui
 
 MCDR的WebUI管理插件，管理PF系列插件配置和其它配置，提供插件管理和配置修改功能。
 
-主要功能:
+仓库地址：https://github.com/LoosePrince/PF-MCDR-WebUI
 
-- 可视化配置界面
-- 插件开关和状态管理
-- 用户权限管理
-- 服务器性能监控
-- 日志查看和搜索
-- 备份管理
 
 ### PF-cq-api
 
 MCDR的QQ机器人API插件，支持OneBot协议的正向WebSocketQQ。
 
-主要功能:
+仓库地址：https://github.com/XueK66/PF-cq_qq_api
 
-- OneBot协议支持
-- 提供API接口与其他插件交互
-- 事件监听和触发
-- 消息格式转换
-- 支持多种QQ机器人框架
 
 ## 安装要求
 
@@ -74,6 +56,8 @@ MCDR的QQ机器人API插件，支持OneBot协议的正向WebSocketQQ。
 - 代码贡献
 - 文档完善
 
-## 许可证
+## 本文档许可证
+
+> 此许可证为本文档的许可证，与插件无关。
 
 MIT License
