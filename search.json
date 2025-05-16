@@ -342,5 +342,56 @@
         "path": "支持与反馈",
         "content": "",
         "keywords": []
+    },
+    {
+        "title": "Player IP Logger for MCDReforged",
+        "path": "PF-player_ip_logger/README.md",
+        "content": "Player IP Logger for MCDReforged Player IP Logger 是一款为 MCDReforged (MCDR) 开发的插件，主要功能是记录玩家的 IP 地址。该插件通过监控玩家的登录和断开连接事件，记录玩家对应的 IP 地址，并提供便捷的 API 供服务器管理员进行查询、封禁或解禁操作。 善用搜索功能 功能 - 自动记录玩家 IP: 插件会自动监控玩家的登录和断...",
+        "keywords": [
+            "ip",
+            "地址",
+            "api",
+            "player",
+            "logger",
+            "mcdreforged",
+            "是一款为",
+            "mcdr",
+            "开发的插件",
+            "主要功能是记录玩家的"
+        ]
+    },
+    {
+        "title": "快速开始",
+        "path": "PF-player_ip_logger/快速开始.md",
+        "content": "快速开始 安装与配置 1. **安装**: 将插件文件放入 MCDReforged 的 目录中，启动服务器。 2. **配置**: 插件会自动生成一个 配置文件，存储玩家和 IP 记录。文件格式如下： 命令 - **!!ip ban **: 封禁指定玩家或 IP。 - **!!ip pardon **: 解禁指定玩家或 IP。 - **!!ip list**: 显示当前封禁的玩家和 IP。 事件处...",
+        "keywords": [
+            "ip",
+            "地址",
+            "快速开始",
+            "安装与配置",
+            "安装",
+            "将插件文件放入",
+            "mcdreforged",
+            "目录中",
+            "启动服务器",
+            "配置"
+        ]
+    },
+    {
+        "title": "API 开发",
+        "path": "PF-player_ip_logger/开发.md",
+        "content": "API 开发 1. **is_player(name: str) -> bool** - **描述**: 检查是否是真实玩家（多用于假人判断） - **参数**: - ：玩家名称。 - **返回**: 如果玩家存在记录返回 ，否则返回 。 **示例**: 2. **get_player_ips(name: str) -> list** - **描述**: 获取指定玩家的所有 IP 地址。 - **...",
+        "keywords": [
+            "描述",
+            "str",
+            "参数",
+            "ip",
+            "name",
+            "none",
+            "返回",
+            "api",
+            "开发",
+            "玩家名称"
+        ]
     }
 ]

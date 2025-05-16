@@ -480,6 +480,26 @@
             }
         },
         {
+            "title": "PF-player_ip_logger",
+            "path": "PF-player_ip_logger",
+            "children": [
+                {
+                    "title": "快速开始",
+                    "path": "PF-player_ip_logger/快速开始.md",
+                    "children": []
+                },
+                {
+                    "title": "API 开发",
+                    "path": "PF-player_ip_logger/开发.md",
+                    "children": []
+                }
+            ],
+            "index": {
+                "title": "Player IP Logger for MCDReforged",
+                "path": "PF-player_ip_logger/README.md"
+            }
+        },
+        {
             "title": "更多插件",
             "path": "更多插件",
             "children": [

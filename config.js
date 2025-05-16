@@ -64,6 +64,11 @@ const config = {
             text: "PF-webui",
             url: "main.html?root=PF-webui",
             icon: "fas fa-globe"
+          },
+          {
+            text: "PF-player_ip_logger",
+            url: "main.html?root=PF-player_ip_logger",
+            icon: "fas fa-code"
           }
         ],
         icon: "fas fa-plug"
@@ -94,6 +99,11 @@ const config = {
           {
             text: "PF-webui",
             url: "https://github.com/LoosePrince/PF-MCDR-WebUI",
+            icon: "fab fa-github"
+          },
+          {
+            text: "PF-player_ip_logger",
+            url: "https://github.com/LoosePrince/PF-player_ip_logger",
             icon: "fab fa-github"
           }
         ],
