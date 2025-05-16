@@ -314,36 +314,6 @@
         ]
     },
     {
-        "title": "更多插件",
-        "path": "更多插件/README.md",
-        "content": "更多插件 持续更新中...",
-        "keywords": [
-            "更多插件",
-            "持续更新中"
-        ]
-    },
-    {
-        "title": "更多插件",
-        "path": "更多插件/持续更新中.md",
-        "content": "更多插件 持续更新中...",
-        "keywords": [
-            "更多插件",
-            "持续更新中"
-        ]
-    },
-    {
-        "title": "常见问题",
-        "path": "常见问题",
-        "content": "",
-        "keywords": []
-    },
-    {
-        "title": "支持与反馈",
-        "path": "支持与反馈",
-        "content": "",
-        "keywords": []
-    },
-    {
         "title": "Player IP Logger for MCDReforged",
         "path": "PF-player_ip_logger/README.md",
         "content": "Player IP Logger for MCDReforged Player IP Logger 是一款为 MCDReforged (MCDR) 开发的插件，主要功能是记录玩家的 IP 地址。该插件通过监控玩家的登录和断开连接事件，记录玩家对应的 IP 地址，并提供便捷的 API 供服务器管理员进行查询、封禁或解禁操作。 善用搜索功能 功能 - 自动记录玩家 IP: 插件会自动监控玩家的登录和断...",
@@ -393,5 +363,35 @@
             "开发",
             "玩家名称"
         ]
+    },
+    {
+        "title": "更多插件",
+        "path": "更多插件/README.md",
+        "content": "更多插件 持续更新中...",
+        "keywords": [
+            "更多插件",
+            "持续更新中"
+        ]
+    },
+    {
+        "title": "更多插件",
+        "path": "更多插件/持续更新中.md",
+        "content": "更多插件 持续更新中...",
+        "keywords": [
+            "更多插件",
+            "持续更新中"
+        ]
+    },
+    {
+        "title": "常见问题",
+        "path": "常见问题",
+        "content": "",
+        "keywords": []
+    },
+    {
+        "title": "支持与反馈",
+        "path": "支持与反馈",
+        "content": "",
+        "keywords": []
     }
 ]

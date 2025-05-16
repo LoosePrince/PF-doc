@@ -486,17 +486,77 @@
                 {
                     "title": "快速开始",
                     "path": "PF-player_ip_logger/快速开始.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747356581,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "添加插件：player_ip_logger",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747356581
+                            }
+                        ]
+                    }
                 },
                 {
                     "title": "API 开发",
                     "path": "PF-player_ip_logger/开发.md",
-                    "children": []
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747356581,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "添加插件：player_ip_logger",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747356581
+                            }
+                        ]
+                    }
                 }
             ],
             "index": {
                 "title": "Player IP Logger for MCDReforged",
-                "path": "PF-player_ip_logger/README.md"
+                "path": "PF-player_ip_logger/README.md",
+                "git": {
+                    "last_modified": {
+                        "timestamp": 1747356581,
+                        "author": "树梢",
+                        "email": "pfingan@foxmail.com",
+                        "message": "添加插件：player_ip_logger",
+                        "github_username": "LoosePrince",
+                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                    },
+                    "contributors": [
+                        {
+                            "name": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "commits": 1,
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                            "last_commit_timestamp": 1747356581
+                        }
+                    ]
+                }
             }
         },
         {
