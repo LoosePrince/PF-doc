@@ -4384,7 +4384,7 @@ function processAdmonitions(container) {
             
             // 创建卡片容器
             const card = document.createElement('div');
-            card.className = `admonition admonition-${type} border-l-4 pl-4 py-2 my-4 bg-gray-50 rounded-r-md`;
+            card.className = `admonition admonition-${type} border-l-4 pl-4 py-2 my-4 rounded-r-md`;
             card.style.borderLeftColor = `var(--color-${admonition.color}, ${getDefaultColor(admonition.color)})`;
             
             // 创建标题
