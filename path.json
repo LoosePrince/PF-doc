@@ -377,10 +377,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1747236671,
+                            "timestamp": 1747657251,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "PFingan文档",
+                            "message": "添加WebUI配置说明文档，更新API文档，增加HTTPS配置选项，修正API调用示例格式",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -388,10 +388,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 1,
+                                "commits": 2,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1747236671
+                                "last_commit_timestamp": 1747657251
                             }
                         ]
                     }
@@ -431,10 +431,10 @@
                             "children": [],
                             "git": {
                                 "last_modified": {
-                                    "timestamp": 1747236671,
+                                    "timestamp": 1747657251,
                                     "author": "树梢",
                                     "email": "pfingan@foxmail.com",
-                                    "message": "PFingan文档",
+                                    "message": "添加WebUI配置说明文档，更新API文档，增加HTTPS配置选项，修正API调用示例格式",
                                     "github_username": "LoosePrince",
                                     "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                                 },
@@ -442,16 +442,41 @@
                                     {
                                         "name": "树梢",
                                         "email": "pfingan@foxmail.com",
-                                        "commits": 1,
+                                        "commits": 2,
                                         "github_username": "LoosePrince",
                                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                        "last_commit_timestamp": 1747236671
+                                        "last_commit_timestamp": 1747657251
                                     }
                                 ]
                             }
                         }
                     ],
                     "index": null
+                },
+                {
+                    "title": "WebUI 配置说明",
+                    "path": "PF-webui/配置说明.md",
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747657251,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "添加WebUI配置说明文档，更新API文档，增加HTTPS配置选项，修正API调用示例格式",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747657251
+                            }
+                        ]
+                    }
                 }
             ],
             "index": {

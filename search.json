@@ -314,6 +314,23 @@
         ]
     },
     {
+        "title": "WebUI 配置说明",
+        "path": "PF-webui/配置说明.md",
+        "content": "WebUI 配置说明 本文档详细说明了 WebUI 插件的配置选项和使用方法。 基础配置 服务器配置 | 配置项 | 说明 | 默认值 | 示例值 | |--------|------|--------|--------| | | WebUI 服务器监听地址 | | | | | WebUI 服务器监听端口 | | | 注意：将 设置为 将允许从任何 IP 地址访问 WebUI。 管理员配置 | 配...",
+        "keywords": [
+            "webui",
+            "配置项",
+            "说明",
+            "默认值",
+            "示例值",
+            "ai",
+            "https",
+            "注意",
+            "然后重启插件即可",
+            "配置"
+        ]
+    },
+    {
         "title": "Player IP Logger for MCDReforged",
         "path": "PF-player_ip_logger/README.md",
         "content": "Player IP Logger for MCDReforged Player IP Logger 是一款为 MCDReforged (MCDR) 开发的插件，主要功能是记录玩家的 IP 地址。该插件通过监控玩家的登录和断开连接事件，记录玩家对应的 IP 地址，并提供便捷的 API 供服务器管理员进行查询、封禁或解禁操作。 善用搜索功能 功能 - 自动记录玩家 IP: 插件会自动监控玩家的登录和断...",
