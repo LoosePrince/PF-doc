@@ -13,13 +13,16 @@
 - 方法: GET
 - 功能: 检查当前用户是否已登录
 - 响应: 
+
   ```json
   {
     "status": "success|error",
     "username": "用户名"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function checkLoginStatus() {
     try {
@@ -35,6 +38,7 @@
     }
   }
   ```
+
 - 使用位置: 所有需要认证的页面
 
 ### 登录
@@ -50,6 +54,7 @@
   - 成功时：重定向到首页或指定的redirect地址
   - 失败时：重新渲染登录页面并显示错误信息
 - 调用示例（表单提交）:
+
   ```html
   <form action="/login" method="post">
     <input type="text" name="account" placeholder="账号" required>
@@ -58,6 +63,7 @@
     <button type="submit">登录</button>
   </form>
   ```
+
 - 使用位置: 登录页面
 
 ### 登出
@@ -66,11 +72,13 @@
 - 功能: 用户退出登录
 - 响应: 重定向到登录页面
 - 调用示例:
+
   ```javascript
   function logout() {
     window.location.href = '/logout';
   }
   ```
+
 - 使用位置: 所有页面的退出登录按钮
 
 ## 服务器状态API
@@ -80,6 +88,7 @@
 - 方法: GET
 - 功能: 获取Minecraft服务器状态
 - 响应:
+
   ```json
   {
     "status": "online|offline|error",
@@ -87,7 +96,9 @@
     "players": "在线人数/最大人数"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function checkServerStatus() {
     try {
@@ -106,6 +117,7 @@
     }
   }
   ```
+
 - 使用位置: 首页、控制面板
 
 ### 控制服务器
@@ -115,13 +127,16 @@
   - `action`: 操作类型（"start"/"stop"/"restart"）
 - 功能: 启动、停止或重启Minecraft服务器
 - 响应:
+
   ```json
   {
     "status": "success|error",
     "message": "操作结果信息"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function controlServer(action) {
     try {
@@ -149,6 +164,7 @@
   // controlServer('stop');    // 停止服务器
   // controlServer('restart'); // 重启服务器
   ```
+
 - 使用位置: 服务器控制面板
 
 ### 获取服务器日志
@@ -161,6 +177,7 @@
   - `merged`: 是否获取合并日志（可选，布尔值，默认false）
 - 功能: 获取服务器日志内容
 - 响应:
+
   ```json
   {
     "status": "success|error",
@@ -177,7 +194,9 @@
     "log_type": "日志类型"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function getServerLogs(logType = 'mcdr', startLine = 0, maxLines = 100, merged = false) {
     try {
@@ -209,6 +228,7 @@
     }
   }
   ```
+
 - 使用位置: 日志查看页面
 - 备注: 当`merged`参数为true时，返回的日志会包含来源信息（mcdr或minecraft）
 
@@ -220,6 +240,7 @@
   - `log_type`: 日志类型（"mcdr"/"minecraft"，默认"mcdr"）
 - 功能: 获取最新的日志更新，用于实时更新日志显示
 - 响应:
+
   ```json
   {
     "status": "success|error",
@@ -234,7 +255,9 @@
     "next_line": 下一次请求的起始行号
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function fetchNewLogs(lastLine, logType = 'mcdr') {
     try {
@@ -265,6 +288,7 @@
     lastLine = await fetchNewLogs(lastLine);
   }, 3000);
   ```
+
 - 使用位置: 日志实时监控页面
 - 备注: 通常与`setInterval`配合使用，定期轮询获取新日志
 
@@ -277,6 +301,7 @@
   - `detail`: 是否获取详细信息（可选，布尔值）
 - 功能: 获取已安装的插件列表
 - 响应:
+
   ```json
   {
     "status": "success",
@@ -295,7 +320,9 @@
     ]
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function getPlugins(detail = false) {
     try {
@@ -317,6 +344,7 @@
     }
   }
   ```
+
 - 使用位置: 插件管理页面
 - 备注: 当`detail`参数为true时，返回的插件信息会更加详细，包括作者、链接等
 
@@ -325,6 +353,7 @@
 - 方法: GET
 - 功能: 获取咕咕机器人相关插件的元数据
 - 响应:
+
   ```json
   {
     "status": "success",
@@ -341,7 +370,9 @@
     ]
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function getGugubotPlugins() {
     try {
@@ -363,6 +394,7 @@
     }
   }
   ```
+
 - 使用位置: 咕咕机器人配置页面
 
 ### 切换插件状态
@@ -373,13 +405,16 @@
   - `status`: 目标状态（true为启用，false为禁用）
 - 功能: 启用或禁用指定插件
 - 响应:
+
   ```json
   {
     "status": "success|error",
     "message": "操作结果信息"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function togglePlugin(pluginId, enable) {
     try {
@@ -409,6 +444,7 @@
   // togglePlugin('example_plugin', true);  // 启用插件
   // togglePlugin('example_plugin', false); // 禁用插件
   ```
+
 - 使用位置: 插件管理页面
 
 ### 重载插件
@@ -418,13 +454,16 @@
   - `plugin_id`: 插件ID
 - 功能: 重新加载指定插件
 - 响应:
+
   ```json
   {
     "status": "success|error",
     "message": "操作结果信息"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function reloadPlugin(pluginId) {
     try {
@@ -449,6 +488,7 @@
     }
   }
   ```
+
 - 使用位置: 插件管理页面
 
 ### 获取在线插件列表
@@ -459,6 +499,7 @@
 - **参数**: 无
 - **返回**: 插件列表JSON
 - **示例**:
+
   ```javascript
   fetch('/api/online-plugins')
     .then(response => response.json())
@@ -466,6 +507,7 @@
       console.log(data);
     });
   ```
+
 - **说明**: 此API会从MCDR插件目录获取最新的插件列表，并缓存2小时
 
 ### 获取已安装插件列表：此API已废弃
@@ -476,6 +518,7 @@
 - **参数**: 无
 - **返回**: 已安装插件列表JSON
 - **示例**:
+
   ```javascript
   fetch('/api/installed-plugins')
     .then(response => response.json())
@@ -483,6 +526,7 @@
       console.log(data);
     });
   ```
+
 - **说明**: 此API会返回服务器上已安装的所有插件信息
 
 ### 安装插件：此API已废弃
@@ -493,6 +537,7 @@
   - `plugin_id`: 插件ID
 - **返回**: 操作结果JSON
 - **示例**:
+
   ```javascript
   fetch('/api/install_plugin', {
     method: 'POST',
@@ -508,6 +553,7 @@
     console.log(data);
   });
   ```
+
 - **说明**: 此API会从MCDR插件目录下载并安装指定的插件
 
 ### 更新插件：此API已废弃
@@ -518,6 +564,7 @@
   - `plugin_id`: 插件ID
 - **返回**: 操作结果JSON
 - **示例**:
+
   ```javascript
   fetch('/api/update_plugin', {
     method: 'POST',
@@ -533,6 +580,7 @@
     console.log(data);
   });
   ```
+
 - **说明**: 此API会检查并更新指定的插件到最新版本
 
 ### 卸载插件：此API已废弃
@@ -543,6 +591,7 @@
   - `plugin_id`: 插件ID
 - **返回**: 操作结果JSON
 - **示例**:
+
   ```javascript
   fetch('/api/uninstall_plugin', {
     method: 'POST',
@@ -558,6 +607,7 @@
     console.log(data);
   });
   ```
+
 - **说明**: 此API会卸载指定的插件
 
 ## 配置相关API
@@ -569,6 +619,7 @@
   - `plugin_id`: 插件ID
 - 功能: 获取指定插件的配置文件列表
 - 响应:
+
   ```json
   {
     "status": "success|error",
@@ -576,7 +627,9 @@
     "message": "错误信息（如果失败）"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function getConfigFiles(pluginId) {
     try {
@@ -600,6 +653,7 @@
     }
   }
   ```
+
 - 使用位置: 插件配置页面
 
 ### 加载配置文件
@@ -644,6 +698,7 @@
 - 方法: GET
 - 功能: 获取WebUI本身的配置
 - 响应:
+
   ```json
   {
     "host": "主机地址",
@@ -653,6 +708,7 @@
     "enable_temp_login_password": "是否启用临时登录密码"
   }
   ```
+
 - 使用位置: WebUI设置页面
 
 ### 保存WebUI配置
@@ -667,13 +723,16 @@
   - `deepseek_model`: DeepSeek模型选择（可选）
 - 功能: 保存WebUI配置
 - 响应:
+
   ```json
   {
     "status": "success|error",
     "message": "操作结果信息（如果有）"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   // 保存基本配置
   async function saveWebConfig(host, port, superAccount) {
@@ -752,6 +811,7 @@
     }
   }
   ```
+
 - 使用位置: WebUI设置页面
 - 备注: 保存DeepSeek API密钥时，如果不提供值，将保持原值不变
 
@@ -784,6 +844,7 @@
   - `qq`: QQ号码
 - 功能: 获取QQ昵称和头像信息
 - 响应:
+
   ```json
   {
     "code": 200,
@@ -794,6 +855,7 @@
     }
   }
   ```
+
 - 使用位置: 用户信息显示
 
 ### 获取QQ头像
@@ -814,12 +876,15 @@
 - 方法: POST
 - 功能: 向MCDR服务器发送命令
 - 参数:
+
   ```json
   {
     "command": "要执行的命令"
   }
   ```
+
 - 响应:
+
   ```json
   {
     "status": "success|error",
@@ -827,7 +892,9 @@
     "feedback": "命令执行反馈（RCON模式下）" 
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function sendCommand(command) {
     try {
@@ -863,6 +930,7 @@
   // sendCommand('list');            // MCDR命令
   // sendCommand('/say Hello');      // 带/前缀的MC命令，会尝试通过RCON发送
   ```
+
 - 使用位置: 终端页面
 - 备注: 
   - 当命令以"/"开头时，如果RCON已启用并连接，会优先使用RCON发送命令并返回直接反馈
@@ -874,6 +942,7 @@
 - 方法: POST
 - 功能: 向DeepSeek API发送问题并获取AI回答
 - 参数:
+
   ```json
   {
     "query": "你的问题",
@@ -885,7 +954,9 @@
     ]
   }
   ```
+
 - 响应:
+
   ```json
   {
     "status": "success|error",
@@ -893,14 +964,18 @@
     "model": "使用的模型名称"
   }
   ```
+
 - 错误响应:
+
   ```json
   {
     "status": "error",
     "message": "错误信息"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   // 简单问答
   async function askAI(query, systemPrompt = null) {
@@ -973,6 +1048,7 @@
     }
   }
   ```
+
 - 使用位置: 终端日志AI分析功能
 - 备注: 
   - 需要在Web设置中配置有效的DeepSeek API密钥
@@ -986,6 +1062,7 @@
 - 方法: GET
 - 功能: 检查PIM插件的安装状态
 - 响应:
+
   ```json
   {
     "status": "success|error",
@@ -993,7 +1070,9 @@
     "message": "错误信息（如果失败）"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function checkPimStatus() {
     try {
@@ -1018,6 +1097,7 @@
     }
   }
   ```
+
 - 使用位置: 插件管理页面
 - 备注: 用于检查PIM插件是否已安装，以便决定是否显示安装PIM插件的选项
 
@@ -1026,13 +1106,16 @@
 - 方法: GET
 - 功能: 将PIM作为独立插件安装到MCDR中
 - 响应:
+
   ```json
   {
     "status": "success|error",
     "message": "操作结果信息"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function installPimPlugin() {
     try {
@@ -1052,6 +1135,7 @@
     }
   }
   ```
+
 - 使用位置: 插件管理页面
 - 备注: 将PIM插件从WebUI中提取出来，作为独立插件安装到MCDR中
 
@@ -1062,6 +1146,7 @@
   - `plugin_id`: 插件ID
 - 功能: 安装指定插件（使用PIM插件安装器）
 - 响应:
+
   ```json
   {
     "success": true|false,
@@ -1070,7 +1155,9 @@
     "error": "错误信息（如果失败）"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function installPlugin(pluginId) {
     if (pluginId === "guguwebui") {
@@ -1103,6 +1190,7 @@
     }
   }
   ```
+
 - 使用位置: 插件管理页面和在线插件页面
 - 备注: 
   - 返回的任务ID可用于查询安装进度
@@ -1115,6 +1203,7 @@
   - `plugin_id`: 插件ID
 - 功能: 更新指定插件（使用PIM插件安装器）
 - 响应:
+
   ```json
   {
     "success": true|false,
@@ -1123,7 +1212,9 @@
     "error": "错误信息（如果失败）"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function updatePlugin(pluginId) {
     if (pluginId === "guguwebui") {
@@ -1156,6 +1247,7 @@
     }
   }
   ```
+
 - 使用位置: 插件管理页面
 - 备注: 
   - 返回的任务ID可用于查询更新进度
@@ -1168,6 +1260,7 @@
   - `plugin_id`: 插件ID
 - 功能: 卸载指定插件并删除相关文件（使用PIM插件安装器）
 - 响应:
+
   ```json
   {
     "success": true|false,
@@ -1176,7 +1269,9 @@
     "error": "错误信息（如果失败）"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   async function uninstallPlugin(pluginId) {
     if (pluginId === "guguwebui") {
@@ -1209,6 +1304,7 @@
     }
   }
   ```
+
 - 使用位置: 插件管理页面
 - 备注: 
   - 返回的任务ID可用于查询卸载进度
@@ -1224,6 +1320,7 @@
   - `plugin_id`: 插件ID（可选，与task_id二选一）
 - 功能: 获取指定任务的执行状态，或获取指定插件最近的任务状态
 - 响应:
+
   ```json
   {
     "success": true|false,
@@ -1241,7 +1338,9 @@
     "error": "错误信息（如果请求失败）"
   }
   ```
+
 - 调用示例:
+
   ```javascript
   // 通过任务ID查询
   async function checkTaskStatus(taskId, pluginId = null) {
@@ -1286,6 +1385,7 @@
     }
   }
   ```
+  
 - 使用位置: 插件管理页面和在线插件页面
 - 备注: 
   - 可以通过任务ID或插件ID查询任务状态
