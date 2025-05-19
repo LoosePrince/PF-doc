@@ -422,6 +422,31 @@
                     }
                 },
                 {
+                    "title": "WebUI 配置说明",
+                    "path": "PF-webui/配置说明.md",
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1747657251,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "添加WebUI配置说明文档，更新API文档，增加HTTPS配置选项，修正API调用示例格式",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1747657251
+                            }
+                        ]
+                    }
+                },
+                {
                     "title": "开发",
                     "path": "PF-webui/开发",
                     "children": [
@@ -452,31 +477,6 @@
                         }
                     ],
                     "index": null
-                },
-                {
-                    "title": "WebUI 配置说明",
-                    "path": "PF-webui/配置说明.md",
-                    "children": [],
-                    "git": {
-                        "last_modified": {
-                            "timestamp": 1747657251,
-                            "author": "树梢",
-                            "email": "pfingan@foxmail.com",
-                            "message": "添加WebUI配置说明文档，更新API文档，增加HTTPS配置选项，修正API调用示例格式",
-                            "github_username": "LoosePrince",
-                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
-                        },
-                        "contributors": [
-                            {
-                                "name": "树梢",
-                                "email": "pfingan@foxmail.com",
-                                "commits": 1,
-                                "github_username": "LoosePrince",
-                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1747657251
-                            }
-                        ]
-                    }
                 }
             ],
             "index": {
