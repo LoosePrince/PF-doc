@@ -484,10 +484,10 @@
                 "path": "PF-webui/README.md",
                 "git": {
                     "last_modified": {
-                        "timestamp": 1747236671,
+                        "timestamp": 1747702452,
                         "author": "树梢",
                         "email": "pfingan@foxmail.com",
-                        "message": "PFingan文档",
+                        "message": "修复卡片容器样式，调整右侧内边距设置；更新README文档，优化插件管理和表单配置功能的描述",
                         "github_username": "LoosePrince",
                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                     },
@@ -495,10 +495,10 @@
                         {
                             "name": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "commits": 1,
+                            "commits": 2,
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                            "last_commit_timestamp": 1747236671
+                            "last_commit_timestamp": 1747702452
                         }
                     ]
                 }
