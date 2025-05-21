@@ -236,8 +236,8 @@
 - 端点: `/api/new_logs`
 - 方法: GET
 - 参数:
-  - `last_line`: 客户端已有的最后一行行号
-  - `log_type`: 日志类型（"mcdr"/"minecraft"，默认"mcdr"）
+  - `last_counter`: 客户端已有的最后一行计数器ID
+  - `max_lines`: 最大返回行数（默认100，最大200）
 - 功能: 获取最新的日志更新，用于实时更新日志显示
 - 响应:
 
@@ -251,41 +251,41 @@
       }
     ],
     "total_lines": 总行数,
-    "has_new": true|false,
-    "next_line": 下一次请求的起始行号
+    "last_counter": 最后一行计数器ID,
+    "new_logs_count": 新增日志数量
   }
   ```
 
 - 调用示例:
 
   ```javascript
-  async function fetchNewLogs(lastLine, logType = 'mcdr') {
+  async function fetchNewLogs(lastCounter, maxLines = 100) {
     try {
-      const response = await fetch(`/api/new_logs?last_line=${lastLine}&log_type=${logType}`);
+      const response = await fetch(`/api/new_logs?last_counter=${lastCounter}&max_lines=${maxLines}`);
       const data = await response.json();
       
-      if (data.status === 'success' && data.has_new) {
-        console.log(`获取到 ${data.logs.length} 行新日志`);
+      if (data.status === 'success') {
+        console.log(`获取到 ${data.new_logs_count} 行新日志`);
         // 处理新日志
         data.logs.forEach(log => {
           console.log(`${log.line_number}: ${log.content}`);
         });
         
-        // 更新最后一行行号
-        return data.total_lines;
+        // 更新最后一行计数器ID
+        return data.last_counter;
       }
       
-      return lastLine; // 没有新日志，返回原行号
+      return lastCounter; // 没有新日志，返回原计数器ID
     } catch (error) {
       console.error('获取新日志出错:', error);
-      return lastLine;
+      return lastCounter;
     }
   }
   
   // 定时获取新日志
-  let lastLine = 0;
+  let lastCounter = 0;
   setInterval(async () => {
-    lastLine = await fetchNewLogs(lastLine);
+    lastCounter = await fetchNewLogs(lastCounter);
   }, 3000);
   ```
 
@@ -491,125 +491,6 @@
 
 - 使用位置: 插件管理页面
 
-### 获取在线插件列表
-
-- **URL**: `/api/online-plugins`
-- **方法**: GET
-- **功能**: 获取在线插件列表
-- **参数**: 无
-- **返回**: 插件列表JSON
-- **示例**:
-
-  ```javascript
-  fetch('/api/online-plugins')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    });
-  ```
-
-- **说明**: 此API会从MCDR插件目录获取最新的插件列表，并缓存2小时
-
-### 获取已安装插件列表：此API已废弃
-
-- **URL**: `/api/installed-plugins`
-- **方法**: GET
-- **功能**: 获取已安装的插件列表
-- **参数**: 无
-- **返回**: 已安装插件列表JSON
-- **示例**:
-
-  ```javascript
-  fetch('/api/installed-plugins')
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-    });
-  ```
-
-- **说明**: 此API会返回服务器上已安装的所有插件信息
-
-### 安装插件：此API已废弃
-
-- **URL**: `/api/install_plugin`
-- **方法**: POST
-- **参数**: 
-  - `plugin_id`: 插件ID
-- **返回**: 操作结果JSON
-- **示例**:
-
-  ```javascript
-  fetch('/api/install_plugin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      plugin_id: 'example_plugin'
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
-  ```
-
-- **说明**: 此API会从MCDR插件目录下载并安装指定的插件
-
-### 更新插件：此API已废弃
-
-- **URL**: `/api/update_plugin`
-- **方法**: POST
-- **参数**: 
-  - `plugin_id`: 插件ID
-- **返回**: 操作结果JSON
-- **示例**:
-
-  ```javascript
-  fetch('/api/update_plugin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      plugin_id: 'example_plugin'
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
-  ```
-
-- **说明**: 此API会检查并更新指定的插件到最新版本
-
-### 卸载插件：此API已废弃
-
-- **URL**: `/api/uninstall_plugin`
-- **方法**: POST
-- **参数**: 
-  - `plugin_id`: 插件ID
-- **返回**: 操作结果JSON
-- **示例**:
-
-  ```javascript
-  fetch('/api/uninstall_plugin', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      plugin_id: 'example_plugin'
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  });
-  ```
-
-- **说明**: 此API会卸载指定的插件
-
 ## 配置相关API
 
 ### 获取配置文件列表
@@ -705,7 +586,16 @@
     "port": "端口",
     "super_admin_account": "超级管理员账号",
     "disable_admin_login_web": "是否禁用其他管理员登录",
-    "enable_temp_login_password": "是否启用临时登录密码"
+    "enable_temp_login_password": "是否启用临时登录密码",
+    "ai_api_key": "AI API密钥（但是为空）",
+    "ai_model": "AI模型名称",
+    "ai_api_url": "AI API地址",
+    "mcdr_plugins_url": "MCDR插件目录URL",
+    "repositories": ["仓库列表"],
+    "ssl_enabled": "是否启用SSL",
+    "ssl_certfile": "SSL证书文件路径",
+    "ssl_keyfile": "SSL密钥文件路径",
+    "ssl_keyfile_password": "SSL密钥密码"
   }
   ```
 
@@ -719,8 +609,15 @@
   - `host`: 主机地址（可选）
   - `port`: 端口（可选）
   - `superaccount`: 超级管理员账号（可选）
-  - `deepseek_api_key`: DeepSeek API密钥（可选）
-  - `deepseek_model`: DeepSeek模型选择（可选）
+  - `ai_api_key`: AI API密钥（可选）
+  - `ai_model`: AI模型选择（可选）
+  - `ai_api_url`: AI API地址（可选）
+  - `mcdr_plugins_url`: MCDR插件目录URL（可选）
+  - `repositories`: 仓库列表（可选）
+  - `ssl_enabled`: 是否启用SSL（可选）
+  - `ssl_certfile`: SSL证书文件路径（可选）
+  - `ssl_keyfile`: SSL密钥文件路径（可选）
+  - `ssl_keyfile_password`: SSL密钥密码（可选）
 - 功能: 保存WebUI配置
 - 响应:
 
@@ -735,7 +632,7 @@
 
   ```javascript
   // 保存基本配置
-  async function saveWebConfig(host, port, superAccount) {
+  async function saveWebConfig(config) {
     try {
       const response = await fetch('/api/save_web_config', {
         method: 'POST',
@@ -744,9 +641,7 @@
         },
         body: JSON.stringify({
           action: 'config',
-          host: host,
-          port: port,
-          superaccount: superAccount
+          ...config
         })
       });
       
@@ -761,59 +656,25 @@
     }
   }
   
-  // 保存DeepSeek配置
-  async function saveDeepseekConfig(apiKey, model) {
-    try {
-      const response = await fetch('/api/save_web_config', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          action: 'config',
-          deepseek_api_key: apiKey,
-          deepseek_model: model
-        })
-      });
-      
-      const result = await response.json();
-      if (result.status === 'success') {
-        console.log('DeepSeek配置保存成功');
-      } else {
-        console.error(`保存失败: ${result.message}`);
-      }
-    } catch (error) {
-      console.error('保存DeepSeek配置出错:', error);
-    }
-  }
-  
-  // 切换其他管理员登录权限
-  async function toggleAdminLoginWeb() {
-    try {
-      const response = await fetch('/api/save_web_config', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          action: 'disable_admin_login_web'
-        })
-      });
-      
-      const result = await response.json();
-      if (result.status === 'success') {
-        console.log(`其他管理员登录权限已${result.message ? '禁用' : '启用'}`);
-      } else {
-        console.error(`操作失败`);
-      }
-    } catch (error) {
-      console.error('切换其他管理员登录权限出错:', error);
-    }
-  }
+  // 使用示例
+  saveWebConfig({
+    host: '0.0.0.0',
+    port: 8080,
+    superaccount: 'admin',
+    ai_api_key: 'your-api-key',
+    ai_model: 'deepseek-chat',
+    ai_api_url: 'https://api.deepseek.com/chat/completions',
+    mcdr_plugins_url: 'https://api.mcdreforged.com/catalogue/everything_slim.json.xz',
+    repositories: ['https://example.com/repo'],
+    ssl_enabled: true,
+    ssl_certfile: '/path/to/cert.pem',
+    ssl_keyfile: '/path/to/key.pem',
+    ssl_keyfile_password: 'your-password'
+  });
   ```
 
 - 使用位置: WebUI设置页面
-- 备注: 保存DeepSeek API密钥时，如果不提供值，将保持原值不变
+- 备注: 保存AI API密钥时，如果不提供值，将保持原值不变
 
 ## 文件操作API
 
@@ -948,6 +809,8 @@
     "query": "你的问题",
     "system_prompt": "可选的系统指令",
     "model": "可选指定模型名",
+    "api_key": "可选的临时API密钥",
+    "api_url": "可选的临时API地址",
     "chat_history": [
       {"role": "user", "content": "之前的问题"},
       {"role": "assistant", "content": "之前的回答"}
@@ -1054,6 +917,7 @@
   - 需要在Web设置中配置有效的DeepSeek API密钥
   - chat_history参数用于支持连续对话，保留上下文
   - 支持的模型包括：`deepseek-chat`、`deepseek-coder`等
+  - 可以通过临时参数覆盖配置中的API密钥和地址
 
 ## PIM插件安装器API
 
@@ -1201,6 +1065,8 @@
 - 方法: POST
 - 参数: 
   - `plugin_id`: 插件ID
+  - `version`: 指定版本号（可选）
+  - `repo_url`: 指定仓库URL（可选）
 - 功能: 更新指定插件（使用PIM插件安装器）
 - 响应:
 
@@ -1216,21 +1082,31 @@
 - 调用示例:
 
   ```javascript
-  async function updatePlugin(pluginId) {
+  async function updatePlugin(pluginId, version = null, repoUrl = null) {
     if (pluginId === "guguwebui") {
       console.error("不允许更新WebUI自身，这可能会导致WebUI无法正常工作");
       return;
     }
     
     try {
+      const requestData = {
+        plugin_id: pluginId
+      };
+      
+      if (version) {
+        requestData.version = version;
+      }
+      
+      if (repoUrl) {
+        requestData.repo_url = repoUrl;
+      }
+      
       const response = await fetch('/api/pim/update_plugin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          plugin_id: pluginId
-        })
+        body: JSON.stringify(requestData)
       });
       
       const result = await response.json();
@@ -1252,6 +1128,8 @@
 - 备注: 
   - 返回的任务ID可用于查询更新进度
   - 不允许更新ID为"guguwebui"的插件，以保护WebUI自身的稳定性
+  - 可以通过version参数指定要更新到的版本
+  - 可以通过repo_url参数指定要使用的仓库地址
 
 ### 卸载插件
 - 端点: `/api/pim/uninstall_plugin`
@@ -1390,6 +1268,209 @@
 - 备注: 
   - 可以通过任务ID或插件ID查询任务状态
   - 当任务未找到但提供了插件ID时，会尝试查找关联该插件的最新任务
+  - progress属性为0到1的小数，表示任务进度百分比
+  - all_messages包含任务执行的完整日志
+  - status可能的值：pending（等待中）、running（执行中）、completed（已完成）、failed（失败）
+
+## Pip包管理API
+
+### 获取已安装的Pip包列表
+- 端点: `/api/pip/list`
+- 方法: GET
+- 功能: 获取已安装的Python包列表
+- 响应:
+
+  ```json
+  {
+    "status": "success|error",
+    "packages": [
+      {
+        "name": "包名",
+        "version": "版本号"
+      }
+    ]
+  }
+  ```
+
+- 调用示例:
+
+  ```javascript
+  async function getPipPackages() {
+    try {
+      const response = await fetch('/api/pip/list');
+      const data = await response.json();
+      
+      if (data.status === 'success') {
+        console.log(`获取到 ${data.packages.length} 个包`);
+        // 处理包列表
+        data.packages.forEach(pkg => {
+          console.log(`${pkg.name} (${pkg.version})`);
+        });
+        return data.packages;
+      } else {
+        console.error('获取包列表失败');
+        return [];
+      }
+    } catch (error) {
+      console.error('获取包列表出错:', error);
+      return [];
+    }
+  }
+  ```
+
+- 使用位置: Pip包管理页面
+
+### 安装Pip包
+- 端点: `/api/pip/install`
+- 方法: POST
+- 参数: 
+  - `package`: 包名
+- 功能: 安装指定的Python包
+- 响应:
+
+  ```json
+  {
+    "success": true|false,
+    "task_id": "任务ID",
+    "message": "操作结果信息",
+    "error": "错误信息（如果失败）"
+  }
+  ```
+
+- 调用示例:
+
+  ```javascript
+  async function installPipPackage(packageName) {
+    try {
+      const response = await fetch('/api/pip/install', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          package: packageName
+        })
+      });
+      
+      const result = await response.json();
+      if (result.success) {
+        console.log(`开始安装包 ${packageName}, 任务ID: ${result.task_id}`);
+        return result.task_id;
+      } else {
+        console.error(`安装失败: ${result.error || ''}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('安装包出错:', error);
+      return null;
+    }
+  }
+  ```
+
+- 使用位置: Pip包管理页面
+- 备注: 返回的任务ID可用于查询安装进度
+
+### 卸载Pip包
+- 端点: `/api/pip/uninstall`
+- 方法: POST
+- 参数: 
+  - `package`: 包名
+- 功能: 卸载指定的Python包
+- 响应:
+
+  ```json
+  {
+    "success": true|false,
+    "task_id": "任务ID",
+    "message": "操作结果信息",
+    "error": "错误信息（如果失败）"
+  }
+  ```
+
+- 调用示例:
+
+  ```javascript
+  async function uninstallPipPackage(packageName) {
+    try {
+      const response = await fetch('/api/pip/uninstall', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          package: packageName
+        })
+      });
+      
+      const result = await response.json();
+      if (result.success) {
+        console.log(`开始卸载包 ${packageName}, 任务ID: ${result.task_id}`);
+        return result.task_id;
+      } else {
+        console.error(`卸载失败: ${result.error || ''}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('卸载包出错:', error);
+      return null;
+    }
+  }
+  ```
+
+- 使用位置: Pip包管理页面
+- 备注: 返回的任务ID可用于查询卸载进度
+
+### 获取Pip任务状态
+- 端点: `/api/pip/task_status`
+- 方法: GET
+- 参数: 
+  - `task_id`: 任务ID
+- 功能: 获取指定Pip任务的执行状态
+- 响应:
+
+  ```json
+  {
+    "success": true|false,
+    "task_info": {
+      "id": "任务ID",
+      "action": "install|uninstall",
+      "package": "包名",
+      "status": "pending|running|completed|failed",
+      "progress": 0.0-1.0,
+      "message": "当前状态描述",
+      "start_time": 开始时间戳,
+      "end_time": 结束时间戳,
+      "all_messages": ["任务执行过程中的所有消息列表"],
+      "error_messages": ["错误消息列表"]
+    },
+    "error": "错误信息（如果请求失败）"
+  }
+  ```
+
+- 调用示例:
+
+  ```javascript
+  async function checkPipTaskStatus(taskId) {
+    try {
+      const response = await fetch(`/api/pip/task_status?task_id=${taskId}`);
+      const data = await response.json();
+      
+      if (data.success && data.task_info) {
+        console.log(`任务 ${taskId} 状态:`, data.task_info);
+        return data.task_info;
+      } else {
+        console.error(`获取任务状态失败: ${data.error || '未知错误'}`);
+        return null;
+      }
+    } catch (error) {
+      console.error('查询任务状态出错:', error);
+      return null;
+    }
+  }
+  ```
+  
+- 使用位置: Pip包管理页面
+- 备注: 
   - progress属性为0到1的小数，表示任务进度百分比
   - all_messages包含任务执行的完整日志
   - status可能的值：pending（等待中）、running（执行中）、completed（已完成）、failed（失败）
