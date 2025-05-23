@@ -87,10 +87,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1747888334,
+                            "timestamp": 1748002206,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "更新文档，修改前置cq_qq_api配置链接为快速开始，并添加关于GUGUbot对mg_events版本支持的说明链接",
+                            "message": "更新EasyDocument版本到v1.2.6",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -98,10 +98,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 2,
+                                "commits": 3,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1747888334
+                                "last_commit_timestamp": 1748002206
                             }
                         ]
                     }
