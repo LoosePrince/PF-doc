@@ -16,6 +16,10 @@ const documentCache = {
     
     // 正在预加载的文档
     loadingDocs: new Set(),
+
+    // 缓存控制开关
+    disableCache: false,
+    disablePreload: false,
     
     /**
      * 获取文档内容（先检查预加载缓存，再检查持久缓存）
@@ -23,8 +27,13 @@ const documentCache = {
      * @returns {string|null} 文档内容或null
      */
     get(path) {
+        // 如果禁用了缓存，直接返回null
+        if (this.disableCache) {
+            return null;
+        }
+
         // 先检查预加载缓存
-        if (this.preloadCache[path]) {
+        if (!this.disablePreload && this.preloadCache[path]) {
             // console.log(`从预加载缓存获取文档: ${path}`);
             return this.preloadCache[path];
         }
@@ -53,6 +62,11 @@ const documentCache = {
      * @param {string} content 文档内容
      */
     set(path, content) {
+        // 如果禁用了缓存，不进行缓存
+        if (this.disableCache) {
+            return;
+        }
+
         this.cache[path] = {
             content: content,
             timestamp: Date.now()
@@ -68,6 +82,11 @@ const documentCache = {
      * @param {string} content 文档内容
      */
     setPreloaded(path, content) {
+        // 如果禁用了预加载，不进行缓存
+        if (this.disablePreload) {
+            return;
+        }
+
         this.preloadCache[path] = content;
         this.loadingDocs.delete(path);
     },
@@ -398,6 +417,17 @@ const documentCache = {
      * 初始化缓存管理器
      */
     init() {
+        // 从localStorage加载缓存选项
+        try {
+            const options = JSON.parse(localStorage.getItem('document_cache_options'));
+            if (options) {
+                this.disableCache = options.disableCache;
+                this.disablePreload = options.disablePreload;
+            }
+        } catch (e) {
+            console.error('加载缓存选项失败:', e);
+        }
+
         // 从localStorage加载缓存信息
         this._loadFromLocalStorage();
         
@@ -408,6 +438,53 @@ const documentCache = {
         setInterval(() => this.clearExpired(), 5 * 60 * 1000); // 5分钟清理一次
         
         console.log(`缓存管理器初始化完成，持久缓存文档数: ${Object.keys(this.cache).length}`);
+    },
+
+    /**
+     * 设置缓存功能开关
+     * @param {boolean} disableCache 是否禁用文档缓存
+     * @param {boolean} disablePreload 是否禁用预加载
+     */
+    setOptions(disableCache, disablePreload) {
+        this.disableCache = disableCache;
+        this.disablePreload = disablePreload;
+
+        // 如果禁用了缓存，清除所有缓存
+        if (disableCache) {
+            this.clearAllCache();
+        }
+
+        // 如果禁用了预加载，清除所有预加载
+        if (disablePreload) {
+            this.clearAllPreloaded();
+        }
+
+        // 保存设置到localStorage
+        localStorage.setItem('document_cache_options', JSON.stringify({
+            disableCache,
+            disablePreload
+        }));
+    },
+
+    /**
+     * 从持久缓存中删除指定文档
+     * @param {string} path 文档路径
+     */
+    removeFromCache(path) {
+        if (this.cache[path]) {
+            delete this.cache[path];
+            this._saveToLocalStorage();
+        }
+    },
+
+    /**
+     * 从预加载缓存中删除指定文档
+     * @param {string} path 文档路径
+     */
+    removeFromPreload(path) {
+        if (this.preloadCache[path]) {
+            delete this.preloadCache[path];
+        }
     }
 };
 

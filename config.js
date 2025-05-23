@@ -34,6 +34,23 @@ const config = {
     mobile_breakpoint: "1024px" // 移动设备断点
   },
 
+  // 动画设置
+  animation: {
+    sidebar: {
+      enable: true, // 是否启用左侧导航动画
+      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
+      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+    },
+    toc: {
+      enable: true, // 是否启用右侧目录动画
+      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
+      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+    },
+    loading: {
+      min_duration: 300 // 加载动画最小显示时长(毫秒) - 确保用户能看到加载过程
+    }
+  },
+
   // 导航设置
   navigation: {
     home_text: "首页", // 首页链接文本
@@ -52,22 +69,22 @@ const config = {
         url: [
           {
             text: "PF-gugubot",
-            url: "main.html?root=PF-gugubot",
+            url: "main.html#PF-gugubot/",
             icon: "fas fa-robot"
           },
           {
             text: "PF-cq-api",
-            url: "main.html?root=PF-cq-api",
+            url: "main.html#PF-cq-api/",
             icon: "fas fa-code"
           },
           {
             text: "PF-webui",
-            url: "main.html?root=PF-webui",
+            url: "main.html#PF-webui/",
             icon: "fas fa-globe"
           },
           {
             text: "PF-player_ip_logger",
-            url: "main.html?root=PF-player_ip_logger",
+            url: "main.html#PF-player_ip_logger/",
             icon: "fas fa-code"
           }
         ],
@@ -75,12 +92,12 @@ const config = {
       },
       {
         text: "常见问题",
-        url: "main.html?root=常见问题",
+        url: "main.html#常见问题/",
         icon: "fas fa-question-circle"
       },
       {
         text: "支持与反馈",
-        url: "main.html?root=支持与反馈",
+        url: "main.html#支持与反馈/",
         icon: "fas fa-comments"
       },
       {

@@ -525,8 +525,8 @@ function displaySearchResults(results, query, searchResultsContainer) {
         const limitedResults = results.slice(0, maxResults);
         
         limitedResults.forEach(result => {
-            // 构建URL
-            let url = 'main.html?path=' + result.path;
+            // 使用新的URL格式构建链接
+            const url = generateNewDocumentUrl(result.path);
             
             // 提取匹配的内容片段
             let contentPreview = extractContentPreview(result.content, query);
@@ -587,39 +587,57 @@ function displaySearchResults(results, query, searchResultsContainer) {
                     occurrenceTarget = matchElement.getAttribute('data-occurrence');
                 }
                 
-                // 构建URL，添加搜索参数
-                let url = new URL(window.location.href);
-                url.searchParams.set('path', path);
-                url.searchParams.set('search', query);
+                // 从当前URL中解析root参数(如果有) - 使用新的hash格式解析
+                const currentUrl = new URL(window.location.href);
+                const hash = decodeURIComponent(currentUrl.hash.substring(1)); // 去掉#并解码
+                let root = null;
                 
-                // 如果点击了特定匹配项，添加occurrence参数
-                if (occurrenceTarget) {
-                    url.searchParams.set('occurrence', occurrenceTarget);
-                } else {
-                    url.searchParams.delete('occurrence');
+                if (hash && !hash.startsWith('/')) {
+                    // 有root的情况: #root/path/to/file.md#anchor
+                    const anchorIndex = hash.indexOf('#');
+                    let pathPart = anchorIndex !== -1 ? hash.substring(0, anchorIndex) : hash;
+                    
+                    const slashIndex = pathPart.indexOf('/');
+                    if (slashIndex !== -1) {
+                        root = pathPart.substring(0, slashIndex);
+                    } else {
+                        // 只有root，没有具体文档
+                        root = pathPart;
+                    }
                 }
+                
+                // 生成新格式的URL
+                let targetUrl = generateNewDocumentUrl(path, root);
+                
+                // 添加搜索参数到URL查询参数中
+                const newUrl = new URL(targetUrl);
+                newUrl.searchParams.set('search', query);
+                if (occurrenceTarget) {
+                    newUrl.searchParams.set('occurrence', occurrenceTarget);
+                }
+                targetUrl = newUrl.toString();
                 
                 // 关闭搜索模态窗口
                 closeSearchModal();
                 
                 // 使用history.pushState而不是直接跳转，避免页面刷新
-                window.history.pushState({path, search: query, occurrence: occurrenceTarget}, '', url.toString());
+                window.history.pushState({path, search: query, occurrence: occurrenceTarget}, '', targetUrl);
                 
                 // 手动触发内容加载
                 // 从document-page.js导入loadContentFromUrl函数
                 if (typeof window.loadContentFromUrl === 'function') {
                     window.loadContentFromUrl();
                     
-                    // 15秒后移除URL中的search和occurrence参数
+                    // 15秒后移除URL中的search和occurrence参数，保留基本路径
                     setTimeout(() => {
                         const cleanUrl = new URL(window.location.href);
                         cleanUrl.searchParams.delete('search');
                         cleanUrl.searchParams.delete('occurrence');
-                        window.history.replaceState({path}, '', cleanUrl.toString());
+                        window.history.replaceState(null, '', cleanUrl.toString());
                     }, 15000);
                 } else {
                     // 如果函数不可用，退回到传统跳转方式
-                    window.location.href = url.toString();
+                    window.location.href = targetUrl;
                 }
             });
         });
@@ -816,6 +834,46 @@ function formatSiteName(siteName) {
     } else {
         return `<span class="text-primary">${siteName}</span>`;
     }
+}
+
+/**
+ * 生成新格式的文档URL
+ */
+function generateNewDocumentUrl(path, root = null, anchor = '') {
+    const baseUrl = 'main.html';
+    
+    // 构建新的hash格式
+    let hash = '';
+    
+    if (root) {
+        // 当有root时，需要检查path是否已经包含了root前缀
+        let relativePath = path;
+        if (path && path.startsWith(root + '/')) {
+            // 如果path已经包含root前缀，则移除它
+            relativePath = path.substring(root.length + 1);
+        }
+        
+        // 有root的情况: #root/path#anchor
+        hash = root;
+        if (relativePath) {
+            hash += '/' + relativePath;
+        }
+        if (anchor) {
+            hash += '#' + anchor;
+        }
+    } else {
+        // 无root的情况: #/path#anchor (兼容原格式)
+        if (path) {
+            hash = '/' + path;
+            if (anchor) {
+                hash += '#' + anchor;
+            }
+        } else if (anchor) {
+            hash = '#' + anchor;
+        }
+    }
+    
+    return hash ? `${baseUrl}#${hash}` : baseUrl;
 }
 
 // 监听DOM加载完成，初始化应用

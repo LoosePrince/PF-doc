@@ -8,7 +8,35 @@ import config from '../../config.js';
 document.addEventListener('DOMContentLoaded', () => {
     // 绑定缓存管理模态窗口事件
     bindCacheModalEvents();
+
+    // 初始化缓存控制开关
+    initCacheControls();
 });
+
+/**
+ * 初始化缓存控制开关
+ */
+function initCacheControls() {
+    const disableCacheCheckbox = document.getElementById('disable-cache');
+    const disablePreloadCheckbox = document.getElementById('disable-preload');
+
+    if (disableCacheCheckbox && disablePreloadCheckbox) {
+        // 设置初始状态
+        disableCacheCheckbox.checked = documentCache.disableCache;
+        disablePreloadCheckbox.checked = documentCache.disablePreload;
+
+        // 绑定事件
+        disableCacheCheckbox.addEventListener('change', function() {
+            documentCache.setOptions(this.checked, documentCache.disablePreload);
+            updateCacheList();
+        });
+
+        disablePreloadCheckbox.addEventListener('change', function() {
+            documentCache.setOptions(documentCache.disableCache, this.checked);
+            updateCacheList();
+        });
+    }
+}
 
 /**
  * 打开缓存管理模态窗口
@@ -249,8 +277,20 @@ function updateCacheList() {
     // 更新缓存统计
     const cacheStats = document.getElementById('cache-stats');
     if (cacheStats) {
-        cacheStats.innerHTML = `
-        <p>预加载文档: <span class="font-medium">${preloadedPaths.length}</span> 个，持久缓存: <span class="font-medium">${persistentCachedPaths.length}</span> 个</p>`;
+        let statsHtml = `<p>预加载文档: <span class="font-medium">${preloadedPaths.length}</span> 个，持久缓存: <span class="font-medium">${persistentCachedPaths.length}</span> 个</p>`;
+        
+        if (documentCache.disableCache || documentCache.disablePreload) {
+            statsHtml += '<p class="text-yellow-500 mt-1">';
+            if (documentCache.disableCache) {
+                statsHtml += '<i class="fas fa-exclamation-triangle mr-1"></i>文档缓存已禁用 ';
+            }
+            if (documentCache.disablePreload) {
+                statsHtml += '<i class="fas fa-exclamation-triangle mr-1"></i>预加载已禁用';
+            }
+            statsHtml += '</p>';
+        }
+        
+        cacheStats.innerHTML = statsHtml;
     }
 }
 

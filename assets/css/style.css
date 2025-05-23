@@ -617,4 +617,208 @@ button.active, .button.active {
 
 .dark .iframe-container .close-btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 目录加载动画 */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.loading-container.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #e5e7eb;
+    border-top: 3px solid var(--color-primary, #3b82f6);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-text {
+    color: #6b7280;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.dark .loading-spinner {
+    border-color: #374151;
+    border-top-color: var(--color-primary, #3b82f6);
+}
+
+.dark .loading-text {
+    color: #9ca3af;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 骨架屏动画 */
+.skeleton-loading {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.skeleton-loading.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.skeleton-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    margin-bottom: 0.25rem;
+}
+
+.skeleton-icon {
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 2px;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+.skeleton-text {
+    height: 14px;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 2px;
+    flex: 1;
+}
+
+.skeleton-text.short {
+    width: 60%;
+}
+
+.skeleton-text.medium {
+    width: 80%;
+}
+
+.skeleton-text.long {
+    width: 100%;
+}
+
+.dark .skeleton-icon,
+.dark .skeleton-text {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* TOC加载动画 */
+.toc-loading {
+    padding: 1rem;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.toc-loading.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.toc-skeleton-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.toc-skeleton-level {
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+
+.toc-skeleton-text {
+    height: 12px;
+    background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 2px;
+    flex: 1;
+}
+
+.dark .toc-skeleton-level,
+.dark .toc-skeleton-text {
+    background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+    background-size: 200% 100%;
+}
+
+/* 内容容器动画 */
+.content-container {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.content-container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 淡入动画 - 更平滑的版本 */
+.fade-in {
+    animation: fadeInSmooth 0.5s ease-out forwards;
+}
+
+@keyframes fadeInSmooth {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 交错动画效果 - 确保元素初始状态隐藏 */
+.stagger-animation {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: staggerFadeIn 0.4s ease-out forwards;
+}
+
+@keyframes staggerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 } 

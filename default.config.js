@@ -30,8 +30,25 @@ const config = {
     use_custom_footer: true, // 是否使用自定义的footer.html文件
     footer_file: "footer.html", // 自定义底栏文件路径
     sidebar_width: "250px", // 侧边栏宽度
-    toc_width: "220px", // 目录宽度
+    toc_width: "280px", // 目录宽度
     mobile_breakpoint: "1024px" // 移动设备断点
+  },
+
+  // 动画设置
+  animation: {
+    sidebar: {
+      enable: true, // 是否启用左侧导航动画
+      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
+      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+    },
+    toc: {
+      enable: true, // 是否启用右侧目录动画
+      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
+      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+    },
+    loading: {
+      min_duration: 300 // 加载动画最小显示时长(毫秒) - 确保用户能看到加载过程
+    }
   },
 
   // 导航设置
@@ -56,17 +73,17 @@ const config = {
         url: [
           {
             text: "快速开始",
-            url: "main.html?root=快速入门",
+            url: "main.html#快速入门/",
             icon: "fas fa-rocket"
           },
           {
             text: "使用指南",
-            url: "main.html?root=使用指南",
+            url: "main.html#使用指南/",
             icon: "fas fa-book"
           },
           {
             text: "详细配置",
-            url: "main.html?root=配置详解",
+            url: "main.html#配置详解/",
             icon: "fas fa-cog"
           }
         ],
