@@ -191,7 +191,7 @@ class ContextMenuManager {
         }
         
         // 检查是否是文档链接（内部链接或相对路径）
-        const isInternalLink = href.includes('main.html') || 
+        const isInternalLink = href.includes('/main/') || 
                               href.startsWith('#') || 
                               href.includes('.md');
         
@@ -341,7 +341,7 @@ class ContextMenuManager {
         }
         
         // 构建完整URL
-        const baseUrl = window.location.origin + window.location.pathname.replace('/main.html', '');
+        const baseUrl = window.location.origin + window.location.pathname.replace('/main/', '');
         if (href.startsWith('#')) {
             return window.location.origin + window.location.pathname + href;
         }

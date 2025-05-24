@@ -12,7 +12,7 @@ https://github.com/huiyadanli/RevokeMsgPatcher
 4. 前往LiteLoaderQQNT的配置中选择从压缩包安装插件
 5. 配置：
 
-![图片](./src/食用指南-LLOneBot-1.png)
+![图片](/src/食用指南-LLOneBot-1.png)
 
 > 请勿仅做UI示例
 

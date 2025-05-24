@@ -14,8 +14,8 @@ const config = {
 
   // 外观设置
   appearance: {
-    logo: "assets/img/logo.svg", // 网站Logo路径
-    favicon: "assets/img/favicon.ico", // 网站图标路径
+    logo: "/assets/img/logo.svg", // 网站Logo路径
+    favicon: "/assets/img/favicon.ico", // 网站图标路径
     theme_color: "#3b82f6", // 主题色(蓝色)
     default_dark_mode: "auto", // 默认是否启用暗黑模式
     font_family: "system-ui, -apple-system, sans-serif" // 字体设置
@@ -25,10 +25,10 @@ const config = {
   layout: {
     show_header: true, // 是否显示顶栏
     use_custom_header: false, // 是否使用自定义的header.html文件
-    header_file: "header.html", // 自定义顶栏文件路径
+    header_file: "/header.html", // 自定义顶栏文件路径
     show_footer: true, // 是否显示底栏
     use_custom_footer: true, // 是否使用自定义的footer.html文件
-    footer_file: "footer.html", // 自定义底栏文件路径
+    footer_file: "/footer.html", // 自定义底栏文件路径
     sidebar_width: "250px", // 侧边栏宽度
     toc_width: "280px", // 目录宽度
     mobile_breakpoint: "1024px" // 移动设备断点
@@ -62,28 +62,28 @@ const config = {
     nav_links: [ // 导航栏链接
       {
         text: "首页",
-        url: "index.html",
+        url: "/",
       },
       {
         text: "文档",
-        url: "main.html",
+        url: "/main/",
       },
       {
         text: "教程",
         url: [
           {
             text: "快速开始",
-            url: "main.html#快速入门/",
+            url: "/main/#快速入门/",
             icon: "fas fa-rocket"
           },
           {
             text: "使用指南",
-            url: "main.html#使用指南/",
+            url: "/main/#使用指南/",
             icon: "fas fa-book"
           },
           {
             text: "详细配置",
-            url: "main.html#配置详解/",
+            url: "/main/#配置详解/",
             icon: "fas fa-cog"
           }
         ],
@@ -100,7 +100,7 @@ const config = {
 
   // 文档设置
   document: {
-    root_dir: "data", // 文档根目录
+    root_dir: "/data", // 文档根目录
     default_page: "README.md", // 默认文档
     index_pages: ["README.md", "README.html", "index.md", "index.html"], // 索引页文件名
     supported_extensions: [".md", ".html"], // 支持的文档扩展名

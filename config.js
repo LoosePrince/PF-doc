@@ -9,13 +9,13 @@ const config = {
     title: "PF系列插件文档", // 网站标题，显示在浏览器标签页
     description: "提供丰富的MCDR插件，助力Minecraft服务器管理", // 网站描述，用于SEO
     keywords: "MCDR,插件,Minecraft,服务器管理,QQ机器人,WebUI", // 网站关键词，用于SEO
-    base_url: "index.html" // 网站基础URL，如果部署在子目录则需要修改
+    base_url: "/" // 网站基础URL，如果部署在子目录则需要修改
   },
 
   // 外观设置
   appearance: {
-    logo: "assets/img/logo.png", // 网站Logo路径
-    favicon: "assets/img/logo.png", // 网站图标路径
+    logo: "/assets/img/logo.png", // 网站Logo路径
+    favicon: "/assets/img/logo.png", // 网站图标路径
     theme_color: "#3b82f6", // 主题色(蓝色)
     default_dark_mode: "auto", // 默认是否启用暗黑模式
     font_family: "system-ui, -apple-system, sans-serif" // 字体设置
@@ -25,10 +25,10 @@ const config = {
   layout: {
     show_header: true, // 是否显示顶栏
     use_custom_header: false, // 是否使用自定义的header.html文件
-    header_file: "header.html", // 自定义顶栏文件路径
+    header_file: "/header.html", // 自定义顶栏文件路径
     show_footer: true, // 是否显示底栏
     use_custom_footer: true, // 是否使用自定义的footer.html文件
-    footer_file: "footer.html", // 自定义底栏文件路径
+    footer_file: "/footer.html", // 自定义底栏文件路径
     sidebar_width: "250px", // 侧边栏宽度
     toc_width: "280px", // 目录宽度
     mobile_breakpoint: "1024px" // 移动设备断点
@@ -58,33 +58,33 @@ const config = {
     auto_collapse: false, // 自动折叠非当前文档的目录
     back_to_top: true, // 显示返回顶部按钮
     prev_next_buttons: true, // 显示上一篇/下一篇导航
-    folder_expand_mode: 3, // 文件夹默认展开方式：1-展开全部第一级文件夹，2-展开全部文件夹，3-展开第一个文件夹的第一级，4-展开第一个文件夹的全部文件夹，5-不默认展开任何文件夹
+    folder_expand_mode: 5, // 文件夹默认展开方式：1-展开全部第一级文件夹，2-展开全部文件夹，3-展开第一个文件夹的第一级，4-展开第一个文件夹的全部文件夹，5-不默认展开任何文件夹
     nav_links: [ // 导航栏链接
       {
         text: "首页",
-        url: "index.html",
+        url: "/",
       },
       {
         text: "插件列表",
         url: [
           {
             text: "PF-gugubot",
-            url: "main.html#PF-gugubot/",
+            url: "main/#PF-gugubot/",
             icon: "fas fa-robot"
           },
           {
             text: "PF-cq-api",
-            url: "main.html#PF-cq-api/",
+            url: "main/#PF-cq-api/",
             icon: "fas fa-code"
           },
           {
             text: "PF-webui",
-            url: "main.html#PF-webui/",
+            url: "main/#PF-webui/",
             icon: "fas fa-globe"
           },
           {
             text: "PF-player_ip_logger",
-            url: "main.html#PF-player_ip_logger/",
+            url: "main/#PF-player_ip_logger/",
             icon: "fas fa-code"
           }
         ],
@@ -92,12 +92,12 @@ const config = {
       },
       {
         text: "常见问题",
-        url: "main.html#常见问题/",
+        url: "/main/#常见问题/",
         icon: "fas fa-question-circle"
       },
       {
         text: "支持与反馈",
-        url: "main.html#支持与反馈/",
+        url: "/main/#支持与反馈/",
         icon: "fas fa-comments"
       },
       {
@@ -132,7 +132,7 @@ const config = {
 
   // 文档设置
   document: {
-    root_dir: "data", // 文档根目录
+    root_dir: "/data", // 文档根目录
     default_page: "README.md", // 默认文档
     index_pages: ["README.md", "README.html", "index.md", "index.html"], // 索引页文件名
     supported_extensions: [".md", ".html"], // 支持的文档扩展名

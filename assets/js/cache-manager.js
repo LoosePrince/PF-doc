@@ -3,7 +3,7 @@
  * 负责处理缓存管理界面和相关功能
  */
 import documentCache from './document-cache.js';
-import config from '../../config.js';
+import config from '/config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // 绑定缓存管理模态窗口事件
@@ -115,7 +115,7 @@ function bindCacheModalEvents() {
     if (startPreloadButton) {
         startPreloadButton.addEventListener('click', () => {
             // 加载path.json并开始预加载
-            fetch('path.json')
+            fetch('/path.json')
                 .then(response => response.json())
                 .then(pathData => {
                     documentCache.preloadAllDocuments(pathData);

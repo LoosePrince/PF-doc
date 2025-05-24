@@ -1,7 +1,7 @@
 /**
  * 文档页面交互逻辑
  */
-import config from '../../config.js';
+import config from '/config.js';
 import { initializeMermaid, processMermaidDiagrams } from './mermaid-handler.js';
 import { processKaTeXFormulas } from './katex-handler.js';
 import documentCache from './document-cache.js';
@@ -17,6 +17,106 @@ let progressBar = null; // 进度条元素
  * 兼容格式: main.html#/path/to/file.md#anchor (无root)
  * 旧格式兼容: main.html?path=xxx&root=xxx#anchor
  */
+/**
+ * 根据path.json解析路径，返回实际文件路径
+ * @param {string} cleanPath 无扩展名的路径
+ * @returns {object} { actualPath: 实际文件路径, isDirectory: 是否为目录 }
+ */
+function resolvePathFromData(cleanPath) {
+    if (!pathData || !cleanPath) {
+        return { actualPath: cleanPath, isDirectory: false };
+    }
+    
+    // 递归查找路径对应的节点
+    function findNode(node, targetPath) {
+        if (!node) return null;
+        
+        // 移除扩展名的函数
+        const removeExtension = (path) => {
+            return path.replace(/\.(md|html)$/i, '');
+        };
+        
+        // 检查当前节点的文件
+        if (node.children) {
+            for (const child of node.children) {
+                if (child.path) {
+                    const childCleanPath = removeExtension(child.path);
+                    if (childCleanPath === targetPath) {
+                        return { node: child, isDirectory: !!child.children };
+                    }
+                }
+                
+                // 递归检查子节点
+                const result = findNode(child, targetPath);
+                if (result) return result;
+            }
+        }
+        
+        // 检查节点的索引文件
+        if (node.index && node.index.path) {
+            const indexCleanPath = removeExtension(node.index.path);
+            if (indexCleanPath === targetPath) {
+                return { node: node.index, isDirectory: false };
+            }
+        }
+        
+        // 检查是否匹配目录路径
+        if (node.path) {
+            const nodeCleanPath = removeExtension(node.path);
+            if (nodeCleanPath === targetPath) {
+                // 这是一个目录，返回其索引文件
+                if (node.index) {
+                    return { node: node.index, isDirectory: true };
+                }
+            }
+        }
+        
+        return null;
+    }
+    
+    const result = findNode(pathData, cleanPath);
+    if (result) {
+        return {
+            actualPath: result.node.path,
+            isDirectory: result.isDirectory
+        };
+    }
+    
+    // 如果没找到，检查是否是目录路径，尝试查找目录的索引文件
+    if (cleanPath && !cleanPath.includes('.')) {
+        // 查找目录节点
+        function findDirNode(node, targetPath) {
+            if (!node) return null;
+            
+            // 检查当前节点是否为目标目录
+            if (node.path === targetPath && node.index) {
+                return node;
+            }
+            
+            // 递归检查子节点
+            if (node.children) {
+                for (const child of node.children) {
+                    const result = findDirNode(child, targetPath);
+                    if (result) return result;
+                }
+            }
+            
+            return null;
+        }
+        
+        const dirNode = findDirNode(pathData, cleanPath);
+        if (dirNode && dirNode.index) {
+            return {
+                actualPath: dirNode.index.path,
+                isDirectory: true
+            };
+        }
+    }
+    
+    // 如果都没找到，返回原路径
+    return { actualPath: cleanPath, isDirectory: false };
+}
+
 function parseUrlPath() {
     const url = new URL(window.location.href);
     const hash = decodeURIComponent(url.hash.substring(1)); // 去掉#并解码
@@ -26,9 +126,9 @@ function parseUrlPath() {
     let anchor = '';
     
     if (hash) {
-        // 处理新格式: #root/path/to/file.md#anchor 或 #/path/to/file.md#anchor
+        // 处理新格式: #root/path/to/file#anchor 或 #/path/to/file#anchor (无扩展名)
         if (hash.startsWith('/')) {
-            // 无root的情况: #/path/to/file.md#anchor
+            // 无root的情况: #/path/to/file#anchor
             const anchorIndex = hash.indexOf('#', 1);
             if (anchorIndex !== -1) {
                 path = hash.substring(1, anchorIndex); // 去掉开头的/
@@ -37,7 +137,7 @@ function parseUrlPath() {
                 path = hash.substring(1); // 去掉开头的/
             }
         } else {
-            // 有root的情况: #root/path/to/file.md#anchor
+            // 有root的情况: #root/path/to/file#anchor
             const anchorIndex = hash.indexOf('#');
             let pathPart = anchorIndex !== -1 ? hash.substring(0, anchorIndex) : hash;
             
@@ -66,14 +166,20 @@ function parseUrlPath() {
 }
 
 /**
- * 生成新格式URL
+ * 生成新格式URL（不包含扩展名）
  * @param {string} path 文档路径
  * @param {string} root 根目录（可选）
  * @param {string} anchor 锚点（可选）
  * @returns {string} 新格式URL
  */
 function generateNewUrl(path, root = null, anchor = '') {
-    const baseUrl = 'main.html';
+    const baseUrl = '/main/';
+    
+    // 移除扩展名的函数
+    const removeExtension = (filePath) => {
+        if (!filePath) return filePath;
+        return filePath.replace(/\.(md|html)$/i, '');
+    };
     
     // 构建新的hash格式
     let hash = '';
@@ -86,23 +192,27 @@ function generateNewUrl(path, root = null, anchor = '') {
             relativePath = path.substring(root.length + 1);
         }
         
+        // 移除扩展名
+        relativePath = removeExtension(relativePath);
+        
         // 有root的情况: #root/path#anchor
         hash = root;
         if (relativePath) {
             hash += '/' + relativePath;
         }
         if (anchor) {
-            hash += '#' + anchor; // 移除encodeURIComponent
+            hash += '#' + anchor;
         }
     } else {
         // 无root的情况: #/path#anchor (兼容原格式)
         if (path) {
-            hash = '/' + path;
+            const cleanPath = removeExtension(path);
+            hash = '/' + cleanPath;
             if (anchor) {
-                hash += '#' + anchor; // 移除encodeURIComponent
+                hash += '#' + anchor;
             }
         } else if (anchor) {
-            hash = '#' + anchor; // 移除encodeURIComponent
+            hash = '#' + anchor;
         }
     }
     
@@ -127,7 +237,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // 加载文档结构
     try {
-        const response = await fetch('path.json');
+        const response = await fetch('/path.json');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         pathData = await response.json();
         
@@ -673,7 +783,7 @@ function generateSidebar(node) {
                     navigateToFolderIndex(rootFolder);
                 } else {
                     // 如果没有索引页，直接跳转到首页
-                    window.location.href = 'main.html';
+                    window.location.href = '/main/';
                 }
             });
             
@@ -688,6 +798,11 @@ function generateSidebar(node) {
         
         // 移除这行，因为动画已经在 fadeOutLoadingAndShowContent 中处理了
         // addStaggerAnimation(nav, 'li');
+        
+        // 侧边栏生成完成后，高亮当前文档
+        setTimeout(() => {
+            highlightCurrentDocument();
+        }, 100); // 稍微延迟确保DOM完全渲染
     }, config.animation?.loading?.min_duration || 300); // 根据配置设置加载动画显示时间
 }
 
@@ -855,14 +970,19 @@ function createNavList(items, level) {
         const li = document.createElement('li');
         li.classList.add('nav-item', 'my-1');
         
-        if (item.children && item.children.length > 0) {
+        // 检查是否为文件夹：有子文件或有索引文件的节点都视为文件夹
+        if ((item.children && item.children.length > 0) || item.index) {
             // 目录
             const div = document.createElement('div');
             div.classList.add('flex', 'items-center', 'cursor-pointer', 'hover:text-primary', 'dark:hover:text-primary', 'folder-title');
             div.classList.add(`folder-level-${level}`); // 添加层级类名，用于CSS控制缩进
             
             const icon = document.createElement('i');
-            icon.classList.add('fas', 'fa-chevron-right', 'text-xs', 'mr-2', 'transition-transform');
+            // 如果文件夹只有索引文件而没有子文件，显示文件夹图标而不是展开图标
+            const hasChildren = item.children && item.children.length > 0;
+            if (hasChildren) {
+                icon.classList.add('fas', 'fa-chevron-right', 'text-xs', 'mr-2', 'transition-transform');
+            }
             div.appendChild(icon);
             
             // 创建span元素
@@ -910,9 +1030,11 @@ function createNavList(items, level) {
             li.appendChild(div);
             
             // 创建子列表（不包含索引页在顶层）
+            // 如果没有children数组，则初始化为空数组
+            const children = item.children || [];
             const filteredChildren = item.index ? 
-                item.children.filter(child => child.path !== item.index.path) : 
-                item.children;
+                children.filter(child => child.path !== item.index.path) : 
+                children;
                 
             const subUl = createNavList(filteredChildren, level + 1);
             li.appendChild(subUl);
@@ -971,19 +1093,8 @@ function createNavLink(item, level, isIndex = false) {
         const newUrl = generateNewUrl(item.path, currentRoot);
         window.history.pushState({path: item.path}, '', newUrl);
         
-        // 获取规范化路径，确保使用正确的协议
-        let documentPath = item.path;
-        
-        // 确保目录路径能正确处理，特别是当路径末尾包含'/'时
-        if (documentPath && !documentPath.includes('.')) {
-            // 可能是目录，检查是否以/结尾，添加README.md
-            const dirPath = documentPath.endsWith('/') ? documentPath : documentPath + '/';
-            documentPath = dirPath + 'README.md';
-            console.log(`转换目录路径为索引文件: ${documentPath}`);
-        }
-        
-        // 加载文档
-        loadDocument(documentPath);
+        // 使用原始路径，让loadDocument函数根据path.json自动解析
+        loadDocument(item.path);
         
         // 滚动到顶部
         window.scrollTo({
@@ -1049,23 +1160,12 @@ function navigateToFolderIndex(item) {
         }
     }
     
-    // 更新URL，添加path参数并保留root参数
-    const newUrl = generateNewUrl(item.index.path, currentRoot);
-    window.history.pushState({path: item.index.path}, '', newUrl);
+    // 更新URL，使用文件夹路径而不是索引文件路径
+    const newUrl = generateNewUrl(folderPath, currentRoot);
+    window.history.pushState({path: folderPath}, '', newUrl);
     
-    // 获取规范化路径，确保使用正确的协议
-    let documentPath = item.index.path;
-    
-    // 检查是否需要处理目录路径
-    if (!documentPath.includes('.')) {
-        // 可能是目录，添加README.md
-        const dirPath = documentPath.endsWith('/') ? documentPath : documentPath + '/';
-        documentPath = dirPath + 'README.md';
-        console.log(`转换目录索引路径为文件: ${documentPath}`);
-    }
-    
-    // 加载文档
-    loadDocument(documentPath);
+    // 但实际加载的是索引文件
+    loadDocument(item.index.path);
     
     // 滚动到顶部
     window.scrollTo({
@@ -1081,13 +1181,57 @@ function toggleFolder(div, forceExpand = false) {
     
     if (subUl && subUl.tagName === 'UL') {
         const isExpanded = subUl.style.display !== 'none';
+        const shouldExpand = forceExpand || !isExpanded;
         
         // 如果强制展开，或者需要切换状态
         if ((forceExpand && !isExpanded) || (!forceExpand)) {
-            subUl.style.display = forceExpand ? 'block' : (isExpanded ? 'none' : 'block');
-            icon.classList.toggle('rotate-90', forceExpand || !isExpanded);
+            subUl.style.display = shouldExpand ? 'block' : 'none';
+            icon.classList.toggle('rotate-90', shouldExpand);
+            
+            // 如果是展开操作且动画已启用，为子项添加从头开始的交错动画
+            if (shouldExpand && config.animation?.sidebar?.enable !== false) {
+                applyFreshStaggerAnimation(subUl);
+            }
         }
     }
+}
+
+// 为文件夹子项应用从头开始的交错动画
+function applyFreshStaggerAnimation(container) {
+    const items = container.querySelectorAll('li');
+    if (items.length === 0) return;
+    
+    items.forEach((item, index) => {
+        // 清除之前的动画样式
+        item.classList.remove('stagger-animation');
+        item.style.animationDelay = '';
+        item.style.animationDuration = '';
+        
+        // 使用 requestAnimationFrame 确保样式重置后再添加新动画
+        requestAnimationFrame(() => {
+            item.classList.add('stagger-animation');
+            
+            // 根据配置设置动画时长
+            const animationDuration = config.animation?.sidebar?.duration || 200;
+            item.style.animationDuration = `${animationDuration}ms`;
+            
+            // 根据配置获取交错延迟时间，从头开始计算
+            const baseDelay = config.animation?.sidebar?.stagger_delay || 50;
+            
+            // 重新开始的动画延迟计算
+            let delay;
+            if (index < 8) {
+                // 前8个元素，间隔稍短一些以快速显示
+                delay = (index + 1) * (baseDelay / 1000);
+            } else {
+                // 8个以上的元素，间隔更短，避免等待过久
+                delay = 0.4 + (index - 7) * (baseDelay * 0.5 / 1000);
+                delay = Math.min(delay, 0.8); // 最大延迟0.8秒
+            }
+            
+            item.style.animationDelay = `${delay}s`;
+        });
+    });
 }
 
 // 设置当前激活的链接或文件夹
@@ -1161,7 +1305,7 @@ function expandParentFolders(element) {
                 // 找到文件夹标题
                 const folderDiv = parentLi.querySelector('.folder-title');
                 if (folderDiv) {
-                    // 展开文件夹
+                    // 展开文件夹（会自动应用优化的动画）
                     toggleFolder(folderDiv, true);
                 }
             }
@@ -1192,6 +1336,14 @@ async function loadContentFromUrl() {
     if (root && path && !path.startsWith(root + '/')) {
         // 将相对路径转换为完整路径
         path = root + '/' + path;
+    }
+    
+    // 根据path.json解析实际的文件路径
+    if (path) {
+        const { actualPath } = resolvePathFromData(path);
+        if (actualPath && actualPath !== path) {
+            path = actualPath;
+        }
     }
     
     // 获取搜索参数（从旧的查询参数中获取，保持兼容性）
@@ -1241,12 +1393,11 @@ async function loadContentFromUrl() {
             // 尝试在目录后面添加索引文件
             const indexPath = findDirectoryIndexPath(path);
             if (indexPath) {
-                // 如果找到了索引页，更新路径
-                path = indexPath;
-                
-                // 更新URL，但不触发新的导航
-                const newUrl = generateNewUrl(path, currentRoot);
-                window.history.replaceState({path: path}, '', newUrl);
+                // 如果找到了索引页，更新实际加载的路径，但保持URL中的文件夹路径
+                // 不更新URL，保持显示文件夹路径
+                const originalPath = path; // 保存原始的文件夹路径
+                path = indexPath; // 用于加载内容
+                // 不调用 window.history.replaceState，保持URL显示为文件夹路径
             }
         }
     }
@@ -1281,16 +1432,7 @@ async function loadContentFromUrl() {
             updateProgressBar(50);
         }, 2000);
         
-        // 高亮侧边栏并处理文件夹展开
-        const isReadmeFile = decodedPath.toLowerCase().endsWith('readme.md');
-        if (isReadmeFile && decodedPath.includes('/')) {
-            const folderPath = decodedPath.substring(0, decodedPath.lastIndexOf('/'));
-            const folderDiv = document.querySelector(`#sidebar-nav div.folder-title[data-folder-path="${folderPath}"]`);
-            if (folderDiv) setActiveLink(folderDiv, true);
-        } else {
-            const docLink = document.querySelector(`#sidebar-nav a[data-path="${decodedPath}"]`);
-            if (docLink) setActiveLink(docLink);
-        }
+        // 高亮侧边栏逻辑将在侧边栏生成完成后执行
         
         // 更新进度到70%
         setTimeout(() => {
@@ -1395,6 +1537,11 @@ async function loadContentFromUrl() {
         
         // 锚点滚动已经在loadDocument中处理，此处无需重复处理
         
+        // 更新左侧目录的选中状态
+        setTimeout(() => {
+            highlightCurrentDocument();
+        }, 100); // 等待DOM更新完成
+        
         // 完成加载，隐藏进度条
         hideProgressBar();
     } catch (error) {
@@ -1403,6 +1550,83 @@ async function loadContentFromUrl() {
     } finally {
         // 重置加载状态
         isLoadingDocument = false;
+    }
+}
+
+// 高亮当前文档在侧边栏中的链接
+function highlightCurrentDocument() {
+    const { path: currentPath, root } = parseUrlPath();
+    if (!currentPath) return;
+    
+    // 清除所有现有的高亮状态
+    document.querySelectorAll('#sidebar-nav a').forEach(link => link.classList.remove('active'));
+    document.querySelectorAll('#sidebar-nav div.folder-title').forEach(div => div.classList.remove('active-folder'));
+    
+    let decodedPath = decodeURIComponent(currentPath);
+    
+    // 如果有root参数且path不是完整路径，需要构造完整路径
+    if (root && !decodedPath.startsWith(root + '/')) {
+        decodedPath = root + '/' + decodedPath;
+    }
+    
+    // 根据path.json解析实际的文件路径
+    const { actualPath, isDirectory } = resolvePathFromData(decodedPath);
+    const actualDecodedPath = actualPath || decodedPath;
+    
+    // 如果在子根目录模式下，需要查找相对路径
+    let searchPath = actualDecodedPath;
+    let originalSearchPath = decodedPath;
+    if (currentRoot && actualDecodedPath.startsWith(currentRoot + '/')) {
+        // 在子根目录模式下，侧边栏显示的是相对路径
+        searchPath = actualDecodedPath.substring(currentRoot.length + 1);
+    }
+    if (currentRoot && decodedPath.startsWith(currentRoot + '/')) {
+        originalSearchPath = decodedPath.substring(currentRoot.length + 1);
+    }
+    
+    // 优先处理文件夹路径的情况
+    if (isDirectory || (!decodedPath.includes('.') && actualPath && actualPath.includes('.'))) {
+        // 这是一个文件夹路径，需要高亮对应的文件夹
+        const folderPath = originalSearchPath.replace(/\/$/, ''); // 移除结尾的斜杠
+        const folderDiv = document.querySelector(`#sidebar-nav div.folder-title[data-folder-path="${folderPath}"]`);
+        if (folderDiv) {
+            setActiveLink(folderDiv, true);
+            // 确保父文件夹展开以显示该文件夹
+            expandParentFolders(folderDiv);
+            return; // 成功找到文件夹，直接返回
+        }
+    }
+    
+    // 高亮侧边栏并处理文件夹展开
+    const isReadmeFile = searchPath.toLowerCase().endsWith('readme.md');
+    if (isReadmeFile && searchPath.includes('/')) {
+        const folderPath = searchPath.substring(0, searchPath.lastIndexOf('/'));
+        const folderDiv = document.querySelector(`#sidebar-nav div.folder-title[data-folder-path="${folderPath}"]`);
+        if (folderDiv) {
+            setActiveLink(folderDiv, true);
+            // 确保父文件夹展开以显示该文件夹
+            expandParentFolders(folderDiv);
+        }
+    } else {
+        // 先尝试用相对路径查找
+        let docLink = document.querySelector(`#sidebar-nav a[data-path="${searchPath}"]`);
+        // 如果找不到，再尝试用完整路径查找
+        if (!docLink) {
+            docLink = document.querySelector(`#sidebar-nav a[data-path="${actualDecodedPath}"]`);
+        }
+        // 再尝试用原始路径查找
+        if (!docLink) {
+            docLink = document.querySelector(`#sidebar-nav a[data-path="${decodedPath}"]`);
+        }
+        // 最后尝试用原始相对路径查找
+        if (!docLink) {
+            docLink = document.querySelector(`#sidebar-nav a[data-path="${originalSearchPath}"]`);
+        }
+        if (docLink) {
+            setActiveLink(docLink);
+            // 确保父文件夹展开以显示该链接
+            expandParentFolders(docLink);
+        }
     }
 }
 
@@ -1555,6 +1779,14 @@ function findDirectoryIndexPath(dirPath) {
 
 // 加载并渲染文档
 async function loadDocument(relativePath) {
+    // 如果路径没有扩展名，尝试从path.json中解析实际路径
+    if (relativePath && !relativePath.match(/\.(md|html)$/i)) {
+        const { actualPath } = resolvePathFromData(relativePath);
+        if (actualPath && actualPath !== relativePath) {
+            relativePath = actualPath;
+        }
+    }
+    
     const contentDiv = document.getElementById('document-content');
     const tocNav = document.getElementById('toc-nav');
     tocNav.innerHTML = '<p class="text-gray-400 text-sm">暂无目录</p>';
@@ -2734,6 +2966,8 @@ function generateToc(contentElement) {
                 if (level > tocDepth && dynamicExpand) {
                     li.classList.add('hidden');
                     li.dataset.hidden = 'true';
+                    // 为超出深度的元素添加标记，避免应用动画
+                    li.classList.add('toc-beyond-depth');
                 }
                 
                 // 记录当前标题的层级关系，用于后续动态展开
@@ -2789,7 +3023,7 @@ function generateToc(contentElement) {
             window.removeEventListener('scroll', handleTocScrollHighlight);
             // 添加滚动监听，高亮当前章节
             window.addEventListener('scroll', handleTocScrollHighlight);
-        }, true, '.toc-item'); // 使用交错动画，选择器为 '.toc-item'
+        }, true, '.toc-item:not(.toc-beyond-depth)'); // 使用交错动画，排除超出深度的元素
         
         // 移除这行，因为动画已经在 fadeOutLoadingAndShowContent 中处理了
         // addStaggerAnimation(tocNav, '.toc-item');
@@ -2918,6 +3152,12 @@ function expandChildHeadings(headingId, level) {
             // 如果是隐藏的，则显示出来
             if (item.dataset.hidden === 'true') {
                 item.classList.remove('hidden');
+                // 如果是超出深度的元素，移除可能的动画样式以确保立即显示
+                if (item.classList.contains('toc-beyond-depth')) {
+                    item.style.animationDelay = '';
+                    item.style.animationDuration = '';
+                    item.classList.remove('stagger-animation');
+                }
                 foundChildren = true;
             }
         }
@@ -3358,7 +3598,7 @@ function fixInternalLinks(container) {
         if (!href) return;
         
         // 跳过已经处理过的链接（以main.html开头的）
-        if (href.startsWith('main.html#')) {
+        if (href.startsWith('/main/#')) {
             return;
         }
         
@@ -3413,7 +3653,7 @@ function fixInternalLinks(container) {
                     relativePath = path.substring(currentRoot.length + 1);
                 }
                 
-                newHref = `main.html#${currentRoot}`;
+                newHref = `/main/#${currentRoot}`;
                 if (relativePath) {
                     newHref += `/${relativePath}`;
                 }
@@ -3422,7 +3662,7 @@ function fixInternalLinks(container) {
                 }
             } else {
                 // 无root的情况
-                newHref = `main.html#/${path}`;
+                newHref = `/main/#/${path}`;
                 if (anchor) {
                     newHref += `#${anchor}`;
                 }
@@ -3475,13 +3715,13 @@ function fixInternalLinks(container) {
                     relativePath = path.substring(currentRoot.length + 1);
                 }
                 
-                newHref = `main.html#${currentRoot}`;
+                newHref = `/main/#${currentRoot}`;
                 if (relativePath) {
                     newHref += `/${relativePath}`;
                 }
             } else {
                 // 无root的情况
-                newHref = `main.html#/${path}`;
+                newHref = `/main/#/${path}`;
             }
             
             link.setAttribute('href', newHref);
@@ -4080,7 +4320,7 @@ function generateTocFromIframe(iframeDoc, tocNav) {
             } catch (error) {
                 console.warn('无法监听iframe滚动事件:', error);
             }
-        }, true, '.toc-item'); // 使用交错动画，选择器为 '.toc-item'
+        }, true, '.toc-item:not(.toc-beyond-depth)'); // 使用交错动画，排除超出深度的元素
         
         // 移除这行，因为动画已经在 fadeOutLoadingAndShowContent 中处理了
         // addStaggerAnimation(tocNav, '.toc-item');

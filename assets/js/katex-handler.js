@@ -1,7 +1,7 @@
 /**
  * KaTeX数学公式处理模块
  */
-import config from '../../config.js';
+import config from '/config.js';
 
 // 处理文档中的数学公式
 export function processKaTeXFormulas() {

@@ -863,6 +863,9 @@ def main():
     
     # 更新HTML元数据
     html_files_to_update = glob.glob('*.html')
+    # 添加main目录下的HTML文件
+    main_html_files = glob.glob('main/*.html')
+    html_files_to_update.extend(main_html_files)
     update_html_metadata(html_files_to_update, config)
     
     print(f"文档扫描完成: 共 {total_files} 个文件, {total_dirs} 个目录")
@@ -949,12 +952,12 @@ def create_update_package(output_file='EasyDocument-update.zip'):
     
     打包内容包括：
     - assets文件夹
+    - main文件夹（包含index.html等）
     - config.js（在压缩包中改名为default.config.js）
-    - 全部html文件
-    - LICENSE
+    - 根目录下的html文件（如重定向文件）
     - meta.json
-    - README.md
     - requirements.txt
+    - build.py
     """
     print(f"开始创建更新包: {output_file}")
     
@@ -980,9 +983,18 @@ def create_update_package(output_file='EasyDocument-update.zip'):
         else:
             print(f"警告: {config_path} 文件不存在，将被跳过")
         
-        # 复制指定的HTML文件
-        html_files = ['main.html']
-        for html_file in html_files:
+        # 复制main目录
+        main_path = 'main'
+        if os.path.exists(main_path) and os.path.isdir(main_path):
+            main_temp_path = os.path.join(temp_dir, 'main')
+            shutil.copytree(main_path, main_temp_path)
+            print(f"已复制: {main_path}")
+        else:
+            print(f"警告: {main_path} 目录不存在，将被跳过")
+        
+        # 复制根目录下的HTML文件（如重定向文件）
+        root_html_files = ['main.html']
+        for html_file in root_html_files:
             if os.path.exists(html_file):
                 html_temp_path = os.path.join(temp_dir, html_file)
                 shutil.copy2(html_file, html_temp_path)
@@ -1021,11 +1033,13 @@ def create_initial_package(output_file='EasyDocument-initial.zip'):
     
     打包内容包括：
     - assets文件夹
+    - main文件夹（包含index.html等）
     - data/README.md空文件
     - config.js (不改名)
-    - 全部html文件
+    - 根目录下的html文件
     - LICENSE
     - README.md
+    - build.py
     """
     print(f"开始创建初始包: {output_file}")
     
@@ -1059,7 +1073,16 @@ def create_initial_package(output_file='EasyDocument-initial.zip'):
         else:
             print(f"警告: {config_path} 文件不存在，将被跳过")
         
-        # 复制指定的HTML文件
+        # 复制main目录
+        main_path = 'main'
+        if os.path.exists(main_path) and os.path.isdir(main_path):
+            main_temp_path = os.path.join(temp_dir, 'main')
+            shutil.copytree(main_path, main_temp_path)
+            print(f"已复制: {main_path}")
+        else:
+            print(f"警告: {main_path} 目录不存在，将被跳过")
+        
+        # 复制根目录下的HTML文件
         html_files = glob.glob('*.html')
         for html_file in html_files:
             if os.path.exists(html_file):

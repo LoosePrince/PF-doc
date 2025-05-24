@@ -1,7 +1,7 @@
 /**
  * Mermaid图表处理模块
  */
-import config from '../../config.js';
+import config from '/config.js';
 
 // 监听暗黑模式变化
 const darkModeObserver = new MutationObserver(mutations => {

@@ -307,7 +307,7 @@ const documentCache = {
         this.loadingDocs.add(path);
         
         // 构建完整路径
-        const fetchPath = `data/${path}`;
+        const fetchPath = `/data/${path}`;
         
         fetch(fetchPath)
             .then(response => {

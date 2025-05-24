@@ -4,7 +4,7 @@ Player IP Logger 是一款为 MCDReforged (MCDR) 开发的插件，主要功能�
 
 ## 善用搜索功能
 
-![](./src/搜索示例-1.png)
+![](/src/搜索示例-1.png)
 
 ## 功能
 
