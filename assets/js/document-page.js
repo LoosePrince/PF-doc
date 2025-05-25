@@ -1089,6 +1089,9 @@ function createNavLink(item, level, isIndex = false) {
         // 展开所有父级文件夹
         expandParentFolders(a);
         
+        // 确保当前链接在侧边栏视图中
+        scrollSidebarToActiveItem(a);
+        
         // 使用新的URL格式更新浏览器地址栏
         const newUrl = generateNewUrl(item.path, currentRoot);
         window.history.pushState({path: item.path}, '', newUrl);
@@ -1136,6 +1139,8 @@ function navigateToFolderIndex(item) {
             // 找到第一个根目录标题，通常是第一个div
             folderDiv = rootTitles[0];
             folderDiv.classList.add('active-folder');
+            // 确保根目录标题在侧边栏视图中
+            scrollSidebarToActiveItem(folderDiv);
         }
     } else {
         folderDiv.classList.add('active-folder');
@@ -1143,6 +1148,8 @@ function navigateToFolderIndex(item) {
         toggleFolder(folderDiv, true);
         // 展开所有父级文件夹
         expandParentFolders(folderDiv);
+        // 确保文件夹在侧边栏视图中
+        scrollSidebarToActiveItem(folderDiv);
     }
     
     // 自动滚动侧边栏，确保文件夹在视图中
@@ -1260,31 +1267,7 @@ function setActiveLink(activeElement, isFolder = false) {
         expandParentFolders(activeElement);
         
         // 自动滚动侧边栏，确保活动元素在视图中
-        const sidebarContainer = document.getElementById('sidebar-container');
-        if (sidebarContainer) {
-            // 计算元素在侧边栏中的相对位置
-            const elementRect = activeElement.getBoundingClientRect();
-            const containerRect = sidebarContainer.getBoundingClientRect();
-            
-            // 检查元素是否在视图中
-            const isInView = (
-                elementRect.top >= containerRect.top &&
-                elementRect.bottom <= containerRect.bottom
-            );
-            
-            // 如果不在视图中，滚动侧边栏
-            if (!isInView) {
-                // 计算需要滚动的位置
-                // 滚动到元素位于容器中央的位置
-                const scrollTop = activeElement.offsetTop - sidebarContainer.offsetHeight / 2 + activeElement.offsetHeight / 2;
-                
-                // 平滑滚动到该位置
-                sidebarContainer.scrollTo({
-                    top: Math.max(0, scrollTop),
-                    behavior: 'smooth'
-                });
-            }
-        }
+        scrollSidebarToActiveItem(activeElement);
     }
 }
 
@@ -1591,8 +1574,6 @@ function highlightCurrentDocument() {
         const folderDiv = document.querySelector(`#sidebar-nav div.folder-title[data-folder-path="${folderPath}"]`);
         if (folderDiv) {
             setActiveLink(folderDiv, true);
-            // 确保父文件夹展开以显示该文件夹
-            expandParentFolders(folderDiv);
             return; // 成功找到文件夹，直接返回
         }
     }
@@ -1604,8 +1585,6 @@ function highlightCurrentDocument() {
         const folderDiv = document.querySelector(`#sidebar-nav div.folder-title[data-folder-path="${folderPath}"]`);
         if (folderDiv) {
             setActiveLink(folderDiv, true);
-            // 确保父文件夹展开以显示该文件夹
-            expandParentFolders(folderDiv);
         }
     } else {
         // 先尝试用相对路径查找
@@ -1624,8 +1603,6 @@ function highlightCurrentDocument() {
         }
         if (docLink) {
             setActiveLink(docLink);
-            // 确保父文件夹展开以显示该链接
-            expandParentFolders(docLink);
         }
     }
 }
@@ -3540,13 +3517,54 @@ function scrollTocToActiveItem(activeItem) {
     
     // 如果不在视图中，滚动TOC
     if (!isFullyInView) {
-        // 计算需要滚动的位置
-        // 目标：将活动项滚动到TOC容器的中间位置
-        const scrollTop = activeItem.offsetTop - tocContainer.offsetHeight / 2 + activeItem.offsetHeight / 2;
+        // 获取当前滚动位置
+        const currentScrollTop = tocContainer.scrollTop;
+        
+        // 计算活动项相对于容器内容顶部的位置
+        // 使用getBoundingClientRect()来获取准确的相对位置
+        const itemTop = itemRect.top - containerRect.top + currentScrollTop;
+        
+        // 计算目标滚动位置：将活动项滚动到TOC容器的中间位置
+        const targetScrollTop = itemTop - tocContainer.clientHeight / 2 + activeItem.offsetHeight / 2;
         
         // 平滑滚动到该位置
         tocContainer.scrollTo({
-            top: Math.max(0, scrollTop),
+            top: Math.max(0, targetScrollTop),
+            behavior: 'smooth'
+        });
+    }
+}
+
+// 滚动左侧侧边栏，确保活动项在视图中
+function scrollSidebarToActiveItem(activeItem) {
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (!sidebarContainer || !activeItem) return;
+    
+    // 计算元素在侧边栏中的相对位置
+    const itemRect = activeItem.getBoundingClientRect();
+    const containerRect = sidebarContainer.getBoundingClientRect();
+    
+    // 检查元素是否 *完全* 在视图中
+    const isFullyInView = (
+        itemRect.top >= containerRect.top &&
+        itemRect.bottom <= containerRect.bottom
+    );
+    
+    // 如果不在视图中，滚动侧边栏
+    if (!isFullyInView) {
+        // 获取当前滚动位置
+        const currentScrollTop = sidebarContainer.scrollTop;
+        
+        // 计算活动项相对于容器内容顶部的位置
+        // 使用getBoundingClientRect()来获取准确的相对位置
+        const itemTop = itemRect.top - containerRect.top + currentScrollTop;
+        
+        // 计算目标滚动位置：将活动项滚动到侧边栏容器的中间位置
+        const targetScrollTop = itemTop - sidebarContainer.clientHeight / 2 + activeItem.offsetHeight / 2;
+        
+        // 平滑滚动到该位置
+        sidebarContainer.scrollTo({
+            top: Math.max(0, targetScrollTop),
             behavior: 'smooth'
         });
     }
@@ -3807,9 +3825,9 @@ function fixInternalLinks(container) {
                 if (path && path.startsWith(currentRoot + '/')) {
                     // 如果路径已经包含root前缀，移除它作为相对路径处理
                     const relativePath = path.substring(currentRoot.length + 1);
-                    newHref = `/main/#${currentRoot}`;
-                    if (relativePath) {
-                        newHref += `/${relativePath}`;
+                newHref = `/main/#${currentRoot}`;
+                if (relativePath) {
+                    newHref += `/${relativePath}`;
                     }
                 } else {
                     // 否则视为绝对路径，不使用当前root
@@ -3865,9 +3883,9 @@ function fixInternalLinks(container) {
                 if (path && path.startsWith(currentRoot + '/')) {
                     // 如果路径已经包含root前缀，移除它作为相对路径处理
                     const relativePath = path.substring(currentRoot.length + 1);
-                    newHref = `/main/#${currentRoot}`;
-                    if (relativePath) {
-                        newHref += `/${relativePath}`;
+                newHref = `/main/#${currentRoot}`;
+                if (relativePath) {
+                    newHref += `/${relativePath}`;
                     }
                 } else {
                     // 否则视为绝对路径，不使用当前root
