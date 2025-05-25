@@ -75,3 +75,7 @@ rcon:
 [Server] [xx:xx:xx] [Server thread/INFO] [minecraft/DedicatedServer]: There are 1/10 players online:
 [Server] [xx:xx:xx] [Server thread/INFO] [minecraft/DedicatedServer]: abc
 ```
+
+## 为什么 GUGUbot 不支持官方机器人？
+
+官方机器人个人申请无法在QQ群中使用，所以不支持
