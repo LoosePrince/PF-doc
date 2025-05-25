@@ -564,7 +564,7 @@
             "path": "常见问题",
             "children": [
                 {
-                    "title": "GUGUbot 疑难解答",
+                    "title": "疑难解答",
                     "path": "常见问题/GUGUbot-疑难解答.md",
                     "children": [],
                     "git": {
