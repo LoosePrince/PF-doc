@@ -57,7 +57,7 @@
         <!-- 这中间的内容可以随意修改 -->
         <div class="max-w-4xl mx-auto text-center mb-16">
             <div class="flex justify-center mb-6">
-                <img class="site-logo h-16" src="assets/img/logo.png" alt="PF-plugins Logo" id="home-logo">
+                <img class="site-logo h-16 border-2 border-gray-200 rounded-lg" src="assets/img/logo.png" alt="PF-plugins Logo" id="home-logo">
             </div>
             <h1 class="text-5xl font-bold text-gray-800 dark:text-white mb-6" id="home-title">
                 <span class="text-primary">PF</span>系列插件
@@ -110,6 +110,164 @@
                 <p class="text-gray-600 dark:text-gray-300">MCDR的IP记录插件，记录玩家IP地址，并提供API接口。</p>
             </div>
             
+        </div>
+
+        <!-- 更多插件区域 -->
+        <div class="max-w-6xl mx-auto mt-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+                    <i class="fas fa-puzzle-piece text-primary mr-3"></i>更多插件
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">
+                    更多实用的MCDR插件/工具
+                </p>
+            </div>
+            
+            <!-- 插件卡片网格 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- PIM Helper -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-cogs text-purple-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">PIM Helper</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">插件管理辅助工具，提供安装、卸载等功能</p>
+                    <span class="inline-block bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 text-xs px-2 py-1 rounded">插件管理</span>
+                </div>
+
+                <!-- Pip安装器 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fab fa-python text-yellow-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">Pip安装器</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">在MCDR环境中管理Python包</p>
+                    <span class="inline-block bg-yellow-100 dark:bg-yellow-900 text-yellow-600 dark:text-yellow-300 text-xs px-2 py-1 rounded">pip管理</span>
+                </div>
+
+                <!-- 日志捕获模块 -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-file-alt text-indigo-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">日志捕获模块</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">获取MCDR完整日志输出</p>
+                    <span class="inline-block bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-300 text-xs px-2 py-1 rounded">日志管理</span>
+                </div>
+
+                <!-- Chat with DeepSeek -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-brain text-green-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">Chat with DeepSeek</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">与DeepSeek AI进行对话的插件</p>
+                    <span class="inline-block bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 text-xs px-2 py-1 rounded">AI对话</span>
+                </div>
+
+                <!-- Command Binding Plugin -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-terminal text-red-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">Command Binding</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">将MC指令绑定到自定义名称</p>
+                    <span class="inline-block bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 text-xs px-2 py-1 rounded">指令绑定</span>
+                </div>
+
+                <!-- Player Control -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-teal-100 dark:bg-teal-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-user-cog text-teal-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">Player Control</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">召唤和删除假人的插件</p>
+                    <span class="inline-block bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-xs px-2 py-1 rounded">假人控制</span>
+                </div>
+
+                <!-- Show Item Pure -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-cube text-pink-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">Show Item Pure</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">简单的物品展示插件，无需RCON</p>
+                    <span class="inline-block bg-pink-100 dark:bg-pink-900 text-pink-600 dark:text-pink-300 text-xs px-2 py-1 rounded">物品展示</span>
+                </div>
+
+                <!-- PF-CoolQAPI (已废弃) -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 border border-gray-200 dark:border-gray-700 opacity-75">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-archive text-gray-500 text-lg"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white text-sm">PF-CoolQAPI</h3>
+                    </div>
+                    <p class="text-xs text-gray-600 dark:text-gray-300 mb-3">迁移和维护的CoolQAPI插件</p>
+                    <span class="inline-block bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">已废弃</span>
+                </div>
+            </div>
+
+            <!-- 了解更多按钮 -->
+            <div class="text-center mt-8">
+                <a href="main/#/更多插件" class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-info-circle mr-2"></i>了解更多插件详情
+                </a>
+            </div>
+        </div>
+
+        <!-- QQ群交流区域 -->
+        <div class="max-w-4xl mx-auto mt-16 text-center">
+            <div class="bg-white dark:bg-gray-800 geometric-shape p-8">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <!-- 文字介绍 -->
+                    <div class="flex-1">
+                        <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+                            <i class="fab fa-qq text-primary mr-3"></i>加入交流群
+                        </h2>
+                        <p class="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                            加入我们的QQ交流群，与其他用户一起讨论插件使用心得，获取技术支持，分享经验。
+                        </p>
+                        <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 mb-6">
+                            <p class="text-xl font-semibold text-primary mb-2">QQ群号</p>
+                            <p class="text-2xl font-bold text-gray-800 dark:text-white">726741344</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=RzX3mAVIe9UHWG9YU5MWOPCrxgkxp97p&authKey=r2ia5MrP9ufCQWYadKj7hS1Bdq5Bzy4SsrTzlBD%2BFyCqe%2B75fWf7N2iN5Snc8%2BJa&noverify=0&group_code=726741344" 
+                               target="_blank"
+                               class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+                                <i class="fab fa-qq mr-2"></i>点击加群
+                            </a>
+                            <button onclick="navigator.clipboard.writeText('726741344')" 
+                                    class="inline-block bg-gray-500 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105">
+                                <i class="fas fa-copy mr-2"></i>复制群号
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- 二维码 -->
+                    <div class="flex-shrink-0">
+                        <div class="p-4 rounded-lg shadow-lg" style="background-color: #FCFCFD;">
+                            <img src="src/加群-1.png" alt="QQ群二维码" class="w-48 h-48 object-contain">
+                            <p class="text-sm text-gray-500 mt-2 text-center">扫码加群</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     
