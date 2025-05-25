@@ -610,12 +610,14 @@ function displaySearchResults(results, query, searchResultsContainer) {
                 let targetUrl = generateNewDocumentUrl(path, root);
                 
                 // 添加搜索参数到URL查询参数中
-                const newUrl = new URL(targetUrl);
-                newUrl.searchParams.set('search', query);
+                // 为相对路径提供base URL，或者确保使用绝对URL
+                const baseUrl = window.location.origin + window.location.pathname;
+                const fullUrl = new URL(targetUrl, baseUrl);
+                fullUrl.searchParams.set('search', query);
                 if (occurrenceTarget) {
-                    newUrl.searchParams.set('occurrence', occurrenceTarget);
+                    fullUrl.searchParams.set('occurrence', occurrenceTarget);
                 }
-                targetUrl = newUrl.toString();
+                targetUrl = fullUrl.toString();
                 
                 // 关闭搜索模态窗口
                 closeSearchModal();

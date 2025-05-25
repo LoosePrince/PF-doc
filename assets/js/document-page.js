@@ -2708,22 +2708,49 @@ function generateBreadcrumb(path) {
         }
     }
     
-    // 创建面包屑HTML元素
+    // 创建面包屑容器和省略号指示器
+    const breadcrumbWrapper = document.createElement('div');
+    breadcrumbWrapper.className = 'breadcrumb-wrapper';
+    breadcrumbWrapper.style.cssText = 'display: flex; align-items: center; width: 100%; overflow: hidden;';
+    
+    // 创建省略号元素（隐藏的面包屑指示器）
+    const ellipsis = document.createElement('span');
+    ellipsis.className = 'breadcrumb-ellipsis';
+    ellipsis.style.cssText = 'display: none; margin-right: 8px; color: #6b7280; cursor: pointer;';
+    ellipsis.innerHTML = '<i class="fas fa-ellipsis-h mr-1"></i>';
+    ellipsis.title = '点击显示完整路径';
+    
+    // 创建实际面包屑容器
+    const breadcrumbContent = document.createElement('div');
+    breadcrumbContent.className = 'breadcrumb-content';
+    breadcrumbContent.style.cssText = 'display: flex; align-items: center; overflow: hidden; white-space: nowrap;';
+    
+    // 将元素添加到容器
+    breadcrumbWrapper.appendChild(ellipsis);
+    breadcrumbWrapper.appendChild(breadcrumbContent);
+    container.appendChild(breadcrumbWrapper);
+    
+    // 创建所有面包屑项目（先全部创建）
+    const breadcrumbElements = [];
     breadcrumbParts.forEach((item, index) => {
+        const itemWrapper = document.createElement('div');
+        itemWrapper.className = 'breadcrumb-item';
+        itemWrapper.style.cssText = 'display: flex; align-items: center; flex-shrink: 0;';
+        
         // 添加分隔符（除了第一项）
         if (index > 0) {
             const separator = document.createElement('span');
             separator.textContent = ' / ';
-            separator.classList.add('mx-1');
-            container.appendChild(separator);
+            separator.classList.add('mx-1', 'text-gray-400');
+            itemWrapper.appendChild(separator);
         }
         
         if (item.isLast) {
             // 当前页面（最后一项）
             const span = document.createElement('span');
             span.textContent = item.text;
-            span.classList.add('text-gray-800', 'dark:text-white');
-            container.appendChild(span);
+            span.classList.add('text-gray-800', 'dark:text-white', 'font-medium');
+            itemWrapper.appendChild(span);
         } else {
             // 链接项
             const link = document.createElement('a');
@@ -2772,9 +2799,125 @@ function generateBreadcrumb(path) {
                 });
             }
             
-            container.appendChild(link);
+            itemWrapper.appendChild(link);
         }
+        
+        breadcrumbElements.push({
+            element: itemWrapper,
+            data: item,
+            index: index
+        });
     });
+    
+    // 将所有元素添加到容器中
+    breadcrumbElements.forEach(item => {
+        breadcrumbContent.appendChild(item.element);
+    });
+    
+    // 实现智能宽度管理
+    function manageBreadcrumbWidth() {
+        const containerWidth = container.clientWidth;
+        const availableWidth = containerWidth - 20; // 减少保留边距，更精确计算
+        const ellipsisWidth = 32; // 省略号的实际宽度
+        
+        if (breadcrumbElements.length <= 1) return;
+        
+        // 首先显示所有元素，重置状态
+        breadcrumbElements.forEach(item => {
+            item.element.style.display = 'flex';
+        });
+        ellipsis.style.display = 'none';
+        
+        // 强制重新计算布局
+        breadcrumbContent.offsetHeight; // 触发重排
+        
+        let totalWidth = breadcrumbContent.scrollWidth;
+        
+        // 如果总宽度没有超出，则不需要隐藏任何元素
+        if (totalWidth <= availableWidth) {
+            return; // 直接返回，保持所有元素可见
+        }
+        
+        // 只有在确实超出宽度时才开始隐藏元素
+        let hiddenCount = 0;
+        
+        // 从第一个元素开始隐藏，但永远保留最后一个（当前页面）
+        for (let i = 0; i < breadcrumbElements.length - 1; i++) {
+            breadcrumbElements[i].element.style.display = 'none';
+            hiddenCount++;
+            
+            // 强制重新计算布局
+            breadcrumbContent.offsetHeight;
+            
+            // 重新计算宽度（包含省略号的宽度）
+            const currentVisibleWidth = breadcrumbContent.scrollWidth;
+            const totalWidthWithEllipsis = currentVisibleWidth + ellipsisWidth;
+            
+            // 如果加上省略号后的宽度能够放下，就停止隐藏
+            if (totalWidthWithEllipsis <= availableWidth) {
+                break;
+            }
+            
+            // 安全检查：如果即使隐藏到只剩最后一个元素还不够，那就只显示最后一个
+            if (i >= breadcrumbElements.length - 2) {
+                break;
+            }
+        }
+        
+        // 最终检查：如果实际上不需要省略号就能放下所有剩余元素，则不显示省略号
+        breadcrumbContent.offsetHeight; // 再次触发重排
+        const finalWidth = breadcrumbContent.scrollWidth;
+        
+        if (finalWidth <= availableWidth && hiddenCount > 0) {
+            // 如果没有省略号也能放下，但确实隐藏了元素，则显示省略号
+            ellipsis.style.display = 'inline-flex';
+            
+            // 更新省略号的提示文本
+            const hiddenItems = breadcrumbElements.slice(0, hiddenCount);
+            const hiddenTitles = hiddenItems.map(item => item.data.text).join(' / ');
+            ellipsis.title = `已隐藏 ${hiddenCount} 项：${hiddenTitles}`;
+            
+            // 省略号点击事件：切换显示完整路径
+            ellipsis.onclick = function() {
+                const isExpanded = breadcrumbContent.style.overflow === 'visible';
+                if (isExpanded) {
+                    // 折叠：重新应用宽度管理
+                    breadcrumbContent.style.overflow = 'hidden';
+                    ellipsis.title = `已隐藏 ${hiddenCount} 项：${hiddenTitles}`;
+                    ellipsis.innerHTML = '<i class="fas fa-ellipsis-h mr-1"></i>';
+                    manageBreadcrumbWidth();
+                } else {
+                    // 展开：显示所有元素
+                    breadcrumbElements.forEach(item => {
+                        item.element.style.display = 'flex';
+                    });
+                    breadcrumbContent.style.overflow = 'visible';
+                    ellipsis.title = '点击折叠路径';
+                    ellipsis.innerHTML = '<i class="fas fa-compress-alt mr-1"></i>';
+                }
+            };
+        } else if (hiddenCount === 0) {
+            // 如果没有隐藏任何元素，确保省略号是隐藏的
+            ellipsis.style.display = 'none';
+        }
+    }
+    
+    // 初始化宽度管理
+    setTimeout(manageBreadcrumbWidth, 10);
+    
+    // 监听窗口大小变化
+    const resizeObserver = new ResizeObserver(() => {
+        // 防抖处理，避免频繁计算
+        clearTimeout(container._resizeTimeout);
+        container._resizeTimeout = setTimeout(manageBreadcrumbWidth, 50);
+    });
+    resizeObserver.observe(container);
+    
+    // 清理之前的观察器（如果存在）
+    if (container._breadcrumbResizeObserver) {
+        container._breadcrumbResizeObserver.disconnect();
+    }
+    container._breadcrumbResizeObserver = resizeObserver;
 }
 
 // 检查文件名是否为索引文件
@@ -5023,7 +5166,10 @@ function enhanceHeadings(container) {
             
             // 使用新的URL格式生成链接
             const { path, root } = parseUrlPath();
-            const fullUrl = generateNewUrl(path, root, heading.id);
+            const relativeUrl = generateNewUrl(path, root, heading.id);
+            
+            // 生成完整的绝对URL
+            const fullUrl = window.location.origin + relativeUrl;
             
             // 复制到剪贴板
             navigator.clipboard.writeText(fullUrl).then(() => {
