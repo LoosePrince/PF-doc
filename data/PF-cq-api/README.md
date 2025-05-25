@@ -10,6 +10,5 @@ PFingan服务器MCDRQQ机器人插件，基于CQ码的正向Websocket QQ连接�
 ## 快速开始
 
 [快速开始](PF-cq-api/快速开始)
-[配置](PF-cq-api/配置)
 [机器人食用指南](PF-cq-api/机器人食用指南)
 [开发指南](PF-cq-api/开发指南)

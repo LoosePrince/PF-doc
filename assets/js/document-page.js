@@ -3842,13 +3842,7 @@ function fixInternalLinks(container) {
             // 解码路径
             let path = decodeURIComponent(href);
             
-            // 尝试添加默认索引文件
-            for (const indexName of config.document.index_pages) {
-                const dirPath = path.endsWith('/') ? path : `${path}/`;
-                path = `${dirPath}${indexName}`;
-                break; // 使用第一个可能的索引页
-            }
-            
+            // 不再自动添加默认索引文件，保持目录路径
             // 构建新的URL，不编码
             let newHref;
             if (currentRoot) {
