@@ -69,22 +69,22 @@ const config = {
         url: [
           {
             text: "PF-gugubot",
-            url: "main/#PF-gugubot/",
+            url: "/main/#PF-gugubot/",
             icon: "fas fa-robot"
           },
           {
             text: "PF-cq-api",
-            url: "main/#PF-cq-api/",
+            url: "/main/#PF-cq-api/",
             icon: "fas fa-code"
           },
           {
             text: "PF-webui",
-            url: "main/#PF-webui/",
+            url: "/main/#PF-webui/",
             icon: "fas fa-globe"
           },
           {
             text: "PF-player_ip_logger",
-            url: "main/#PF-player_ip_logger/",
+            url: "/main/#PF-player_ip_logger/",
             icon: "fas fa-code"
           }
         ],
