@@ -1,10 +1,10 @@
 # 疑难解答
 
-### 后台遇到无法使!!指令的问题
+## 后台遇到无法使!!指令的问题
 
 卸载GUGUbot试试，若还是不行请到 GitHub 提交 issue
 
-### 关于 MC → 群内 转发时，玩家ID包裹方式不一
+## 关于 MC → 群内 转发时，玩家ID包裹方式不一
 
 [[BUG] MC→Q群信息，玩家名字格式偶尔不一致 · Issue #136 · LoosePrince/PF-GUGUBot](https://github.com/LoosePrince/PF-GUGUBot/issues/136)
 这是刻意而为之，并非bug，为了对腾讯对重复相同风格的风控（连续发相同格式的内容）
@@ -28,7 +28,7 @@ mc2qq_template = [
 前四行出现概率一致的，第一个 `{}` 对应的是玩家ID，第二个 `{}` 对应的是发送的内容
 第五个的出现概率是 `0.3%`
 
-### 如何配置RCON，如何连接到RCON，提示 "开启RCON以显示结果" 怎么办？
+## 如何配置RCON，如何连接到RCON，提示 "开启RCON以显示结果" 怎么办？
 
 server - server.properties
 
@@ -59,6 +59,19 @@ rcon:
 `password` → `rcon.password`
 `address`：服务器IP或本地IP，通常为 `127.0.0.1`
 
-### 艾特（@）机器人时发现群名片没有更新 / 群名片还是老名称
+## 艾特（@）机器人时发现群名片没有更新 / 群名片还是老名称
 
 腾讯的缓存，需要机器人发送消息才会更新名片，或者你点击查看机器人个人资料才会刷新，否则将不会自动变化
+
+
+## 为什么服里有人，GUGUbot 就是说没人
+
+格式不匹配导致的，例如换行到下一行
+
+例如：
+
+```
+[MCDR] [xx:xx:xx] [TaskExecutor/INFO] [gugubot]: 123456:#服务器
+[Server] [xx:xx:xx] [Server thread/INFO] [minecraft/DedicatedServer]: There are 1/10 players online:
+[Server] [xx:xx:xx] [Server thread/INFO] [minecraft/DedicatedServer]: abc
+```

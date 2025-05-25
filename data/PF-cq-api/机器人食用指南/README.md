@@ -4,6 +4,6 @@
 
 ## 食用指南
 
-[LiteLoaderQQNT + LLOneBot](PF-cq-api/机器人食用指南/LLOneBot.md)
-[NapCat](PF-cq-api/机器人食用指南/NapCat.md)
-[Lagrange](PF-cq-api/机器人食用指南/Lagrange.md)
+[LiteLoaderQQNT + LLOneBot](PF-cq-api/机器人食用指南/LLOneBot)
+[NapCat](PF-cq-api/机器人食用指南/NapCat)
+[Lagrange](PF-cq-api/机器人食用指南/Lagrange)

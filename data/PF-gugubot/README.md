@@ -9,9 +9,9 @@ GUGUbot是为MCDR开发的一个插件，主要功能为为服务器管理者提
 
 ## 快速开始
 
-[前置依赖](PF-gugubot/前置依赖.md)
-[快速开始](PF-gugubot/快速开始.md)
-[功能列表](PF-gugubot/功能列表.md)
-[配置](PF-gugubot/配置.md)
-[疑难解答](PF-gugubot/疑难解答.md)
+[前置依赖](PF-gugubot/前置依赖)
+[快速开始](PF-gugubot/快速开始)
+[功能列表](PF-gugubot/功能列表)
+[配置](PF-gugubot/配置)
+[疑难解答](常见问题/GUGUbot-疑难解答)
 

@@ -130,31 +130,6 @@
                             }
                         ]
                     }
-                },
-                {
-                    "title": "疑难解答",
-                    "path": "PF-gugubot/疑难解答.md",
-                    "children": [],
-                    "git": {
-                        "last_modified": {
-                            "timestamp": 1748076215,
-                            "author": "树梢",
-                            "email": "pfingan@foxmail.com",
-                            "message": "更新EasyDocument版本到v1.2.7",
-                            "github_username": "LoosePrince",
-                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
-                        },
-                        "contributors": [
-                            {
-                                "name": "树梢",
-                                "email": "pfingan@foxmail.com",
-                                "commits": 2,
-                                "github_username": "LoosePrince",
-                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748076215
-                            }
-                        ]
-                    }
                 }
             ],
             "index": {
@@ -585,38 +560,23 @@
             }
         },
         {
-            "title": "更多插件",
-            "path": "更多插件",
+            "title": "常见问题",
+            "path": "常见问题",
             "children": [
                 {
-                    "title": "更多插件",
-                    "path": "更多插件/持续更新中.md",
-                    "children": [],
-                    "git": {
-                        "last_modified": {
-                            "timestamp": 1747236671,
-                            "author": "树梢",
-                            "email": "pfingan@foxmail.com",
-                            "message": "PFingan文档",
-                            "github_username": "LoosePrince",
-                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
-                        },
-                        "contributors": [
-                            {
-                                "name": "树梢",
-                                "email": "pfingan@foxmail.com",
-                                "commits": 1,
-                                "github_username": "LoosePrince",
-                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1747236671
-                            }
-                        ]
-                    }
+                    "title": "GUGUbot 疑难解答",
+                    "path": "常见问题/GUGUbot-疑难解答.md",
+                    "children": []
+                },
+                {
+                    "title": "WebUI 疑难解答",
+                    "path": "常见问题/WebUI.md",
+                    "children": []
                 }
             ],
             "index": {
-                "title": "更多插件",
-                "path": "更多插件/README.md",
+                "title": "README",
+                "path": "常见问题/README.md",
                 "git": {
                     "last_modified": {
                         "timestamp": 1747236671,
@@ -640,12 +600,32 @@
             }
         },
         {
-            "title": "常见问题",
-            "path": "常见问题",
+            "title": "更多插件",
+            "path": "更多插件",
             "children": [],
             "index": {
-                "title": "README",
-                "path": "常见问题/README.md"
+                "title": "更多插件",
+                "path": "更多插件/README.md",
+                "git": {
+                    "last_modified": {
+                        "timestamp": 1747236671,
+                        "author": "树梢",
+                        "email": "pfingan@foxmail.com",
+                        "message": "PFingan文档",
+                        "github_username": "LoosePrince",
+                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                    },
+                    "contributors": [
+                        {
+                            "name": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "commits": 1,
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                            "last_commit_timestamp": 1747236671
+                        }
+                    ]
+                }
             }
         },
         {
