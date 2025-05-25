@@ -3636,14 +3636,26 @@ function generatePrevNextNavigation(currentPath) {
     navContainer.id = 'prev-next-navigation';
     navContainer.className = 'mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 flex flex-col md:flex-row md:justify-between';
     
+    // 辅助函数：判断路径是否属于当前root
+    const getAppropriateRoot = (targetPath) => {
+        if (!currentRoot) return null;
+        // 如果目标路径以当前root开头，则使用当前root
+        if (targetPath && targetPath.startsWith(currentRoot + '/')) {
+            return currentRoot;
+        }
+        // 否则不使用root，生成绝对路径
+        return null;
+    };
+
     // 上一篇
     if (currentIndex > 0) {
         const prevLink = allLinks[currentIndex - 1];
         const prevDiv = document.createElement('div');
         prevDiv.className = 'text-left';
         
-        // 使用新的URL格式
-        const prevUrl = generateNewUrl(prevLink.path, currentRoot);
+        // 根据目标路径判断是否使用当前root
+        const prevRoot = getAppropriateRoot(prevLink.path);
+        const prevUrl = generateNewUrl(prevLink.path, prevRoot);
         
         prevDiv.innerHTML = `
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">上一篇</p>
@@ -3665,8 +3677,9 @@ function generatePrevNextNavigation(currentPath) {
         const nextDiv = document.createElement('div');
         nextDiv.className = 'text-right';
         
-        // 使用新的URL格式
-        const nextUrl = generateNewUrl(nextLink.path, currentRoot);
+        // 根据目标路径判断是否使用当前root
+        const nextRoot = getAppropriateRoot(nextLink.path);
+        const nextUrl = generateNewUrl(nextLink.path, nextRoot);
         
         nextDiv.innerHTML = `
             <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">下一篇</p>
@@ -3790,15 +3803,17 @@ function fixInternalLinks(container) {
             // 构建新的URL，不使用generateNewUrl以避免编码
             let newHref;
             if (currentRoot) {
-                // 有root的情况，检查是否需要移除root前缀
-                let relativePath = path;
+                // 有root的情况，需要判断是绝对路径还是相对路径
                 if (path && path.startsWith(currentRoot + '/')) {
-                    relativePath = path.substring(currentRoot.length + 1);
-                }
-                
-                newHref = `/main/#${currentRoot}`;
-                if (relativePath) {
-                    newHref += `/${relativePath}`;
+                    // 如果路径已经包含root前缀，移除它作为相对路径处理
+                    const relativePath = path.substring(currentRoot.length + 1);
+                    newHref = `/main/#${currentRoot}`;
+                    if (relativePath) {
+                        newHref += `/${relativePath}`;
+                    }
+                } else {
+                    // 否则视为绝对路径，不使用当前root
+                    newHref = `/main/#/${path}`;
                 }
                 if (anchor) {
                     newHref += `#${anchor}`;
@@ -3846,15 +3861,17 @@ function fixInternalLinks(container) {
             // 构建新的URL，不编码
             let newHref;
             if (currentRoot) {
-                // 有root的情况，检查是否需要移除root前缀
-                let relativePath = path;
+                // 有root的情况，需要判断是绝对路径还是相对路径
                 if (path && path.startsWith(currentRoot + '/')) {
-                    relativePath = path.substring(currentRoot.length + 1);
-                }
-                
-                newHref = `/main/#${currentRoot}`;
-                if (relativePath) {
-                    newHref += `/${relativePath}`;
+                    // 如果路径已经包含root前缀，移除它作为相对路径处理
+                    const relativePath = path.substring(currentRoot.length + 1);
+                    newHref = `/main/#${currentRoot}`;
+                    if (relativePath) {
+                        newHref += `/${relativePath}`;
+                    }
+                } else {
+                    // 否则视为绝对路径，不使用当前root
+                    newHref = `/main/#/${path}`;
                 }
             } else {
                 // 无root的情况

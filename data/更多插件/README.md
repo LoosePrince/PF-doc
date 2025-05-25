@@ -92,7 +92,7 @@ MCDR完整日志获取
 
 ### 下载
 
-[加入QQ群](支持与反馈/README.md#加入交流群)
+[加入QQ群](支持与反馈/README#加入交流群)
 
 ## Command Binding Plugin
 
@@ -112,7 +112,7 @@ MCDR完整日志获取
 
 ### 下载
 
-[加入QQ群](支持与反馈/README.md#加入交流群)
+[加入QQ群](支持与反馈/README#加入交流群)
 
 ## Player Control
 
@@ -124,7 +124,7 @@ MCDR完整日志获取
 
 ### 下载
 
-[加入QQ群](支持与反馈/README.md#加入交流群)
+[加入QQ群](支持与反馈/README#加入交流群)
 
 ## Show Item Pure
 
@@ -136,4 +136,4 @@ MCDR完整日志获取
 
 ### 下载
 
-[加入QQ群](支持与反馈/README.md#加入交流群)
+[加入QQ群](支持与反馈/README#加入交流群)
