@@ -104,7 +104,7 @@
     {
         "title": "文件说明文档",
         "path": "PF-gugubot/文件说明.md",
-        "content": "文件说明文档 注:关于自定义风格可参照功能列表-风格。 文件说明 ban_word.json 功能: 存储违禁词列表，用于过滤或屏蔽不允许的词汇。 内容: 包含一个 JSON 格式的词汇数组，可能带有敏感级别或分类。 bound.jpg 功能: 用于绑定操作的提示图。 内容: 图片文件，通常是用于指导用户完成绑定的视觉提示。 config.yml 功能: 配置文件，管理程序的全局设置。 内容: 使...",
+        "content": "文件说明文档 注:关于自定义风格可参照功能列表-风格详细说明。 文件说明 ban_word.json 功能: 存储违禁词列表，用于过滤或屏蔽不允许的词汇。 内容: 包含一个 JSON 格式的词汇数组，可能带有敏感级别或分类。 bound.jpg 功能: 用于绑定操作的提示图。 内容: 图片文件，通常是用于指导用户完成绑定的视觉提示。 config.yml 功能: 配置文件，管理程序的全局设置。 内...",
         "keywords": [
             "json",
             "功能",
@@ -365,18 +365,15 @@
         ]
     },
     {
-        "title": "更多插件",
-        "path": "更多插件",
-        "content": "",
-        "keywords": []
-    },
-    {
         "title": "README",
         "path": "常见问题/README.md",
-        "content": "常见问题 暂无",
+        "content": "常见问题 GUGUbot的问题 GUGUbot WebUI的问题 WebUI",
         "keywords": [
             "常见问题",
-            "暂无"
+            "gugubot的问题",
+            "gugubot",
+            "webui的问题",
+            "webui"
         ]
     },
     {
@@ -384,17 +381,38 @@
         "path": "常见问题/GUGUbot-疑难解答.md",
         "content": "疑难解答 后台遇到无法使!!指令的问题 卸载GUGUbot试试，若还是不行请到 GitHub 提交 issue 关于 MC → 群内 转发时，玩家ID包裹方式不一 [[BUG] MC→Q群信息，玩家名字格式偶尔不一致 · Issue #136 · LoosePrince/PF-GUGUBot](https://github.com/LoosePrince/PF-GUGUBot/issues/136...",
         "keywords": [
+            "gugubot",
             "github",
             "issue",
             "mc",
             "136",
             "looseprince",
             "pf",
-            "gugubot",
             "server",
             "疑难解答",
             "后台遇到无法使"
         ]
+    },
+    {
+        "title": "WebUI 疑难解答",
+        "path": "常见问题/WebUI.md",
+        "content": "WebUI 疑难解答 面板是怎么qq登录的？ 例如： 创建账户时使用 作为账户，例如 此处 填你的QQ号即可",
+        "keywords": [
+            "例如",
+            "webui",
+            "疑难解答",
+            "面板是怎么qq登录的",
+            "创建账户时使用",
+            "作为账户",
+            "此处",
+            "填你的qq号即可"
+        ]
+    },
+    {
+        "title": "更多插件",
+        "path": "更多插件",
+        "content": "",
+        "keywords": []
     },
     {
         "title": "支持与反馈",
