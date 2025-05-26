@@ -167,10 +167,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1747236671,
+                            "timestamp": 1748231634,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "PFingan文档",
+                            "message": "更新文档",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -178,10 +178,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 1,
+                                "commits": 2,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1747236671
+                                "last_commit_timestamp": 1748231634
                             }
                         ]
                     }
@@ -221,10 +221,10 @@
                             "children": [],
                             "git": {
                                 "last_modified": {
-                                    "timestamp": 1748076215,
+                                    "timestamp": 1748231634,
                                     "author": "树梢",
                                     "email": "pfingan@foxmail.com",
-                                    "message": "更新EasyDocument版本到v1.2.7",
+                                    "message": "更新文档",
                                     "github_username": "LoosePrince",
                                     "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                                 },
@@ -232,10 +232,10 @@
                                     {
                                         "name": "树梢",
                                         "email": "pfingan@foxmail.com",
-                                        "commits": 2,
+                                        "commits": 3,
                                         "github_username": "LoosePrince",
                                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                        "last_commit_timestamp": 1748076215
+                                        "last_commit_timestamp": 1748231634
                                     }
                                 ]
                             }
