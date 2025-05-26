@@ -21,11 +21,17 @@
 }
 ```
 
+4. 修改 cq-qq-api 的 `config.json` 中的 `port` 为 `8081`（默认是8080）
+
+> [TIP]
+>
+> 是修改 `cq-qq-api` 的 `config.json` 中的 `port` 和 `Lagrange` 中 `ForwardWebSocket` 的 `Port` 一致
+
 示例
 
 ![图片](/src/食用指南-Lagrange-1.png)
 
 json语法两个 `{}` 间要注意加逗号！英文的逗号！
 
-4、重启Lagrange
-5、扫码登陆
+5. 重启Lagrange
+6. 扫码登陆

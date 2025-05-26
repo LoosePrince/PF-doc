@@ -29,3 +29,11 @@
 #### 为Player-IP-Logger反馈
 
 - Github Issues: https://github.com/LoosePrince/PF-player_ip_logger/issues
+
+## 为PF-doc反馈
+
+- 提交反馈：https://github.com/LoosePrince/PF-doc/issues
+
+- 提交PR：https://github.com/LoosePrince/PF-doc/pulls
+
+- 编辑文档：https://github.com/LoosePrince/PF-doc/
