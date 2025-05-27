@@ -674,7 +674,8 @@
             "children": [],
             "index": {
                 "title": "README",
-                "path": "支持与反馈/README.md"
+                "path": "支持与反馈/README.md",
+                "git": {}
             }
         }
     ],

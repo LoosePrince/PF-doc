@@ -12,7 +12,7 @@
 !!webui create 123456 <password>
 ```
 
-此处 `123456` 填你的QQ号即可
+此处 `123456` 填您的QQ号即可
 
 ## 登录webui后转到的界面显示{"detail":"There was an error parsing the body"}
 

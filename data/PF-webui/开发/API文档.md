@@ -806,7 +806,7 @@
 
   ```json
   {
-    "query": "你的问题",
+    "query": "您的问题",
     "system_prompt": "可选的系统指令",
     "model": "可选指定模型名",
     "api_key": "可选的临时API密钥",
