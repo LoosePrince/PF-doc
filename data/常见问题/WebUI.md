@@ -13,3 +13,7 @@
 ```
 
 此处 `123456` 填你的QQ号即可
+
+## 登录webui后转到的界面显示{"detail":"There was an error parsing the body"}
+
+重启服务器后重新登录
