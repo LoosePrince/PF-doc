@@ -511,7 +511,11 @@ export function updateGitInfo(relativePath) {
         
         const repoUrl = config.extensions.github.repo_url;
         const branch = config.extensions.github.branch || 'main';
-        const editUrl = `${repoUrl}/edit/${branch}/${relativePath}`;
+        // 获取文档根目录配置，并确保路径格式正确
+        const rootDir = config.document?.root_dir || 'data';
+        // 移除根目录路径开头的斜杠（如果有）
+        const cleanRootDir = rootDir.replace(/^\/+/, '');
+        const editUrl = `${repoUrl}/edit/${branch}/${cleanRootDir}/${relativePath}`;
         
         githubEditLink.href = editUrl;
         githubEditContainer.style.display = 'flex';

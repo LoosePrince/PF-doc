@@ -582,9 +582,10 @@ function navigateToFolderIndex(item) {
         }
     }
     
-    // 更新URL，使用文件夹路径而不是索引文件路径
-    const newUrl = generateNewUrl(folderPath, currentRoot);
-    window.history.pushState({path: folderPath}, '', newUrl);
+    // 更新URL
+    // 使用与面包屑导航相同的逻辑：直接使用索引文件路径
+    const targetUrl = generateNewUrl(item.index.path, currentRoot);
+    window.history.pushState({path: item.index.path}, '', targetUrl);
     
     // 但实际加载的是索引文件
     loadDocument(item.index.path);
