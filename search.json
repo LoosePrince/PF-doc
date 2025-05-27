@@ -2,7 +2,7 @@
     {
         "title": "前言",
         "path": "README.md",
-        "content": "前言 此为 FPingan 提供的插件的官方文档，在开始前，文档小助手提醒您，请阅读全文，或者搜索您遇到的问题。 善用搜索功能 给编写者的一些话 > 如果你不是编写者请忽略这些 在编写前请务必看完全部的完整文档, 确保你想写的内容没有人已经写过 不要随意删减内容 尽可能使用白话进行说明 如果有示例尽可能补上 大块的内容请考虑使用折叠或者文件夹",
+        "content": "前言 此为 FPingan 提供的插件的官方文档，在开始前，文档小助手提醒您，请阅读全文，或者搜索您遇到的问题。 善用搜索功能 给编写者的一些话 > 如果您不是编写者请忽略这些 在编写前请务必看完全部的完整文档, 确保您想写的内容没有人已经写过 不要随意删减内容 尽可能使用白话进行说明 如果有示例尽可能补上 大块的内容请考虑使用折叠或者文件夹",
         "keywords": [
             "前言",
             "此为",
@@ -19,13 +19,13 @@
     {
         "title": "README",
         "path": "PF-gugubot/README.md",
-        "content": "GUGUbot GUGUbot是为MCDR开发的一个插件，主要功能为为服务器管理者提供管理功能。 请通过以下选项开始你的使用！ 善用搜索功能 快速开始 前置依赖 快速开始 功能列表 配置 疑难解答 ",
+        "content": "GUGUbot GUGUbot是为MCDR开发的一个插件，主要功能为为服务器管理者提供管理功能。 请通过以下选项开始您的使用！ 善用搜索功能 快速开始 前置依赖 快速开始 功能列表 配置 疑难解答 ",
         "keywords": [
             "快速开始",
             "gugubot",
             "gugubot是为mcdr开发的一个插件",
             "主要功能为为服务器管理者提供管理功能",
-            "请通过以下选项开始你的使用",
+            "请通过以下选项开始您的使用",
             "善用搜索功能",
             "前置依赖",
             "功能列表",
@@ -155,10 +155,10 @@
     {
         "title": "README",
         "path": "PF-cq-api/机器人食用指南/README.md",
-        "content": "机器人食用指南 教你如何快速的绑定QQ机器人到CQ-QQ-API 食用指南 LiteLoaderQQNT + LLOneBot NapCat Lagrange",
+        "content": "机器人食用指南 教您如何快速的绑定QQ机器人到CQ-QQ-API 食用指南 LiteLoaderQQNT + LLOneBot NapCat Lagrange",
         "keywords": [
             "机器人食用指南",
-            "教你如何快速的绑定qq机器人到cq",
+            "教您如何快速的绑定qq机器人到cq",
             "qq",
             "api",
             "食用指南",
@@ -367,13 +367,18 @@
     {
         "title": "README",
         "path": "常见问题/README.md",
-        "content": "常见问题 GUGUbot的问题 GUGUbot WebUI的问题 WebUI",
+        "content": "常见问题 GUGUbot的问题 GUGUbot WebUI的问题 WebUI 其他问题 什么是解压插件？ 本质是个压缩包，可以使用解压工具进行解压和打开，可参考如下（7z）： 遇到问题如何反馈或解决？ 查看 支持与反馈 提供问题描述，提供截图，提供日志，出问题的配置 更详细的内容可以帮助我们更好的定位您的问题",
         "keywords": [
             "常见问题",
             "gugubot的问题",
             "gugubot",
             "webui的问题",
-            "webui"
+            "webui",
+            "其他问题",
+            "什么是解压插件",
+            "本质是个压缩包",
+            "可以使用解压工具进行解压和打开",
+            "可参考如下"
         ]
     },
     {
@@ -396,7 +401,7 @@
     {
         "title": "WebUI 疑难解答",
         "path": "常见问题/WebUI.md",
-        "content": "WebUI 疑难解答 面板是怎么qq登录的？ 例如： 创建账户时使用 作为账户，例如 此处 填你的QQ号即可 登录webui后转到的界面显示{\"detail\":\"There was an error parsing the body\"} 重启服务器后重新登录",
+        "content": "WebUI 疑难解答 面板是怎么qq登录的？ 例如： 创建账户时使用 作为账户，例如 此处 填您的QQ号即可 登录webui后转到的界面显示{\"detail\":\"There was an error parsing the body\"} 重启服务器后重新登录",
         "keywords": [
             "例如",
             "webui",
@@ -405,7 +410,7 @@
             "创建账户时使用",
             "作为账户",
             "此处",
-            "填你的qq号即可",
+            "填您的qq号即可",
             "登录webui后转到的界面显示",
             "detail"
         ]
