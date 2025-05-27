@@ -379,7 +379,7 @@
     {
         "title": "疑难解答",
         "path": "常见问题/GUGUbot-疑难解答.md",
-        "content": "疑难解答 后台遇到无法使!!指令的问题 卸载GUGUbot试试，若还是不行请到 GitHub 提交 issue 关于 MC → 群内 转发时，玩家ID包裹方式不一 [[BUG] MC→Q群信息，玩家名字格式偶尔不一致 · Issue #136 · LoosePrince/PF-GUGUBot](https://github.com/LoosePrince/PF-GUGUBot/issues/136...",
+        "content": "GUGUbot 疑难解答 后台遇到无法使!!指令的问题 卸载GUGUbot试试，若还是不行请到 GitHub 提交 issue 关于 MC → 群内 转发时，玩家ID包裹方式不一 [[BUG] MC→Q群信息，玩家名字格式偶尔不一致 · Issue #136 · LoosePrince/PF-GUGUBot](https://github.com/LoosePrince/PF-GUGUBot/is...",
         "keywords": [
             "gugubot",
             "github",
