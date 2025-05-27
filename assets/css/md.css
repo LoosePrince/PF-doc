@@ -470,19 +470,109 @@ a.external-link:hover .external-link-icon {
 
 /* 上一篇/下一篇导航 */
 #prev-next-navigation {
-    margin-top: 2rem;
-    padding-top: 1rem;
+    margin-top: 4rem;
+    padding-top: 2rem;
     border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
+/* 桌面端横向布局 */
+@media (min-width: 768px) {
+    #prev-next-navigation {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+}
+
+/* 导航项容器 */
+#prev-next-navigation > div {
+    flex: 1;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: var(--code-block-bg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+#prev-next-navigation > div:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--link-color);
+}
+
+.dark #prev-next-navigation > div:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 标签文本样式 */
+#prev-next-navigation p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* 链接样式 */
 #prev-next-navigation a {
-    transition: all 0.2s;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    line-height: 1.4;
 }
 
 #prev-next-navigation a:hover {
-    transform: translateY(-2px);
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+/* 右对齐的导航项 */
+#prev-next-navigation > div.text-right {
+    text-align: right;
+}
+
+#prev-next-navigation > div.text-right a {
+    justify-content: flex-end;
+}
+
+/* 图标样式 */
+#prev-next-navigation i {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+#prev-next-navigation a:hover i {
+    opacity: 1;
+}
+
+/* 移动端优化 */
+@media (max-width: 767px) {
+    #prev-next-navigation {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+    }
+    
+    #prev-next-navigation > div {
+        padding: 1.25rem;
+        text-align: left !important;
+    }
+    
+    #prev-next-navigation > div.text-right a {
+        justify-content: flex-start;
+    }
+    
+    #prev-next-navigation a {
+        font-size: 1rem;
+    }
 }
 
 /* 目录编号样式 */
