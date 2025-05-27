@@ -5,13 +5,16 @@
 import documentCache from './document-cache.js';
 import config from '/config.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * 初始化缓存管理模块
+ */
+export function initCacheManager() {
     // 绑定缓存管理模态窗口事件
     bindCacheModalEvents();
 
     // 初始化缓存控制开关
     initCacheControls();
-});
+}
 
 /**
  * 初始化缓存控制开关
@@ -314,5 +317,5 @@ function formatTimeAgo(timestamp) {
     return `${days}天前`;
 }
 
-// 将updateCacheList函数导出到全局
-window.updateCacheList = updateCacheList; 
+// 导出需要在外部调用的函数
+export { openCacheModal, updateCacheList }; 

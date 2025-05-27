@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PF系列插件文档</title>
-    <meta name="description" content="提供丰富的MCDR插件，助力Minecraft服务器管理">
-    <meta name="keywords" content="MCDR,插件,Minecraft,服务器管理,QQ机器人,WebUI">
+    <title>简易静态文档系统</title>
+    <meta name="description" content="一个轻量级、免编译的纯静态前端文档系统">
+    <meta name="keywords" content="文档,静态网站,Markdown,Alpine.js">
     
     <!-- Favicon -->
-    <link rel="icon" href="/assets/img/logo.png">
+    <link rel="icon" href="../assets/img/favicon.ico">
     
     <!-- TailwindCSS CDN -->
     <script src="../assets/js/tailwindcss.js" data-cfasync="false"></script>
@@ -19,32 +19,14 @@
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Highlight.js -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
-    
-    <!-- KaTeX -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
-    
-    <!-- Canvg (v3 版本) -->
-    <script src="https://cdn.jsdelivr.net/npm/canvg@3.0.10/lib/umd.min.js" async="false"></script>
-    
-    <!-- Mermaid -->
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <!-- 动态加载的资源将由main.js根据配置加载 -->
     
     <!-- Marked.js -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     
     <!-- 主应用JS (加载公共部分和主题) -->
     <script type="module" src="../assets/js/main.js"></script>
-    <script type="module" src="../assets/js/mermaid-handler.js"></script>
-    <script type="module" src="../assets/js/katex-handler.js"></script>
     <script type="module" src="../assets/js/document-page.js"></script>
-    <script type="module" src="../assets/js/cache-manager.js"></script>
-    <script type="module" src="../assets/js/context-menu.js"></script>
 
     <!-- css -->
     <link rel="stylesheet" href="../assets/css/style.css">

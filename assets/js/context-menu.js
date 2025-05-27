@@ -2,6 +2,9 @@
  * 右键菜单处理器
  * 为左右侧边栏和文章中的链接添加右键菜单功能
  */
+import config from '/config.js';
+import { getDocumentPagePath } from './path-utils.js';
+import { hasSupportedExtension } from './utils.js';
 
 class ContextMenuManager {
     constructor() {
@@ -191,9 +194,10 @@ class ContextMenuManager {
         }
         
         // 检查是否是文档链接（内部链接或相对路径）
-        const isInternalLink = href.includes('/main/') || 
+        const docPagePath = getDocumentPagePath();
+        const isInternalLink = href.includes(docPagePath) || 
                               href.startsWith('#') || 
-                              href.includes('.md');
+                              hasSupportedExtension(href);
         
         // 检查是否在相关的容器中（左侧边栏、右侧目录、内容区域、面包屑）
         const isInRelevantContainer = link.closest('#sidebar-nav') || 
@@ -341,7 +345,8 @@ class ContextMenuManager {
         }
         
         // 构建完整URL
-        const baseUrl = window.location.origin + window.location.pathname.replace('/main/', '');
+        const docPagePath = getDocumentPagePath();
+        const baseUrl = window.location.origin + window.location.pathname.replace(docPagePath, '');
         if (href.startsWith('#')) {
             return window.location.origin + window.location.pathname + href;
         }
@@ -390,8 +395,12 @@ class ContextMenuManager {
         
         if (href) {
             // 从href中提取文件名
-            if (href.includes('.md')) {
-                const match = href.match(/([^\/]+)\.md/);
+            if (hasSupportedExtension(href)) {
+                // 匹配任何支持的扩展名
+                const extensionPattern = config.document.supported_extensions
+                    .map(ext => ext.replace('.', '\\.'))
+                    .join('|');
+                const match = href.match(new RegExp(`([^\\/]+)(${extensionPattern})`));
                 if (match) {
                     return match[1];
                 }
@@ -466,7 +475,12 @@ class ContextMenuManager {
     }
 }
 
-// 当DOM加载完成后初始化右键菜单管理器
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * 初始化右键菜单模块
+ */
+export function initContextMenu() {
     window.contextMenuManager = new ContextMenuManager();
-}); 
+}
+
+// 导出类供外部使用
+export { ContextMenuManager }; 

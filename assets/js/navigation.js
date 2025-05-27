@@ -3,6 +3,25 @@
  * 负责生成导航链接和移动端菜单
  */
 
+// 导入路径工具
+import { getFullPath } from './path-utils.js';
+
+// 处理链接URL，确保正确应用base_url
+function processLinkUrl(url) {
+    // 如果是外部链接，直接返回
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('mailto:')) {
+        return url;
+    }
+    
+    // 如果是绝对路径（以/开头），直接返回
+    if (url.startsWith('/')) {
+        return url;
+    }
+    
+    // 如果是相对路径，使用getFullPath处理
+    return getFullPath(url);
+}
+
 // 生成桌面端导航链接
 export function generateNavLinks(links) {
     if (!links || !Array.isArray(links) || links.length === 0) {
@@ -30,14 +49,16 @@ export function generateNavLinks(links) {
                     ${link.url.map(subLink => {
                         const target = subLink.external ? ' target="_blank"' : '';
                         const subIcon = subLink.icon ? `<i class="${subLink.icon} mr-1"></i> ` : '';
-                        return `<a href="${subLink.url}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-primary"${target}>${subIcon}${subLink.text}</a>`;
+                        const processedUrl = processLinkUrl(subLink.url);
+                        return `<a href="${processedUrl}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-primary"${target}>${subIcon}${subLink.text}</a>`;
                     }).join('')}
                 </div>
             </div>`;
         } else {
             const icon = link.icon ? `<i class="${link.icon}"></i> ` : '';
             const target = link.external ? ' target="_blank"' : '';
-            return `<a href="${link.url}" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"${target}>${icon}${link.text}</a>`;
+            const processedUrl = processLinkUrl(link.url);
+            return `<a href="${processedUrl}" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary"${target}>${icon}${link.text}</a>`;
         }
     }).join('');
 }
@@ -61,14 +82,16 @@ export function generateMobileNavLinks(links) {
                     ${link.url.map(subLink => {
                         const target = subLink.external ? ' target="_blank"' : '';
                         const subIcon = subLink.icon ? `<i class="${subLink.icon} mr-1"></i>` : '';
-                        return `<a href="${subLink.url}" class="block py-1 text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"${target}>${subIcon}${subLink.text}</a>`;
+                        const processedUrl = processLinkUrl(subLink.url);
+                        return `<a href="${processedUrl}" class="block py-1 text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors"${target}>${subIcon}${subLink.text}</a>`;
                     }).join('')}
                 </div>
             </div>`;
         } else {
             const icon = link.icon ? `<i class="${link.icon} mr-1"></i>` : '';
             const target = link.external ? ' target="_blank"' : '';
-            return `<a href="${link.url}" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors font-medium"${target}>${icon}${link.text}</a>`;
+            const processedUrl = processLinkUrl(link.url);
+            return `<a href="${processedUrl}" class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors font-medium"${target}>${icon}${link.text}</a>`;
         }
     }).join('');
 }
@@ -144,7 +167,8 @@ export function updateFooterElements(config) {
                         ${link.url.map(subLink => {
                             const target = subLink.external ? ' target="_blank"' : '';
                             const subIcon = subLink.icon ? `<i class="${subLink.icon} mr-1"></i>` : '';
-                            return `<a href="${subLink.url}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-primary"${target}>${subIcon}${subLink.text}</a>`;
+                            const processedUrl = processLinkUrl(subLink.url);
+                            return `<a href="${processedUrl}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-primary"${target}>${subIcon}${subLink.text}</a>`;
                         }).join('')}
                     </div>
                 </div>`;
@@ -153,7 +177,7 @@ export function updateFooterElements(config) {
             } else {
                 // 普通链接
                 const a = document.createElement('a');
-                a.href = link.url;
+                a.href = processLinkUrl(link.url);
                 a.className = 'text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary transition-colors';
                 
                 if (link.external) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PF系列插件文档</title>
+    <title>重定向</title>
 </head>
 <body>
     <script>
@@ -15,7 +15,13 @@
             
             // 检查是否是 main.html
             if (currentPath.endsWith('main.html')) {
-                window.location.href = '/main/' + searchParams + hash;
+                // 动态获取base_url配置
+                import('/config.js').then(module => {
+                    const config = module.default;
+                    const baseUrl = config.site.base_url.replace(/\/$/, '');
+                    const mainPath = baseUrl ? `${baseUrl}/main/` : '/main/';
+                    window.location.href = mainPath + searchParams + hash;
+                });
             }
             // 检查其他路径是否需要添加斜杠
             else if (!currentPath.endsWith('/')) {

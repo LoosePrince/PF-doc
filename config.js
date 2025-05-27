@@ -36,17 +36,33 @@ const config = {
 
   // 动画设置
   animation: {
+    // 左侧边栏（文档导航）
     sidebar: {
-      enable: true, // 是否启用左侧导航动画
-      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
-      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+      enable: true, // 是否启用左侧导航交错动画
+      duration: 200, // 交错动画持续时间(毫秒)
+      stagger_delay: 50, // 交错动画间隔时间(毫秒)
+      enable_skeleton: true, // 是否启用骨架屏加载动画
+      skeleton_duration: 1500 // 骨架屏shimmer动画周期(毫秒)
     },
+    
+    // 右侧边栏（文章目录）
     toc: {
-      enable: true, // 是否启用右侧目录动画
-      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
-      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+      enable: true, // 是否启用右侧目录交错动画
+      duration: 200, // 交错动画持续时间(毫秒)
+      stagger_delay: 50, // 交错动画间隔时间(毫秒)
+      enable_skeleton: true, // 是否启用骨架屏加载动画
+      skeleton_duration: 1500 // 骨架屏shimmer动画周期(毫秒)
     },
-    loading: {
+    
+    // 文章内容
+    article: {
+      enable_skeleton: true, // 是否启用文章加载骨架屏动画
+      enable_render: true, // 是否启用文章内容渲染动画（淡入）
+      render_duration: 600 // 渲染动画持续时间(毫秒)
+    },
+    
+    // 通用设置
+    general: {
       min_duration: 300 // 加载动画最小显示时长(毫秒) - 确保用户能看到加载过程
     }
   },
@@ -69,22 +85,22 @@ const config = {
         url: [
           {
             text: "PF-gugubot",
-            url: "/main/#PF-gugubot/",
+            url: "main/#PF-gugubot/",
             icon: "fas fa-robot"
           },
           {
             text: "PF-cq-api",
-            url: "/main/#PF-cq-api/",
+            url: "main/#PF-cq-api/",
             icon: "fas fa-code"
           },
           {
             text: "PF-webui",
-            url: "/main/#PF-webui/",
+            url: "main/#PF-webui/",
             icon: "fas fa-globe"
           },
           {
             text: "PF-player_ip_logger",
-            url: "/main/#PF-player_ip_logger/",
+            url: "main/#PF-player_ip_logger/",
             icon: "fas fa-code"
           }
         ],
@@ -92,12 +108,12 @@ const config = {
       },
       {
         text: "常见问题",
-        url: "/main/#常见问题/",
+        url: "main/#常见问题/",
         icon: "fas fa-question-circle"
       },
       {
         text: "支持与反馈",
-        url: "/main/#支持与反馈/",
+        url: "main/#支持与反馈/",
         icon: "fas fa-comments"
       },
       {

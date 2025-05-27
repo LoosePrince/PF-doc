@@ -7,6 +7,12 @@ import config from '/config.js';
 export function processKaTeXFormulas() {
     // 检查是否启用了数学公式支持
     if (!config.extensions.math) return;
+    
+    // 检查KaTeX库是否已加载
+    if (typeof window.katex === 'undefined' || typeof window.renderMathInElement === 'undefined') {
+        console.warn('KaTeX库未加载，跳过数学公式处理');
+        return;
+    }
 
     // 获取文档内容容器
     const contentElement = document.getElementById('document-content');
@@ -23,7 +29,7 @@ export function processKaTeXFormulas() {
     });
 
     // 使用KaTeX处理公式
-    renderMathInElement(contentElement, {
+    window.renderMathInElement(contentElement, {
         delimiters: [
             {left: '$$', right: '$$', display: true},
             {left: '$', right: '$', display: false},

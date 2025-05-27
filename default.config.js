@@ -9,7 +9,7 @@ const config = {
     title: "简易静态文档系统", // 网站标题，显示在浏览器标签页
     description: "一个轻量级、免编译的纯静态前端文档系统", // 网站描述，用于SEO
     keywords: "文档,静态网站,Markdown,Alpine.js", // 网站关键词，用于SEO
-    base_url: "index.html" // 网站基础URL，如果部署在子目录则需要修改
+    base_url: "/" // 网站基础URL，如果部署在子目录则需要修改
   },
 
   // 外观设置
@@ -36,17 +36,33 @@ const config = {
 
   // 动画设置
   animation: {
+    // 左侧边栏（文档导航）
     sidebar: {
-      enable: true, // 是否启用左侧导航动画
-      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
-      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+      enable: true, // 是否启用左侧导航交错动画
+      duration: 200, // 交错动画持续时间(毫秒)
+      stagger_delay: 50, // 交错动画间隔时间(毫秒)
+      enable_skeleton: true, // 是否启用骨架屏加载动画
+      skeleton_duration: 1500 // 骨架屏shimmer动画周期(毫秒)
     },
+    
+    // 右侧边栏（文章目录）
     toc: {
-      enable: true, // 是否启用右侧目录动画
-      duration: 200, // 动画基准时长(毫秒) - CSS动画持续时间
-      stagger_delay: 50 // 交错动画间隔时间(毫秒) - 每个项目之间的延迟
+      enable: true, // 是否启用右侧目录交错动画
+      duration: 200, // 交错动画持续时间(毫秒)
+      stagger_delay: 50, // 交错动画间隔时间(毫秒)
+      enable_skeleton: true, // 是否启用骨架屏加载动画
+      skeleton_duration: 1500 // 骨架屏shimmer动画周期(毫秒)
     },
-    loading: {
+    
+    // 文章内容
+    article: {
+      enable_skeleton: true, // 是否启用文章加载骨架屏动画
+      enable_render: true, // 是否启用文章内容渲染动画（淡入）
+      render_duration: 600 // 渲染动画持续时间(毫秒)
+    },
+    
+    // 通用设置
+    general: {
       min_duration: 300 // 加载动画最小显示时长(毫秒) - 确保用户能看到加载过程
     }
   },
@@ -66,24 +82,24 @@ const config = {
       },
       {
         text: "文档",
-        url: "/main/",
+        url: "main/",
       },
       {
         text: "教程",
         url: [
           {
             text: "快速开始",
-            url: "/main/#快速入门/",
+            url: "main/#快速入门/",
             icon: "fas fa-rocket"
           },
           {
             text: "使用指南",
-            url: "/main/#使用指南/",
+            url: "main/#使用指南/",
             icon: "fas fa-book"
           },
           {
             text: "详细配置",
-            url: "/main/#配置详解/",
+            url: "main/#配置详解/",
             icon: "fas fa-cog"
           }
         ],

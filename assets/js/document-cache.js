@@ -2,6 +2,7 @@
  * 文档缓存管理模块
  * 负责处理文档的预加载和缓存功能
  */
+import config from '/config.js';
 
 // 全局缓存对象
 const documentCache = {
@@ -306,8 +307,10 @@ const documentCache = {
         // 标记为正在加载
         this.loadingDocs.add(path);
         
-        // 构建完整路径
-        const fetchPath = `/data/${path}`;
+        // 构建完整路径，使用配置的根目录
+        const rootDir = config.document.root_dir.replace(/\/$/, '');
+        const cleanPath = path.replace(/^\//, '');
+        const fetchPath = `${rootDir}/${cleanPath}`;
         
         fetch(fetchPath)
             .then(response => {

@@ -137,8 +137,8 @@ export function initThemeEvents() {
         updateThemeToggleButton();
     });
     
-    // 监听DOM加载完成事件
-    document.addEventListener('DOMContentLoaded', function() {
+    // 页面加载时初始化主题相关功能
+    function initThemeOnLoad() {
         // 绑定切换按钮事件
         const toggleButtons = document.querySelectorAll('[id^="dark-mode-toggle"]');
         toggleButtons.forEach(button => {
@@ -147,5 +147,8 @@ export function initThemeEvents() {
         
         // 更新按钮状态
         updateThemeToggleButton();
-    });
+    }
+
+    // 立即执行初始化
+    initThemeOnLoad();
 } 

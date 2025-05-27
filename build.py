@@ -424,7 +424,13 @@ def merge_structures(existing, new_structure, config):
     # 如果新结构有索引但旧结构没有，或索引路径发生变化
     if (new_structure.get("index") and (not existing.get("index") or 
                                        existing.get("index", {}).get("path") != new_structure.get("index", {}).get("path"))):
-        result["index"] = new_structure["index"]
+        # 如果旧结构有索引且标题不为空，保留原有标题
+        if existing.get("index") and existing["index"].get("title"):
+            new_index = new_structure["index"].copy()
+            new_index["title"] = existing["index"]["title"]  # 保留原有标题
+            result["index"] = new_index
+        else:
+            result["index"] = new_structure["index"]
     # 如果索引文件没有变化，但新结构中包含Git信息，则更新Git信息
     elif new_structure.get("index") and existing.get("index"):
         if "git" in new_structure["index"] and (
@@ -463,9 +469,10 @@ def merge_structures(existing, new_structure, config):
                 updated_child = merge_structures(child, new_paths[path], config)
                 updated_children.append(updated_child)
             else:
-                # 文件项，保留原有结构（例如可能包含order字段）但更新标题和Git信息
+                # 文件项，保留原有结构（例如可能包含order字段和手动设置的标题）但更新Git信息
                 child_copy = child.copy()
-                child_copy["title"] = new_paths[path]["title"]
+                # 保留原有标题，不从文件内容重新提取覆盖
+                # child_copy["title"] = new_paths[path]["title"]  # 注释掉此行以保留手动设置的标题
                 
                 # 更新Git信息
                 if "git" in new_paths[path]:

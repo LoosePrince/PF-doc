@@ -6,6 +6,12 @@ import config from '/config.js';
 import { initDarkMode, initThemeEvents } from './theme.js';
 import { generateNavLinks, generateMobileNavLinks, updateFooterElements } from './navigation.js';
 import documentCache from './document-cache.js';
+import {
+    debounce,
+    isDarkMode,
+    parseUrlPath,
+    generateNewUrl
+} from './utils.js';
 
 // 搜索数据
 let searchData = null;
@@ -36,11 +42,17 @@ export async function initApp() {
         document.body.style.fontFamily = config.appearance.font_family;
     }
     
+    // 动态加载扩展资源
+    await loadExtensions();
+    
     // 加载头部和底部
     await loadHeaderAndFooter();
     
     // 初始化搜索功能
     initSearch();
+    
+    // 更新首页链接
+    updateHomePageLinks(config);
     
     // Alpine.js初始化问题修复
     fixAlpineInit();
@@ -63,6 +75,105 @@ function hexToRgb(hex) {
     
     // 返回RGB对象
     return { r, g, b };
+}
+
+// 动态加载扩展资源
+async function loadExtensions() {
+    const extensions = config.extensions;
+    const loadPromises = [];
+    
+    // 加载数学公式支持(KaTeX)
+    if (extensions.math) {
+        loadPromises.push(loadKaTeX());
+    }
+    
+    // 加载语法高亮(Highlight.js)
+    if (extensions.highlight) {
+        loadPromises.push(loadHighlightJS());
+    }
+    
+    // 加载Mermaid图表
+    if (extensions.mermaid) {
+        loadPromises.push(loadMermaid());
+    }
+    
+    // 等待所有资源加载完成
+    await Promise.all(loadPromises);
+    console.log('扩展资源加载完成');
+}
+
+// 加载KaTeX
+async function loadKaTeX() {
+    return new Promise((resolve, reject) => {
+        // 加载CSS
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css';
+        cssLink.onload = () => {
+            // CSS加载完成后，加载主要的JS文件
+            const mainScript = document.createElement('script');
+            mainScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js';
+            mainScript.onload = () => {
+                // 主要JS加载完成后，加载auto-render插件
+                const autoRenderScript = document.createElement('script');
+                autoRenderScript.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js';
+                autoRenderScript.onload = () => resolve();
+                autoRenderScript.onerror = () => reject(new Error('KaTeX auto-render 加载失败'));
+                document.head.appendChild(autoRenderScript);
+            };
+            mainScript.onerror = () => reject(new Error('KaTeX 主文件加载失败'));
+            document.head.appendChild(mainScript);
+        };
+        cssLink.onerror = () => reject(new Error('KaTeX CSS 加载失败'));
+        document.head.appendChild(cssLink);
+    });
+}
+
+// 加载Highlight.js
+async function loadHighlightJS() {
+    return new Promise((resolve, reject) => {
+        // 加载亮色主题CSS
+        const lightCss = document.createElement('link');
+        lightCss.rel = 'stylesheet';
+        lightCss.href = 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github.min.css';
+        
+        // 加载暗色主题CSS
+        const darkCss = document.createElement('link');
+        darkCss.rel = 'stylesheet';
+        darkCss.href = 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css';
+        darkCss.media = '(prefers-color-scheme: dark)';
+        
+        // 加载主要JS文件
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Highlight.js 加载失败'));
+        
+        // 添加到文档头部
+        document.head.appendChild(lightCss);
+        document.head.appendChild(darkCss);
+        document.head.appendChild(script);
+    });
+}
+
+// 加载Mermaid
+async function loadMermaid() {
+    return new Promise((resolve, reject) => {
+        // 先加载Canvg (Mermaid的依赖)
+        const canvgScript = document.createElement('script');
+        canvgScript.src = 'https://cdn.jsdelivr.net/npm/canvg@3.0.10/lib/umd.min.js';
+        canvgScript.async = false;
+        canvgScript.onload = () => {
+            // Canvg加载完成后，加载Mermaid
+            const mermaidScript = document.createElement('script');
+            mermaidScript.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
+            mermaidScript.onload = () => resolve();
+            mermaidScript.onerror = () => reject(new Error('Mermaid 加载失败'));
+            document.head.appendChild(mermaidScript);
+        };
+        canvgScript.onerror = () => reject(new Error('Canvg 加载失败'));
+        document.head.appendChild(canvgScript);
+    });
 }
 
 // 加载头部和底部
@@ -290,19 +401,6 @@ function bindSearchEvents() {
             }
         });
     }
-}
-
-// 防抖函数，用于限制高频率事件的触发
-function debounce(func, wait) {
-    let timeout;
-    return function() {
-        const context = this;
-        const args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            func.apply(context, args);
-        }, wait);
-    };
 }
 
 // 打开搜索模态窗口
@@ -838,44 +936,33 @@ function formatSiteName(siteName) {
     }
 }
 
+// 导入路径工具
+import { generateNewUrl as pathGenerateNewUrl } from './path-utils.js';
+
 /**
  * 生成新格式的文档URL
  */
 function generateNewDocumentUrl(path, root = null, anchor = '') {
-    const baseUrl = '/main/';
-    
-    // 构建新的hash格式
-    let hash = '';
-    
-    if (root) {
-        // 当有root时，需要检查path是否已经包含了root前缀
-        let relativePath = path;
-        if (path && path.startsWith(root + '/')) {
-            // 如果path已经包含root前缀，则移除它
-            relativePath = path.substring(root.length + 1);
-        }
-        
-        // 有root的情况: #root/path#anchor
-        hash = root;
-        if (relativePath) {
-            hash += '/' + relativePath;
-        }
-        if (anchor) {
-            hash += '#' + anchor;
-        }
-    } else {
-        // 无root的情况: #/path#anchor (兼容原格式)
-        if (path) {
-            hash = '/' + path;
-            if (anchor) {
-                hash += '#' + anchor;
-            }
-        } else if (anchor) {
-            hash = '#' + anchor;
-        }
+    return pathGenerateNewUrl(path, root, anchor);
+}
+
+// 更新首页链接
+function updateHomePageLinks(config) {
+    // 更新查看文档链接
+    const viewDocsLink = document.getElementById('view-docs-link');
+    if (viewDocsLink) {
+        const baseUrl = config.site.base_url.replace(/\/$/, '');
+        const mainPath = baseUrl ? `${baseUrl}/main/` : '/main/';
+        viewDocsLink.href = mainPath;
     }
     
-    return hash ? `${baseUrl}#${hash}` : baseUrl;
+    // 更新立即开始链接
+    const getStartedLink = document.getElementById('get-started-link');
+    if (getStartedLink) {
+        const baseUrl = config.site.base_url.replace(/\/$/, '');
+        const mainPath = baseUrl ? `${baseUrl}/main/` : '/main/';
+        getStartedLink.href = mainPath;
+    }
 }
 
 // 监听DOM加载完成，初始化应用

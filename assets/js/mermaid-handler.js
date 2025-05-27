@@ -8,9 +8,14 @@ const darkModeObserver = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
         if (mutation.attributeName === 'class') {
             const isDarkMode = document.documentElement.classList.contains('dark');
-            // 切换代码高亮主题
-            document.querySelector('link[href*="github.min.css"]').media = isDarkMode ? 'not all' : 'all';
-            document.querySelector('link[href*="github-dark.min.css"]').media = isDarkMode ? 'all' : 'not all';
+            
+            // 切换代码高亮主题（如果启用了语法高亮）
+            if (config.extensions.highlight) {
+                const lightTheme = document.querySelector('link[href*="github.min.css"]');
+                const darkTheme = document.querySelector('link[href*="github-dark.min.css"]');
+                if (lightTheme) lightTheme.media = isDarkMode ? 'not all' : 'all';
+                if (darkTheme) darkTheme.media = isDarkMode ? 'all' : 'not all';
+            }
             
             // 重新初始化Mermaid以适应暗黑模式
             updateMermaidTheme(isDarkMode);
@@ -28,9 +33,15 @@ darkModeObserver.observe(document.documentElement, {
 export function updateMermaidTheme(isDarkMode) {
     // 检查是否启用了Mermaid支持
     if (!config.extensions.mermaid) return;
+    
+    // 检查Mermaid库是否已加载
+    if (typeof window.mermaid === 'undefined') {
+        console.warn('Mermaid库未加载，跳过主题更新');
+        return;
+    }
 
     // 更新Mermaid配置
-    mermaid.initialize({ 
+    window.mermaid.initialize({ 
         startOnLoad: false,
         theme: isDarkMode ? 'dark' : 'default',
         darkMode: isDarkMode,
@@ -70,7 +81,7 @@ export function updateMermaidTheme(isDarkMode) {
         
         // 重新渲染
         setTimeout(() => {
-            mermaid.init(undefined, mermaidDivs);
+            window.mermaid.init(undefined, mermaidDivs);
         }, 100);
     }
 }
@@ -79,8 +90,14 @@ export function updateMermaidTheme(isDarkMode) {
 export function initializeMermaid() {
     // 检查是否启用了Mermaid支持
     if (!config.extensions.mermaid) return;
+    
+    // 检查Mermaid库是否已加载
+    if (typeof window.mermaid === 'undefined') {
+        console.warn('Mermaid库未加载，跳过初始化');
+        return;
+    }
 
-    mermaid.initialize({ 
+    window.mermaid.initialize({ 
         startOnLoad: false,  // 改为false，我们会在文档加载后手动初始化
         theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
         darkMode: document.documentElement.classList.contains('dark'), // 明确设置暗黑模式
@@ -102,6 +119,12 @@ export function initializeMermaid() {
 export function processMermaidDiagrams() {
     // 检查是否启用了Mermaid支持
     if (!config.extensions.mermaid) return;
+    
+    // 检查Mermaid库是否已加载
+    if (typeof window.mermaid === 'undefined') {
+        console.warn('Mermaid库未加载，跳过图表处理');
+        return;
+    }
 
     setTimeout(() => {
         try {

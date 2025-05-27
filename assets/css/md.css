@@ -61,6 +61,8 @@
     line-height: 1.6;
     word-wrap: break-word;
     padding: 45px;
+    opacity: 0;
+    min-height: calc(100vh - 140px);
 }
 
 /* 暗黑模式 */
