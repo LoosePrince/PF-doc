@@ -248,18 +248,18 @@
     {
         "title": "快速开始",
         "path": "PF-webui/快速开始.md",
-        "content": "快速开始 依赖配置 **Python 包:** 请确保已安装 Python™ 和 pip (pip通常在安装完python后会默认安装)。 **Python 模块:** 参考插件目录内的 文件，使用命令 进行安装。 **前置插件:** PIM插件，已内置WebUI，如有需要可以在设置页面将其安装到外部以为其它可能需要的插件提供帮助。 使用方式 > 目前未对接GUGUbot账号系统；当账号为QQ号时...",
+        "content": "快速开始 依赖配置 - **Python 包:** 请确保已安装 Python™ 和 pip (pip通常在安装完python后会默认安装)。 - ~~**Python 模块:** 参考插件目录内的 文件，使用命令 进行安装。~~ > [NOTE]提示 > > 与 v1.4.0 起WebUI将自行处理依赖安装，也就是说，即使您是通过手动下载安装的，也不再需要处理 requirements.txt ...",
         "keywords": [
             "python",
             "deepseek",
             "ai",
+            "note",
             "webui",
             "快速开始",
             "依赖配置",
             "请确保已安装",
             "pip",
-            "pip通常在安装完python后会默认安装",
-            "模块"
+            "pip通常在安装完python后会默认安装"
         ]
     },
     {

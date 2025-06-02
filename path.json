@@ -352,21 +352,21 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1747657251,
+                            "timestamp": 1748864733,
                             "author": "树梢",
-                            "email": "pfingan@foxmail.com",
-                            "message": "添加WebUI配置说明文档，更新API文档，增加HTTPS配置选项，修正API调用示例格式",
+                            "email": "107794785+LoosePrince@users.noreply.github.com",
+                            "message": "Update 快速开始.md",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
                         "contributors": [
                             {
                                 "name": "树梢",
-                                "email": "pfingan@foxmail.com",
-                                "commits": 2,
+                                "email": "107794785+LoosePrince@users.noreply.github.com",
+                                "commits": 3,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1747657251
+                                "last_commit_timestamp": 1748864733
                             }
                         ]
                     }
