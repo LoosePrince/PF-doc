@@ -352,21 +352,21 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1748864733,
+                            "timestamp": 1748865954,
                             "author": "树梢",
-                            "email": "107794785+LoosePrince@users.noreply.github.com",
-                            "message": "Update 快速开始.md",
+                            "email": "pfingan@foxmail.com",
+                            "message": "更新webui的文档",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
                         "contributors": [
                             {
                                 "name": "树梢",
-                                "email": "107794785+LoosePrince@users.noreply.github.com",
-                                "commits": 3,
+                                "email": "pfingan@foxmail.com",
+                                "commits": 4,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748864733
+                                "last_commit_timestamp": 1748865954
                             }
                         ]
                     }
@@ -402,10 +402,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1748076215,
+                            "timestamp": 1748865954,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "更新EasyDocument版本到v1.2.7",
+                            "message": "更新webui的文档",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -413,10 +413,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 3,
+                                "commits": 4,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748076215
+                                "last_commit_timestamp": 1748865954
                             }
                         ]
                     }
@@ -459,10 +459,10 @@
                 "path": "PF-webui/README.md",
                 "git": {
                     "last_modified": {
-                        "timestamp": 1747702452,
+                        "timestamp": 1748865954,
                         "author": "树梢",
                         "email": "pfingan@foxmail.com",
-                        "message": "修复卡片容器样式，调整右侧内边距设置；更新README文档，优化插件管理和表单配置功能的描述",
+                        "message": "更新webui的文档",
                         "github_username": "LoosePrince",
                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                     },
@@ -470,10 +470,10 @@
                         {
                             "name": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "commits": 2,
+                            "commits": 3,
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                            "last_commit_timestamp": 1747702452
+                            "last_commit_timestamp": 1748865954
                         }
                     ]
                 }
