@@ -352,10 +352,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1748865954,
+                            "timestamp": 1749103274,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "更新webui的文档",
+                            "message": "更新WebUI文档",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -363,10 +363,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 4,
+                                "commits": 5,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748865954
+                                "last_commit_timestamp": 1749103274
                             }
                         ]
                     }
@@ -428,7 +428,27 @@
                         {
                             "title": "插件兼容",
                             "path": "PF-webui/开发/插件兼容.md",
-                            "children": []
+                            "children": [],
+                            "git": {
+                                "last_modified": {
+                                    "timestamp": 1749103274,
+                                    "author": "树梢",
+                                    "email": "pfingan@foxmail.com",
+                                    "message": "更新WebUI文档",
+                                    "github_username": "LoosePrince",
+                                    "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                                },
+                                "contributors": [
+                                    {
+                                        "name": "树梢",
+                                        "email": "pfingan@foxmail.com",
+                                        "commits": 1,
+                                        "github_username": "LoosePrince",
+                                        "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                        "last_commit_timestamp": 1749103274
+                                    }
+                                ]
+                            }
                         },
                         {
                             "title": "MCDR WebUI API 文档",
@@ -464,10 +484,10 @@
                 "path": "PF-webui/README.md",
                 "git": {
                     "last_modified": {
-                        "timestamp": 1748865954,
+                        "timestamp": 1749103274,
                         "author": "树梢",
                         "email": "pfingan@foxmail.com",
-                        "message": "更新webui的文档",
+                        "message": "更新WebUI文档",
                         "github_username": "LoosePrince",
                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                     },
@@ -475,10 +495,10 @@
                         {
                             "name": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "commits": 3,
+                            "commits": 4,
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                            "last_commit_timestamp": 1748865954
+                            "last_commit_timestamp": 1749103274
                         }
                     ]
                 }
