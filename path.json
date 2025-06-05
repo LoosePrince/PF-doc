@@ -12,10 +12,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1748157444,
+                            "timestamp": 1749104601,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "修正链接",
+                            "message": "更新PF-gugubot文档，新增游戏消息用户@功能和指令解绑说明，添加忽略服务器指令模式的配置说明，修正mg_events版本支持说明。",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -23,10 +23,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 5,
+                                "commits": 6,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748157444
+                                "last_commit_timestamp": 1749104601
                             }
                         ]
                     }
@@ -62,10 +62,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1748326343,
+                            "timestamp": 1749104601,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "更新文档",
+                            "message": "更新PF-gugubot文档，新增游戏消息用户@功能和指令解绑说明，添加忽略服务器指令模式的配置说明，修正mg_events版本支持说明。",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -73,10 +73,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 2,
+                                "commits": 3,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748326343
+                                "last_commit_timestamp": 1749104601
                             }
                         ]
                     }
@@ -87,10 +87,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1748326343,
+                            "timestamp": 1749104601,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "更新文档",
+                            "message": "更新PF-gugubot文档，新增游戏消息用户@功能和指令解绑说明，添加忽略服务器指令模式的配置说明，修正mg_events版本支持说明。",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -98,10 +98,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 6,
+                                "commits": 7,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748326343
+                                "last_commit_timestamp": 1749104601
                             }
                         ]
                     }
