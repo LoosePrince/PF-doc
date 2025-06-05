@@ -1,14 +1,11 @@
 # PF-MCDR-WebUI
 为 MCDR 开发的在线 WebUI 插件
 
-> [NOTE]
-> 
-> 由于 **GUGUbot** 和 **WebUI** 项目庞大，但迄今为止仅有开发者一名，所以我们从现在开始招募有志者加入我们！
-> 有意者请加 QQ[1377820366](http://wpa.qq.com/msgrd?v=3&uin=1377820366&site=qq&menu=yes) 或 QQ群[726741344](https://qm.qq.com/q/TqmRHmTmcU)
+## 善用搜索功能
+
+![](/src/搜索示例-1.png)
 
 ## 插件说明
-
-WebUI 文档：[WebUI 文档](https://pf-doc.pfingan.com/main/#PF-webui)
 
 ### 主要功能
 > 为MCDR提供一个 `在线WebUI管理界面` 和 `MCDR插件管理` 和 `表单配置功能`（可选使用在线编辑器）。

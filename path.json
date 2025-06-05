@@ -372,31 +372,6 @@
                     }
                 },
                 {
-                    "title": "参考图片",
-                    "path": "PF-webui/参考图片.html",
-                    "children": [],
-                    "git": {
-                        "last_modified": {
-                            "timestamp": 1748076215,
-                            "author": "树梢",
-                            "email": "pfingan@foxmail.com",
-                            "message": "更新EasyDocument版本到v1.2.7",
-                            "github_username": "LoosePrince",
-                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
-                        },
-                        "contributors": [
-                            {
-                                "name": "树梢",
-                                "email": "pfingan@foxmail.com",
-                                "commits": 2,
-                                "github_username": "LoosePrince",
-                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1748076215
-                            }
-                        ]
-                    }
-                },
-                {
                     "title": "WebUI 配置说明",
                     "path": "PF-webui/配置说明.md",
                     "children": [],
@@ -422,9 +397,39 @@
                     }
                 },
                 {
+                    "title": "参考图片",
+                    "path": "PF-webui/参考图片.html",
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1748076215,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "更新EasyDocument版本到v1.2.7",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 2,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1748076215
+                            }
+                        ]
+                    }
+                },
+                {
                     "title": "开发",
                     "path": "PF-webui/开发",
                     "children": [
+                        {
+                            "title": "插件兼容",
+                            "path": "PF-webui/开发/插件兼容.md",
+                            "children": []
+                        },
                         {
                             "title": "MCDR WebUI API 文档",
                             "path": "PF-webui/开发/API文档.md",

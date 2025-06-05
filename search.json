@@ -231,18 +231,18 @@
     {
         "title": "README",
         "path": "PF-webui/README.md",
-        "content": "PF-MCDR-WebUI 为 MCDR 开发的在线 WebUI 插件 > [NOTE] > > 由于 **GUGUbot** 和 **WebUI** 项目庞大，但迄今为止仅有开发者一名，所以我们从现在开始招募有志者加入我们！ > 有意者请加 QQ1377820366 或 QQ群726741344 插件说明 WebUI 文档：WebUI 文档 主要功能 > 为MCDR提供一个 和 和 （可选使用在...",
+        "content": "PF-MCDR-WebUI 为 MCDR 开发的在线 WebUI 插件 善用搜索功能 插件说明 主要功能 > 为MCDR提供一个 和 和 （可选使用在线编辑器）。 pip包管理 本地插件管理 - [x] 列出全部插件 - [x] 一键更新 - [x] 启动插件 - [x] 停止插件 - [x] 重载插件 - [x] 切换插件版本（第三方仓库不支持） - [x] 插件配置文件的在线编辑器 - [x]...",
         "keywords": [
-            "webui",
             "mcdr",
-            "文档",
+            "webui",
             "重载插件",
             "important",
             "文件夹中的内容",
             "pf",
             "开发的在线",
             "插件",
-            "note"
+            "善用搜索功能",
+            "插件说明"
         ]
     },
     {
@@ -253,13 +253,13 @@
             "deepseek",
             "ai",
             "note",
+            "访问webui",
+            "配置说明",
             "webui",
             "快速开始",
             "依赖配置",
             "python",
-            "依赖",
-            "参考插件目录内的",
-            "文件"
+            "依赖"
         ]
     },
     {
@@ -312,6 +312,12 @@
             "参数",
             "mcdr"
         ]
+    },
+    {
+        "title": "插件兼容",
+        "path": "PF-webui/开发/插件兼容.md",
+        "content": "",
+        "keywords": []
     },
     {
         "title": "Player IP Logger for MCDReforged",
