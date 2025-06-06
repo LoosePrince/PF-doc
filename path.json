@@ -637,6 +637,31 @@
                             }
                         ]
                     }
+                },
+                {
+                    "title": "Player IP Logger 常见问题",
+                    "path": "常见问题/player_ip_logger.md",
+                    "children": [],
+                    "git": {
+                        "last_modified": {
+                            "timestamp": 1749190404,
+                            "author": "树梢",
+                            "email": "pfingan@foxmail.com",
+                            "message": "添加player_ip_logger的问题文档",
+                            "github_username": "LoosePrince",
+                            "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
+                        },
+                        "contributors": [
+                            {
+                                "name": "树梢",
+                                "email": "pfingan@foxmail.com",
+                                "commits": 1,
+                                "github_username": "LoosePrince",
+                                "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
+                                "last_commit_timestamp": 1749190404
+                            }
+                        ]
+                    }
                 }
             ],
             "index": {
