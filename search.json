@@ -433,6 +433,23 @@
         ]
     },
     {
+        "title": "Player IP Logger 常见问题",
+        "path": "常见问题/player_ip_logger.md",
+        "content": "Player IP Logger 常见问题 如何解Ban？ **解Ban流程：** 1. 到 将对应的玩家ID和IP删除（一定删干净） 2. 到MC原版的 和 删除对应的玩家ID和IP（一定删干净） 3. 重启MC服务器 **为什么会这样？** 因为Player IP Logger本质是替你执行原版的ban命令，所以机制是原版的。必须同时删除ID和IP是因为只删其中一个的话，Player IP L...",
+        "keywords": [
+            "ip",
+            "player",
+            "一定删干净",
+            "ban",
+            "logger",
+            "常见问题",
+            "如何解ban",
+            "解ban流程",
+            "将对应的玩家id和ip删除",
+            "到mc原版的"
+        ]
+    },
+    {
         "title": "更多插件",
         "path": "更多插件",
         "content": "",
