@@ -221,10 +221,10 @@
                             "children": [],
                             "git": {
                                 "last_modified": {
-                                    "timestamp": 1748231634,
+                                    "timestamp": 1749288787,
                                     "author": "树梢",
                                     "email": "pfingan@foxmail.com",
-                                    "message": "更新文档",
+                                    "message": "修改 Lagrange 文档",
                                     "github_username": "LoosePrince",
                                     "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                                 },
@@ -232,10 +232,10 @@
                                     {
                                         "name": "树梢",
                                         "email": "pfingan@foxmail.com",
-                                        "commits": 3,
+                                        "commits": 4,
                                         "github_username": "LoosePrince",
                                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                        "last_commit_timestamp": 1748231634
+                                        "last_commit_timestamp": 1749288787
                                     }
                                 ]
                             }
