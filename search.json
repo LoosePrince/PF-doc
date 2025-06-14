@@ -188,18 +188,18 @@
     {
         "title": "Lagrange",
         "path": "PF-cq-api/机器人食用指南/Lagrange.md",
-        "content": "Lagrange > 编写者：CC 1、去Lagrange项目Release下载Lagrange ( https://github.com/LagrangeDev/Lagrange.Core/releases )选择Win-x64版本 2、解压，运行exe程序 3、编辑 修改 下的 ，把 改成机器人QQ号 修改 下的 ，将 改成 然后在 下添加 4. 修改 cq-qq-api 的 中的 为 （默认...",
+        "content": "Lagrange > 编写者：CC 1、去Lagrange项目Release下载Lagrange ( https://github.com/LagrangeDev/Lagrange.Core/releases )选择Win-x64版本 2、解压，运行exe程序 3、编辑 修改 下的 ，把 改成机器人QQ号 ~~修改 下的 ，将 改成 ~~ （不需要了，保持默认即可） 修改 下的 ，将 改成 然后在...",
         "keywords": [
             "修改",
-            "lagrange",
             "下的",
+            "lagrange",
+            "改成",
             "中的",
             "编写者",
             "cc",
             "去lagrange项目release下载lagrange",
             "https",
-            "github",
-            "com"
+            "github"
         ]
     },
     {
