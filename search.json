@@ -418,18 +418,18 @@
     {
         "title": "WebUI 疑难解答",
         "path": "常见问题/WebUI.md",
-        "content": "WebUI 疑难解答 面板是怎么qq登录的？ 例如： 创建账户时使用 作为账户，例如 此处 填您的QQ号即可 登录webui后转到的界面显示{\"detail\":\"There was an error parsing the body\"} 重启服务器后重新登录",
+        "content": "WebUI 疑难解答 面板是怎么qq登录的？ 例如： 创建账户时使用 作为账户，例如 此处 填您的QQ号即可 登录webui后转到的界面显示{\"detail\":\"There was an error parsing the body\"} 重启服务器后重新登录 如何区分SSL证书和密钥 当 SSL 证书文件（如 和 ）的文件名无法区分时，可以通过查看文件内容快速区分： - **证书文件（cert.p...",
         "keywords": [
             "例如",
+            "证书文件",
+            "pem",
+            "开头",
             "webui",
             "疑难解答",
             "面板是怎么qq登录的",
             "创建账户时使用",
             "作为账户",
-            "此处",
-            "填您的qq号即可",
-            "登录webui后转到的界面显示",
-            "detail"
+            "此处"
         ]
     },
     {
