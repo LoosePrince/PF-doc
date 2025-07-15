@@ -14,6 +14,15 @@ export function initCacheManager() {
 
     // 初始化缓存控制开关
     initCacheControls();
+    
+    // 初始化时更新缓存列表
+    updateCacheList();
+    
+    // 监听缓存更新事件
+    document.addEventListener('cache-updated', function() {
+        // 当缓存更新时，更新缓存列表
+        updateCacheList();
+    });
 }
 
 /**
@@ -228,7 +237,7 @@ function updateCacheList() {
             document.querySelectorAll('.remove-preload').forEach(button => {
                 button.addEventListener('click', function() {
                     const path = this.getAttribute('data-path');
-                    delete documentCache.preloadCache[path];
+                    documentCache.removeFromPreload(path);
                     updateCacheList();
                 });
             });
@@ -318,4 +327,4 @@ function formatTimeAgo(timestamp) {
 }
 
 // 导出需要在外部调用的函数
-export { openCacheModal, updateCacheList }; 
+export { openCacheModal, updateCacheList };

@@ -75,6 +75,9 @@ const documentCache = {
         
         // 保存到localStorage
         this._saveToLocalStorage();
+        
+        // 触发自定义事件，通知缓存更新
+        document.dispatchEvent(new CustomEvent('cache-updated'));
     },
     
     /**
@@ -90,6 +93,9 @@ const documentCache = {
 
         this.preloadCache[path] = content;
         this.loadingDocs.delete(path);
+        
+        // 触发自定义事件，通知缓存更新
+        document.dispatchEvent(new CustomEvent('cache-updated'));
     },
     
     /**
@@ -162,6 +168,8 @@ const documentCache = {
         this.cache = {};
         localStorage.removeItem('document_cache');
         localStorage.removeItem('document_cache_info');
+        // 触发自定义事件，通知缓存更新
+        document.dispatchEvent(new CustomEvent('cache-updated'));
     },
     
     /**
@@ -169,6 +177,8 @@ const documentCache = {
      */
     clearAllPreloaded() {
         this.preloadCache = {};
+        // 触发自定义事件，通知缓存更新
+        document.dispatchEvent(new CustomEvent('cache-updated'));
     },
     
     /**
@@ -477,6 +487,8 @@ const documentCache = {
         if (this.cache[path]) {
             delete this.cache[path];
             this._saveToLocalStorage();
+            // 触发自定义事件，通知缓存更新
+            document.dispatchEvent(new CustomEvent('cache-updated'));
         }
     },
 
@@ -487,6 +499,8 @@ const documentCache = {
     removeFromPreload(path) {
         if (this.preloadCache[path]) {
             delete this.preloadCache[path];
+            // 触发自定义事件，通知缓存更新
+            document.dispatchEvent(new CustomEvent('cache-updated'));
         }
     }
 };
@@ -494,4 +508,4 @@ const documentCache = {
 // 初始化缓存管理器
 documentCache.init();
 
-export default documentCache; 
+export default documentCache;
