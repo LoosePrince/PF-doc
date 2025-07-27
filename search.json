@@ -53,7 +53,7 @@
     {
         "title": "安装(快速开始)",
         "path": "PF-gugubot/快速开始.md",
-        "content": "安装(快速开始) MCDR快捷安装 1. MCDR服务端输入 2. 加载后，在 中配置机器人api接口 3. 加载后，在 中配置机器人配置 4. 重载 cq_qq_api: Github下载安装 下载前置插件和GUGUbot并放入MCDR目录下plugins文件内 1. 前往Release下载 放入 （plugins文件内） 2. 前往Release下载 放入 （plugins文件内） 3. 前往...",
+        "content": "安装(快速开始) MCDR快捷安装（推荐） 1. MCDR服务端输入 2. 加载后，在 中配置机器人api接口 3. 加载后，在 中配置机器人配置 4. 重载 cq_qq_api: Github下载安装 下载前置插件和GUGUbot并放入MCDR目录下plugins文件内 1. 前往Release下载 放入 （plugins文件内） 2. 前往Release下载 放入 （plugins文件内） 3...",
         "keywords": [
             "加载后",
             "放入",
