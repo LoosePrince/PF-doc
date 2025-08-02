@@ -137,3 +137,41 @@ MCDR完整日志获取
 ### 下载
 
 [加入QQ群](支持与反馈/README#加入交流群)
+
+## MCDR MCP Service
+
+一个为MCDR提供MCP服务接口的插件，让AI来管理你的MCDR
+
+### 说明
+
+MCDR MCP Service 是一个基于MCP（Model Context Protocol）协议的插件，允许支持MCP的AI客户端（如Claude Desktop）直接与MCDR进行交互，实现AI管理Minecraft服务器的功能。
+
+#### 主要功能
+
+- **命令管理**: 获取MCDR可用命令列表，执行MCDR和Minecraft服务器命令
+- **服务器状态**: 实时获取MCDR服务器状态信息
+- **日志管理**: 获取和搜索服务器日志（支持MCDR和Minecraft日志）
+- **智能搜索**: 支持文本搜索和正则表达式搜索日志内容
+- **MCDR命令工具**: 自动将MCDR自带命令转换为独立的MCP工具
+
+#### 可用工具
+
+- `get_command_tree`: 获取MCDR可用命令列表和指令树
+- `execute_command`: 执行MCDR命令或Minecraft服务器命令
+- `get_server_status`: 获取MCDR服务器状态信息
+- `get_recent_logs`: 获取最近的服务器日志
+- `get_logs_range`: 获取指定范围的服务器日志
+- `search_logs`: 搜索日志内容（支持正则表达式）
+- `search_logs_by_ids`: 根据搜索ID范围查询日志
+
+#### 安全特性
+
+- IP白名单控制（默认仅允许本地连接）
+- 危险命令执行限制
+- 连接数量限制
+- 请求频率限制
+- API密钥认证（可选）
+
+### 下载
+
+[mcdr_mcp_service](https://github.com/LoosePrince/mcdr_mcp_service)
