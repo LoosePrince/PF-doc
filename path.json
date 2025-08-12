@@ -463,10 +463,10 @@
                             "children": [],
                             "git": {
                                 "last_modified": {
-                                    "timestamp": 1749103274,
+                                    "timestamp": 1754970743,
                                     "author": "树梢",
                                     "email": "pfingan@foxmail.com",
-                                    "message": "更新WebUI文档",
+                                    "message": "更新文档",
                                     "github_username": "LoosePrince",
                                     "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                                 },
@@ -474,10 +474,10 @@
                                     {
                                         "name": "树梢",
                                         "email": "pfingan@foxmail.com",
-                                        "commits": 1,
+                                        "commits": 2,
                                         "github_username": "LoosePrince",
                                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                        "last_commit_timestamp": 1749103274
+                                        "last_commit_timestamp": 1754970743
                                     }
                                 ]
                             }
