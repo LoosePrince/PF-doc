@@ -45,7 +45,7 @@ MCDR的QQ机器人API插件，支持OneBot协议的正向WebSocketQQ。
 
 ## 常见问题
 
-如果您在使用过程中遇到问题，请先查看[常见问题](main.html?root=常见问题)页面，或到[支持与反馈](main.html?root=支持与反馈)页面获取帮助。
+如果您在使用过程中遇到问题，请先查看[常见问题](https://pf-doc.pfingan.com/main/#常见问题/)页面，或到[支持与反馈](https://pf-doc.pfingan.com/main/#支持与反馈/)页面获取帮助。
 
 ## 如何为本文档进行贡献
 
