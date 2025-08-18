@@ -384,10 +384,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1749103274,
+                            "timestamp": 1755514303,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "更新WebUI文档",
+                            "message": "新增服务器聊天页（/chat）相关配置与API文档",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -395,10 +395,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 5,
+                                "commits": 6,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1749103274
+                                "last_commit_timestamp": 1755514303
                             }
                         ]
                     }
@@ -409,10 +409,10 @@
                     "children": [],
                     "git": {
                         "last_modified": {
-                            "timestamp": 1749873397,
+                            "timestamp": 1755514303,
                             "author": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "message": "更新WebUI文档，新增如何区分SSL证书和密钥的说明",
+                            "message": "新增服务器聊天页（/chat）相关配置与API文档",
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                         },
@@ -420,10 +420,10 @@
                             {
                                 "name": "树梢",
                                 "email": "pfingan@foxmail.com",
-                                "commits": 5,
+                                "commits": 6,
                                 "github_username": "LoosePrince",
                                 "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                "last_commit_timestamp": 1749873397
+                                "last_commit_timestamp": 1755514303
                             }
                         ]
                     }
@@ -488,10 +488,10 @@
                             "children": [],
                             "git": {
                                 "last_modified": {
-                                    "timestamp": 1748326343,
+                                    "timestamp": 1755514303,
                                     "author": "树梢",
                                     "email": "pfingan@foxmail.com",
-                                    "message": "更新文档",
+                                    "message": "新增服务器聊天页（/chat）相关配置与API文档",
                                     "github_username": "LoosePrince",
                                     "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                                 },
@@ -499,10 +499,10 @@
                                     {
                                         "name": "树梢",
                                         "email": "pfingan@foxmail.com",
-                                        "commits": 4,
+                                        "commits": 5,
                                         "github_username": "LoosePrince",
                                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                                        "last_commit_timestamp": 1748326343
+                                        "last_commit_timestamp": 1755514303
                                     }
                                 ]
                             }
@@ -516,10 +516,10 @@
                 "path": "PF-webui/README.md",
                 "git": {
                     "last_modified": {
-                        "timestamp": 1754098632,
+                        "timestamp": 1755514303,
                         "author": "树梢",
                         "email": "pfingan@foxmail.com",
-                        "message": "新增 MCDR MCP Service 插件文档，更新 README 说明，修正插件版本支持信息",
+                        "message": "新增服务器聊天页（/chat）相关配置与API文档",
                         "github_username": "LoosePrince",
                         "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4"
                     },
@@ -527,10 +527,10 @@
                         {
                             "name": "树梢",
                             "email": "pfingan@foxmail.com",
-                            "commits": 5,
+                            "commits": 6,
                             "github_username": "LoosePrince",
                             "github_avatar": "https://avatars.githubusercontent.com/u/107794785?v=4",
-                            "last_commit_timestamp": 1754098632
+                            "last_commit_timestamp": 1755514303
                         }
                     ]
                 }
