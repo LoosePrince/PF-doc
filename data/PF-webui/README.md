@@ -34,6 +34,29 @@
 - [x] 提供服务器命令执行界面
 - [x] 支持RCON实时反馈和命令历史记录。
   
+#### 服务器聊天页（/chat）
+
+- **页面入口**: 路径`/chat`
+- **适配**: 桌面端与移动端（移动端自动隐藏部分说明文案，输入区自适应堆叠）
+- **功能概览**:
+  - 验证码绑定三步流程：获取验证码 → 游戏内执行验证 → 设置密码
+  - 账号登录：使用玩家ID + 密码直接登录
+  - 聊天：
+    - 实时拉取新消息（1秒刷新一次）
+    - 历史消息分页加载
+    - 发送消息到游戏（需后台开启权限）
+  - 头像源切换：
+    - Crafatar（使用玩家UUID）
+    - MCCAG（使用玩家ID，来源 `https://x.xzt.plus/api/generate/minimal/mojang/<playerId>`，前端做贴边裁剪）
+  - MC 样式开关：
+    - 标准样式：卡片气泡、圆角、阴影
+    - MC 样式：行内“[头像][时间] <玩家ID> 消息内容” 无背景
+- **前端行为与本地偏好**:
+  - 主题：`localStorage.darkMode`
+  - 头像源：`localStorage.chat_avatar_source`（`crafatar` | `mccag`）
+  - MC 样式：`localStorage.chat_mc_style`（`true` | `false`）
+- **已知限制**: MCCAG 头像存在默认边距，已在前端做裁剪放大处理（`scale-150`）。
+
 #### AI辅助
 
 - [x] 终端集成DeepSeek AI接口

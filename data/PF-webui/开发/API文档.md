@@ -81,6 +81,56 @@
 
 - 使用位置: 所有页面的退出登录按钮
 
+## 服务器聊天（/chat）相关API
+
+> 说明：服务器聊天页用于玩家验证绑定、登录以及浏览与发送聊天信息。
+
+### 验证码获取与校验
+- 端点: `/api/chat/generate_code`
+- 方法: POST
+- 功能: 生成用于绑定的验证码，玩家需在游戏内执行验证
+
+- 端点: `/api/chat/check_verification`
+- 方法: POST
+- 功能: 校验玩家在游戏内完成的验证
+
+### 设置密码
+- 端点: `/api/chat/set_password`
+- 方法: POST
+- 功能: 为已验证玩家设置登录密码
+
+### 登录与会话
+- 端点: `/api/chat/login`
+- 方法: POST
+- 功能: 使用 玩家ID + 密码 登录
+
+- 端点: `/api/chat/check_session`
+- 方法: POST
+- 功能: 校验会话是否有效（浏览器本地存储 `chat_session_id`）
+
+- 端点: `/api/chat/logout`
+- 方法: POST
+- 功能: 退出登录并使当前会话失效
+
+> 会话ID保存在 `localStorage.chat_session_id`，失效后需重新登录。
+
+### 消息接口
+- 端点: `/api/chat/get_messages`
+- 方法: POST
+- 参数: `limit`, `offset`
+- 功能: 首次或分页加载历史消息
+
+- 端点: `/api/chat/get_new_messages`
+- 方法: POST
+- 参数: `after_id`
+- 功能: 拉取新消息（通常1秒轮询一次）
+
+- 端点: `/api/chat/send_message`
+- 方法: POST
+- 功能: 发送消息到游戏（需要开启“发送到游戏”，且会话有效）
+
+> 后端会在消息对象中附带 `uuid` 字段（若可查询到），前端可据此使用 Crafatar 头像。
+
 ## 服务器状态API
 
 ### 获取服务器状态
